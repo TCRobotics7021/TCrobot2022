@@ -85,8 +85,8 @@ new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
 new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
-//new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
-//new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
+new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
+new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
   }
 
   /**

@@ -31,6 +31,7 @@ public class shootercommand extends CommandBase {
   @Override
   public void execute() {
     actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
+    
     RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
 
 //if (actualrpms > 3000){

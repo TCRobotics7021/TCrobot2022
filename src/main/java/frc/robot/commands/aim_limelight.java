@@ -34,9 +34,13 @@ public class aim_limelight extends CommandBase {
   public void execute() {
 
     targetX = RobotContainer.limelight_subsystem.getTx();
+    
+
+
+
     if (targetX > 0){
-      Lspeed = Constants.AIM_P * targetX;
-      Rspeed = -Constants.AIM_P * targetX; 
+      Lspeed = -Constants.AIM_P * targetX;
+      Rspeed = Constants.AIM_P * targetX; 
       
     }
     if (targetX < 0){
@@ -44,9 +48,26 @@ public class aim_limelight extends CommandBase {
       Rspeed = Constants.AIM_P * targetX; 
     }
 
+    if (Math.abs(Lspeed) > Constants.MAX_AIM_SPEED){
+      Lspeed = Constants.MAX_AIM_SPEED * Math.signum(Lspeed);
+    }
+
+    if (Math.abs(Rspeed) > Constants.MAX_AIM_SPEED){
+      Rspeed = Constants.MAX_AIM_SPEED * Math.signum(Rspeed);
+    }
+
+    if (Math.abs(Lspeed) < Constants.MIN_AIM_SPEED){
+      Lspeed = Constants.MIN_AIM_SPEED * Math.signum(Lspeed);
+    }
+    if (Math.abs(Rspeed) < Constants.MIN_AIM_SPEED){
+      Rspeed = Constants.MIN_AIM_SPEED * Math.signum(Rspeed);
+    }
+
     if (targetX <= 1 && targetX >= -1){
-      finished = true; 
-       
+      //finished = true; 
+      Rspeed = 0;
+      Lspeed = 0;
+       RobotContainer.drive_subsystem.drivebrake();
     }
 
     RobotContainer.drive_subsystem.setSpeed(Rspeed, Lspeed);
