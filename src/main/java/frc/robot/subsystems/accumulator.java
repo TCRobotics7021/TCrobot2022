@@ -7,23 +7,18 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class intake extends SubsystemBase {
-  /** Creates a new intake. */
-  public intake() {}
-TalonFX InMotor = new TalonFX(5);
+public class accumulator extends SubsystemBase {
+  /** Creates a new accumulator. */
+  public accumulator() {}
+TalonFX accuMotor = new TalonFX(6);
 
+public void setSpeed(double accuspeed) {
 
- public void setSpeed(double inspeed) {
+accuMotor.set(ControlMode.PercentOutput, accuspeed);
 
-InMotor.set(ControlMode.PercentOutput, inspeed);;
-
- }
-
-
-
+}
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

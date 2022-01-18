@@ -4,40 +4,31 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class intakecommand extends CommandBase {
-
-  double inspeed;
-  /** Creates a new intake. */
-  public intakecommand() {
+public class defaultaccumulate extends CommandBase {
+  /** Creates a new defaultaccumulate. */
+  public defaultaccumulate() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake_subsystem);
+
+  addRequirements(RobotContainer.accumulator_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-
-inspeed = SmartDashboard.getNumber("intakespeed", 0);
-
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
-    RobotContainer.intake_subsystem.setSpeed(inspeed);
+    RobotContainer.accumulator_subsystem.setSpeed(0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-
-    RobotContainer.intake_subsystem.setSpeed(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
