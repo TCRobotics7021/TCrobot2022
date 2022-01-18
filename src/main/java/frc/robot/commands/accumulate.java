@@ -8,50 +8,35 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class ArcadeDrive extends CommandBase {
-  /** Creates a new ArcadeDrive. */
-
-double LeftJoystick_Y;
-double RightJoystick_X;
-double RSpeed;
-double LSpeed;
-double FBmulti;
-double LRmulti;
-
-
-  public ArcadeDrive() {
+public class accumulate extends CommandBase {
+  double accuspeed;
+  /** Creates a new accumulate. */
+  public accumulate() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.drive_subsystem);
+    addRequirements(RobotContainer.accumulator_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
 
-
-
+accuspeed = SmartDashboard.getNumber("accuspeed", 0);
+  
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    FBmulti = SmartDashboard.getNumber("FBmulti", 0);
-    LRmulti = SmartDashboard.getNumber("LRmulti", 0);
-LeftJoystick_Y = RobotContainer.LeftJoystick.getY();
-RightJoystick_X = RobotContainer.RightJoystick.getX();
 
-RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
-LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);
-
-
-RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
-
+    RobotContainer.accumulator_subsystem.setSpeed(accuspeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.drive_subsystem.setSpeed(0, 0);
+
+
+    RobotContainer.accumulator_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

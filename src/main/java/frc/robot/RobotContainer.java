@@ -9,9 +9,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.accumulate;
+import frc.robot.commands.defaultaccumulate;
 import frc.robot.commands.defaultintake;
 import frc.robot.commands.intakecommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.accumulator;
 import frc.robot.subsystems.drive;
 import frc.robot.subsystems.intake;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,7 +32,7 @@ public class RobotContainer {
 
   public static drive drive_subsystem = new drive();
   public static intake intake_subsystem = new intake();
-
+public static accumulator accumulator_subsystem = new accumulator();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
@@ -40,6 +43,7 @@ public class RobotContainer {
   public RobotContainer() {
     drive_subsystem.setDefaultCommand(new ArcadeDrive());
     intake_subsystem.setDefaultCommand(new defaultintake());
+    accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -54,7 +58,7 @@ public class RobotContainer {
 
 
 new JoystickButton(RightJoystick, 1).whileHeld(new intakecommand(), true);
-
+new JoystickButton(LeftJoystick, 1).whileHeld(new accumulate(), true);
   }
 
   /**
