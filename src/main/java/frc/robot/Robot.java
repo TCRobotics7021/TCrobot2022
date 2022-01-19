@@ -29,8 +29,12 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-
-    
+    SmartDashboard.putNumber("FBmulti", .3);
+    SmartDashboard.putNumber("LRmulti", .1);
+    SmartDashboard.putNumber("intakespeed", .3);
+    SmartDashboard.putNumber("accuspeed", .5);
+    SmartDashboard.putNumber("feedspeed", .8);
+    SmartDashboard.putNumber("shotspeed", .8);
   }
 
   /**
@@ -77,10 +81,6 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    SmartDashboard.putNumber("FBmulti", .3);
-    SmartDashboard.putNumber("LRmulti", .1);
-    SmartDashboard.putNumber("intakespeed", .3);
-    SmartDashboard.putNumber("accuspeed", .5);
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
