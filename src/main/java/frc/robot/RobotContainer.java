@@ -15,6 +15,7 @@ import frc.robot.commands.defaultintake;
 import frc.robot.commands.intakecommand;
 import frc.robot.commands.shootercommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.accumulator;
 import frc.robot.subsystems.drive;
 import frc.robot.subsystems.intake;
@@ -36,6 +37,7 @@ public class RobotContainer {
   public static intake intake_subsystem = new intake();
 public static accumulator accumulator_subsystem = new accumulator();
 public static shooter shooter_subsystem = new shooter();
+public static Lift lift_subsystem = new Lift();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
