@@ -9,14 +9,16 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.accumulate;
+import frc.robot.commands.deaultshooter;
 import frc.robot.commands.defaultaccumulate;
 import frc.robot.commands.defaultintake;
 import frc.robot.commands.intakecommand;
+import frc.robot.commands.shootercommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.accumulator;
 import frc.robot.subsystems.drive;
 import frc.robot.subsystems.intake;
+import frc.robot.subsystems.shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -33,6 +35,7 @@ public class RobotContainer {
   public static drive drive_subsystem = new drive();
   public static intake intake_subsystem = new intake();
 public static accumulator accumulator_subsystem = new accumulator();
+public static shooter shooter_subsystem = new shooter();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
@@ -44,6 +47,7 @@ public static accumulator accumulator_subsystem = new accumulator();
     drive_subsystem.setDefaultCommand(new ArcadeDrive());
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
+    shooter_subsystem.setDefaultCommand(new deaultshooter());
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -57,8 +61,8 @@ public static accumulator accumulator_subsystem = new accumulator();
   private void configureButtonBindings() {
 
 
-new JoystickButton(RightJoystick, 1).whileHeld(new intakecommand(), true);
-new JoystickButton(LeftJoystick, 1).whileHeld(new accumulate(), true);
+new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
+new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
   }
 
   /**
