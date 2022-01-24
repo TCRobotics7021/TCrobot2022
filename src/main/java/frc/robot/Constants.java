@@ -22,6 +22,13 @@ public final class Constants {
 
   public static double LIFT_MOTOR_P = .02;
 
+  public static double GANTRY_ENC_RESET_HEIGHT = 1000;
+
+  public static double GANTRY_ENC_CONV_FACTOR = 1;
+
+  public static double GANTRY_TARGET_ACCURACY = 2;
+
+  public static double GANTRY_MOTOR_P = .02;
 
 
 
