@@ -20,7 +20,7 @@ import frc.robot.RobotContainer;
 
 public class Lift extends SubsystemBase {
   
-  private WPI_TalonFX LiftMotor = new WPI_TalonFX(5);
+  private WPI_TalonFX LiftMotor = new WPI_TalonFX(7);
   //public CANEncoder  LiftMotor_enc = LiftMotor.getEncoder();
   private DigitalInput top_limit = new DigitalInput(1);
   private DigitalInput bottom_limit = new DigitalInput(0);
