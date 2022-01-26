@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,7 +19,18 @@ TalonFX BLmotor = new TalonFX(2);
 TalonFX BRmotor = new TalonFX(1);
 
   public drive() {}
-
+  public void drivecoast(){
+    FRmotor.setNeutralMode(NeutralMode.Coast);
+  FLmotor.setNeutralMode(NeutralMode.Coast);
+  BRmotor.setNeutralMode(NeutralMode.Coast);
+  BLmotor.setNeutralMode(NeutralMode.Coast);
+  }
+public void drivebrake(){
+  FRmotor.setNeutralMode(NeutralMode.Brake);
+  FLmotor.setNeutralMode(NeutralMode.Brake);
+  BRmotor.setNeutralMode(NeutralMode.Brake);
+  BLmotor.setNeutralMode(NeutralMode.Brake);
+}
 public void setSpeed(double rightspeed, double leftspeed){
 
   FRmotor.set(ControlMode.PercentOutput, -rightspeed);
