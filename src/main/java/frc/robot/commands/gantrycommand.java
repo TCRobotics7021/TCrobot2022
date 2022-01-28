@@ -28,6 +28,7 @@ public class gantrycommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.gantry_subsystem.setbrakemode();
 
     finish = false;
   }
@@ -37,9 +38,9 @@ public class gantrycommand extends CommandBase {
   public void execute() {
     difference = gantrytarget - gantrycurrentposition; 
     gantryvelocity = difference * Constants.LIFT_MOTOR_P;
-    RobotContainer.Lift_subsystem.setSpeed(gantryvelocity);
+    RobotContainer.gantry_subsystem.setSpeed(gantryvelocity);
 if(gantrycurrentposition > gantrytarget-Constants.GANTRY_TARGET_ACCURACY && gantrycurrentposition < gantrytarget+Constants.GANTRY_TARGET_ACCURACY){
-RobotContainer.gantry_subsystem.gantrysetSpeed(0);
+RobotContainer.gantry_subsystem.setSpeed(0.0); 
 finish = true;
 }
   }
@@ -55,7 +56,7 @@ finish = true;
   @Override
   public void end(boolean interrupted) {
 
-    RobotContainer.gantry_subsystem.gantrysetSpeed(0);
+    RobotContainer.gantry_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

@@ -7,20 +7,29 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commandgroups.climb1;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.aim_and_shoot;
+import frc.robot.commands.aim_limelight;
+import frc.robot.commands.cancel;
 import frc.robot.commands.deaultshooter;
 import frc.robot.commands.defaultaccumulate;
 import frc.robot.commands.defaultintake;
+import frc.robot.commands.defaultliftcommand;
+import frc.robot.commands.drivebrake;
 import frc.robot.commands.intakecommand;
 import frc.robot.commands.shootercommand;
+import frc.robot.commands.turbo_drive;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.accumulator;
 import frc.robot.subsystems.drive;
 import frc.robot.subsystems.intake;
+import frc.robot.subsystems.limelight;
 import frc.robot.subsystems.shooter;
+import frc.robot.subsystems.testlift;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -36,15 +45,18 @@ public class RobotContainer {
 
   public static drive drive_subsystem = new drive();
   public static intake intake_subsystem = new intake();
-public static accumulator accumulator_subsystem = new accumulator();
-public static shooter shooter_subsystem = new shooter();
-public static Lift Lift_subsystem = new Lift();
-public static Gantry gantry_subsystem = new Gantry();
+  public static accumulator accumulator_subsystem = new accumulator();
+  public static shooter shooter_subsystem = new shooter();
+  //public static testlift Lift_subsystem = new testlift();
+  public static Lift Lift_subsystem = new Lift();
+  public static Gantry gantry_subsystem = new Gantry();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  public static limelight limelight_subsystem = new limelight(); 
 
 
   public static Joystick LeftJoystick = new Joystick(0);
   public static Joystick RightJoystick = new Joystick(1);
+  public static Joystick OPpanel = new Joystick(2);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -52,6 +64,8 @@ public static Gantry gantry_subsystem = new Gantry();
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     shooter_subsystem.setDefaultCommand(new deaultshooter());
+    Lift_subsystem.setDefaultCommand(new defaultliftcommand());
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -67,6 +81,12 @@ public static Gantry gantry_subsystem = new Gantry();
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
+new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
+new JoystickButton(OPpanel, 2).whileHeld(new cancel(), false);
+new JoystickButton(LeftJoystick, 0).whileHeld(new drivebrake(), true);
+new JoystickButton(RightJoystick, 0).whileHeld(new turbo_drive(), true);
+new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
+new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
   }
 
   /**

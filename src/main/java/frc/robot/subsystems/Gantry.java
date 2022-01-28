@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -24,8 +25,13 @@ public class Gantry extends SubsystemBase {
     SmartDashboard.putNumber("Test Height", 0);
 
   }
-
-  public void gantrysetSpeed(double speed) {
+  public void setcoastmode(){
+    GantryMotor.setNeutralMode(NeutralMode.Coast);
+  }
+  public void setbrakemode(){
+    GantryMotor.setNeutralMode(NeutralMode.Brake);
+  }
+  public void setSpeed(double speed) {
     if(speed < 0 && !BWDLimit.get()){
       speed = 0;
     }
@@ -50,10 +56,10 @@ return GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTO
 
 
     if(GantryMotor.getSelectedSensorVelocity() < 0 && !BWDLimit.get()){
-       gantrysetSpeed(0);
+       setSpeed(0);
     }
     if(GantryMotor.getSelectedSensorVelocity() > 0 && !FWDLimit.get()){
-      gantrysetSpeed(0);
+      setSpeed(0);
     }
 
     if(BWDLimit.get() == false){

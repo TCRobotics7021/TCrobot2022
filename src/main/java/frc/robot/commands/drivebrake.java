@@ -4,49 +4,32 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class shootercommand extends CommandBase {
-  double feedspeed;
-  double shotspeed;
-  double actualrpms;
-  /** Creates a new shootercommand. */
-  public shootercommand() {
+public class drivebrake extends CommandBase {
+  /** Creates a new drivebrake. */
+  public drivebrake() {
     // Use addRequirements() here to declare subsystem dependencies.
-
-    addRequirements(RobotContainer.shooter_subsystem);
-    
+    addRequirements(RobotContainer.drive_subsystem);
+  
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    feedspeed = SmartDashboard.getNumber("feedspeed", 0);
-    shotspeed = SmartDashboard.getNumber("shotspeed", 0);
+   RobotContainer.drive_subsystem.setSpeed(0, 0);
+    RobotContainer.drive_subsystem.drivebrake();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
-    RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
-
-if (actualrpms > 3000){
-
-  RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
-
-}
-
-
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter_subsystem.setfeedspeed(0);
-    RobotContainer.shooter_subsystem.setshotSpeed(0);
+    RobotContainer.drive_subsystem.drivecoast();
   }
 
   // Returns true when the command should end.

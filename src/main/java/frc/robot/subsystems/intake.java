@@ -15,7 +15,6 @@ public class intake extends SubsystemBase {
   public intake() {}
 TalonFX InMotor = new TalonFX(5);
 
-
  public void setSpeed(double inspeed) {
 
 InMotor.set(ControlMode.PercentOutput, inspeed);
