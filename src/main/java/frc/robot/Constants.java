@@ -31,7 +31,12 @@ public final class Constants {
   public static double GANTRY_MOTOR_P = .02;
 
 
+  public static double TURBO_FBMULTI = 1;
 
+  public static double TURBO_LRMULTI = 1; 
+
+
+  public static double AIM_P = .025; 
 
 
 

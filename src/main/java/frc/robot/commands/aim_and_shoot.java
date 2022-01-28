@@ -4,20 +4,27 @@
 
 package frc.robot.commands;
 
+import javax.swing.plaf.basic.BasicTabbedPaneUI.TabSelectionHandler;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class shootercommand extends CommandBase {
+public class aim_and_shoot extends CommandBase {
+  double targetX;
+  double Rspeed;
+  double Lspeed;
+  
   double feedspeed;
   double shotspeed;
   double actualrpms;
-  /** Creates a new shootercommand. */
-  public shootercommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
-
+  /** Creates a new aim_and_shoot. */
+  public aim_and_shoot() {
+    addRequirements(RobotContainer.limelight_subsystem);
+    addRequirements(RobotContainer.drive_subsystem);
     addRequirements(RobotContainer.shooter_subsystem);
-    
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -30,16 +37,37 @@ public class shootercommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
+    targetX = RobotContainer.limelight_subsystem.getTx();
+    if (targetX > 0){
+      Lspeed = Constants.AIM_P * targetX;
+      Rspeed = -Constants.AIM_P * targetX; 
+      
+    }
+    if (targetX < 0){
+      Lspeed = -Constants.AIM_P * targetX;
+      Rspeed = Constants.AIM_P * targetX; 
+    }
+
+
+    if (targetX <= 1 && targetX >= -1){
+      Lspeed = 0;
+      Rspeed = 0;
+      RobotContainer.drive_subsystem.drivebrake();
+      
+       
+    }
+
+
+    RobotContainer.drive_subsystem.setSpeed(Rspeed, Lspeed);
+
+     actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
     RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
 
-if (actualrpms > 3000){
+    if (actualrpms > 3000 && targetX <= 1 && targetX >= -1){
 
-  RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
+    RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
 
 }
-
-
   }
 
   // Called once the command ends or is interrupted.
