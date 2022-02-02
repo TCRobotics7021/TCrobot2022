@@ -11,24 +11,25 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class shooter extends SubsystemBase {
 TalonFX feedmotor = new TalonFX(7);
-  TalonFX shotmotor = new TalonFX(8);
+TalonFX feedmotor2 = new TalonFX(8);
+  TalonFX shotmotor = new TalonFX(9);
   /** Creates a new shooter. */
   public shooter() {}
 
 public double getshooterspeed(){
 double shooterspeed;
-shooterspeed = shotmotor.getSelectedSensorVelocity();
+shooterspeed = -shotmotor.getSelectedSensorVelocity();
   return shooterspeed;
 
 }
 
 public void setfeedspeed(double feedspeed){
-
+feedmotor2.set(ControlMode.PercentOutput, -feedspeed);
   feedmotor.set(ControlMode.PercentOutput, feedspeed);
 }
   public void setshotSpeed(double shotspeed){
 
-    shotmotor.set(ControlMode.PercentOutput, shotspeed);
+    shotmotor.set(ControlMode.PercentOutput, -shotspeed);
   }
 
   @Override

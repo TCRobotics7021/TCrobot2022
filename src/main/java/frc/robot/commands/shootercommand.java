@@ -33,11 +33,11 @@ public class shootercommand extends CommandBase {
     actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
     RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
 
-if (actualrpms > 3000){
+//if (actualrpms > 3000){
 
   RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
 
-}
+//}
 
 
   }
@@ -45,8 +45,8 @@ if (actualrpms > 3000){
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter_subsystem.setfeedspeed(0);
-    RobotContainer.shooter_subsystem.setshotSpeed(0);
+    //RobotContainer.shooter_subsystem.setfeedspeed(0);
+    //RobotContainer.shooter_subsystem.setshotSpeed(0);
   }
 
   // Returns true when the command should end.
