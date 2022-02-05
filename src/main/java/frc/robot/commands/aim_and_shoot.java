@@ -15,7 +15,8 @@ public class aim_and_shoot extends CommandBase {
   double targetX;
   double Rspeed;
   double Lspeed;
-  
+  double distancetotarget;
+
   double feedspeed;
   double shotspeed;
   double actualrpms;
@@ -35,7 +36,7 @@ public class aim_and_shoot extends CommandBase {
   @Override
   public void initialize() {
     feedspeed = SmartDashboard.getNumber("feedspeed", 0);
-    shotspeed = SmartDashboard.getNumber("shotspeed", 0);
+    //shotspeed = SmartDashboard.getNumber("shotspeed", 0);
     Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
     Minspeed = SmartDashboard.getNumber("Aim Min", Constants.MIN_AIM_SPEED);
     Pvalue = SmartDashboard.getNumber("Aim P", Constants.AIM_P);
@@ -46,10 +47,17 @@ public class aim_and_shoot extends CommandBase {
   @Override
   public void execute() {
     targetX = RobotContainer.limelight_subsystem.getTx();
+    distancetotarget = RobotContainer.limelight_subsystem.getDistance();
     
-
-
-
+    if (distancetotarget > 150){ 
+      shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
+    } 
+    if (distancetotarget >= 150 && distancetotarget <= 110){
+      shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
+    }
+    if (distancetotarget <110){
+      shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
+    }
     
       Lspeed = -Pvalue * targetX;
       Rspeed = Pvalue * targetX; 
