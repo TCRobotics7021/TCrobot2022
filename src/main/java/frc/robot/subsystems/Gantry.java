@@ -16,7 +16,7 @@ public class Gantry extends SubsystemBase {
 
 
 
-  private WPI_TalonFX GantryMotor = new WPI_TalonFX(8);
+  //private WPI_TalonFX GantryMotor = new WPI_TalonFX(12);
   /** Creates a new Gantry. */
   private DigitalInput FWDLimit = new DigitalInput(2);
   private DigitalInput BWDLimit = new DigitalInput(3);
@@ -26,10 +26,10 @@ public class Gantry extends SubsystemBase {
 
   }
   public void setcoastmode(){
-    GantryMotor.setNeutralMode(NeutralMode.Coast);
+    //GantryMotor.setNeutralMode(NeutralMode.Coast);
   }
   public void setbrakemode(){
-    GantryMotor.setNeutralMode(NeutralMode.Brake);
+    //GantryMotor.setNeutralMode(NeutralMode.Brake);
   }
   public void setSpeed(double speed) {
     if(speed < 0 && !BWDLimit.get()){
@@ -38,34 +38,34 @@ public class Gantry extends SubsystemBase {
     if(speed > 0 && !FWDLimit.get()){
       speed = 0;
     }
-    GantryMotor.set(speed);
+    //GantryMotor.set(speed);
 
   }
 
  public double Get_enc(){
 
-return GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTOR;
-
+//return GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTOR;
+return 0;
  }
   public void Set_enc(double Enc_set){
-    GantryMotor.setSelectedSensorPosition(Enc_set);
+    //GantryMotor.setSelectedSensorPosition(Enc_set);
   }
 
   @Override
   public void periodic() {
 
 
-    if(GantryMotor.getSelectedSensorVelocity() < 0 && !BWDLimit.get()){
-       setSpeed(0);
-    }
-    if(GantryMotor.getSelectedSensorVelocity() > 0 && !FWDLimit.get()){
-      setSpeed(0);
-    }
+    // if(GantryMotor.getSelectedSensorVelocity() < 0 && !BWDLimit.get()){
+    //    setSpeed(0);
+    // }
+    // if(GantryMotor.getSelectedSensorVelocity() > 0 && !FWDLimit.get()){
+    //   setSpeed(0);
+    // }
 
-    if(BWDLimit.get() == false){
-      Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
-    }
-    SmartDashboard.putNumber("Gantry Encoder Position", GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTOR);
+    // if(BWDLimit.get() == false){
+    //   Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
+    // }
+    //SmartDashboard.putNumber("Gantry Encoder Position", GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTOR);
     // This method will be called once per scheduler run
   }
 }

@@ -16,7 +16,7 @@ TalonFX accuMotor = new TalonFX(6);
 
 public void setSpeed(double accuspeed) {
 
-accuMotor.set(ControlMode.PercentOutput, accuspeed);
+accuMotor.set(ControlMode.PercentOutput, -accuspeed);
 
 }
   @Override

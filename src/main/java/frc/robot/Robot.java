@@ -33,8 +33,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LRmulti", .1);
     SmartDashboard.putNumber("intakespeed", .3);
     SmartDashboard.putNumber("accuspeed", .5);
-    SmartDashboard.putNumber("feedspeed", .8);
-    SmartDashboard.putNumber("shotspeed", .8);
+    SmartDashboard.putNumber("feedspeed", 1);
+    SmartDashboard.putNumber("shotspeed", .42);
+    SmartDashboard.putNumber("RPMs", 0);
+    SmartDashboard.putNumber("Aim P", .01);
+    SmartDashboard.putNumber("Aim Max", .3);
+    SmartDashboard.putNumber("Aim Min", .1);
   }
 
   /**

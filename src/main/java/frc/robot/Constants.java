@@ -36,8 +36,11 @@ public final class Constants {
   public static double TURBO_LRMULTI = 1; 
 
 
-  public static double AIM_P = .025; 
+  public static double AIM_P = .01; 
 
+  public static double MAX_AIM_SPEED = .3;
+  public static double MIN_AIM_SPEED = .1;
 
+  public static double ACCUSPEED = .5;
 
 }
