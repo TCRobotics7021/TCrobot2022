@@ -39,6 +39,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Aim P", .01);
     SmartDashboard.putNumber("Aim Max", .3);
     SmartDashboard.putNumber("Aim Min", .1);
+    SmartDashboard.putNumber("Short Range Power", Constants.SHORTRANGEPOWER);
+    SmartDashboard.putNumber("Mid Range Power", Constants.MIDRANGEPOWER);
+    SmartDashboard.putNumber("Long Range Power", Constants.LONGRANGEPOWER);
   }
 
   /**

@@ -43,4 +43,13 @@ public final class Constants {
 
   public static double ACCUSPEED = .5;
 
+
+  public static double DIST_CALC_A = 0.277;
+  public static double DIST_CALC_B = -10.4;
+  public static double DIST_CALC_C = 117;
+
+  public static double SHORTRANGEPOWER = .39;
+  public static double MIDRANGEPOWER = .4;
+  public static double LONGRANGEPOWER = .7;
+
 }

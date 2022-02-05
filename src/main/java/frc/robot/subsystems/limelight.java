@@ -9,6 +9,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class limelight extends SubsystemBase {
@@ -16,7 +17,7 @@ public class limelight extends SubsystemBase {
 
 
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-  double yposition = 0; 
+  double yposition; 
   double xposition = 0; 
   double distance = 0; 
   
@@ -37,6 +38,15 @@ public double getTa() {
 public double getTs() {
 
   return table.getEntry("ts").getDouble(0);
+}
+
+
+public double getDistance() {
+  setPipeline(0);
+  yposition = getTy();
+  distance = Math.pow(yposition,2)*Constants.DIST_CALC_A+Constants.DIST_CALC_B*yposition+Constants.DIST_CALC_C;
+
+  return distance;
 }
 
 
@@ -63,7 +73,7 @@ public void setLEDmode(int LEDmode) {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("targetX", getTx());
-
+    SmartDashboard.putNumber("distance", getDistance());
 
 
   }
