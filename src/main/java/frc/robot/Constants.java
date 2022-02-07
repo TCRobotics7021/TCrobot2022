@@ -14,6 +14,30 @@ package frc.robot;
  */
 public final class Constants {
 
+// Motor Ports
+public static final int kLeftMotorPort1 = 4;
+public static final int kLeftMotorPort2 = 2;
+
+public static final int kRightMotorPort1 = 3;
+public static final int kRightMotorPort2 = 1;
+
+// results from characterization tool
+public static final double ks = 0.696;
+public static final double kv = 1.6; // was at 1.6
+public static final double ka = 0.005; // was at .005
+public static final double kp = 0.05; // was at .05
+
+// Sets up gear ratio and other info
+public static final double gearRatio = .1528;
+public static final double wheelDiameterInches = 6;
+public static final double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
+public static final double encoderTicksPerRev = 2048;
+
+// Randoms
+public static final double leftScaleConstant = 1.00;
+public static final double rightScaleConstant = 1.00;
+
+
   public static double LIFT_ENC_RESET_HEIGHT = 1000;
 
   public static double LIFT_ENC_CONV_FACTOR = 1;
@@ -51,5 +75,6 @@ public final class Constants {
   public static double SHORTRANGEPOWER = .39;
   public static double MIDRANGEPOWER = .4;
   public static double LONGRANGEPOWER = .7;
+
 
 }
