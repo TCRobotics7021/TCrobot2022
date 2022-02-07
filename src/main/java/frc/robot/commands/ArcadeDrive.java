@@ -35,13 +35,10 @@ double LRmulti;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //FBmulti = SmartDashboard.getNumber("FBmulti", 0);
-    //LRmulti = SmartDashboard.getNumber("LRmulti", 0);
+    FBmulti = SmartDashboard.getNumber("FBmulti", 0);
+    LRmulti = SmartDashboard.getNumber("LRmulti", 0);
 LeftJoystick_Y = RobotContainer.LeftJoystick.getY();
 RightJoystick_X = RobotContainer.RightJoystick.getX();
-SmartDashboard.putNumber("leftY", LeftJoystick_Y);
-FBmulti = .3;
-LRmulti = .1;
 
 RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
 LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);

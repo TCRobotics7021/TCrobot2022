@@ -10,6 +10,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.SPI;
@@ -47,12 +52,29 @@ public class drive extends SubsystemBase {
   public final WPI_TalonFX leftMaster = new WPI_TalonFX(Constants.kLeftMotorPort1);
   public final WPI_TalonFX rightMaster = new WPI_TalonFX(Constants.kRightMotorPort1);
 
+
   // Creates the slave(follow) motors for both sides
   private final WPI_TalonFX leftSlave = new WPI_TalonFX(Constants.kLeftMotorPort2);
   private final WPI_TalonFX rightSlave = new WPI_TalonFX(Constants.kRightMotorPort2);
 
   //Creates the gyro object 
   AHRS gyro = new AHRS(SerialPort.Port.kUSB);
+
+  public drive() {}
+  public void drivecoast(){
+    FRmotor.setNeutralMode(NeutralMode.Coast);
+  FLmotor.setNeutralMode(NeutralMode.Coast);
+  BRmotor.setNeutralMode(NeutralMode.Coast);
+  BLmotor.setNeutralMode(NeutralMode.Coast);
+  }
+public void drivebrake(){
+  FRmotor.setNeutralMode(NeutralMode.Brake);
+  FLmotor.setNeutralMode(NeutralMode.Brake);
+  BRmotor.setNeutralMode(NeutralMode.Brake);
+  BLmotor.setNeutralMode(NeutralMode.Brake);
+}
+public void setSpeed(double rightspeed, double leftspeed){
+
 
   public boolean ControlsInverted = false;
 

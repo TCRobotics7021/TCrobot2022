@@ -6,39 +6,46 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class intakecommand extends CommandBase {
-double accuspeed;
-  double inspeed;
-  /** Creates a new intake. */
-  public intakecommand() {
+public class turbo_drive extends CommandBase {
+
+
+double LeftJoystick_Y;
+double RightJoystick_X;
+double RSpeed;
+double LSpeed;
+double FBmulti;
+double LRmulti;
+
+  /** Creates a new turbo_drive. */
+  public turbo_drive() {
+    addRequirements(RobotContainer.drive_subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake_subsystem);
-    addRequirements(RobotContainer.accumulator_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-
-inspeed = SmartDashboard.getNumber("intakespeed", 0);
-accuspeed = SmartDashboard.getNumber("accuspeed", 0);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-RobotContainer.accumulator_subsystem.setSpeed(accuspeed);
-    RobotContainer.intake_subsystem.setSpeed(inspeed);
+    FBmulti = Constants.TURBO_FBMULTI;
+    LRmulti = Constants.TURBO_LRMULTI;
+    LeftJoystick_Y = RobotContainer.LeftJoystick.getY();
+    RightJoystick_X = RobotContainer.RightJoystick.getX();
+
+    RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
+    LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);
+
+    RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-RobotContainer.accumulator_subsystem.setSpeed(0);
-    RobotContainer.intake_subsystem.setSpeed(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

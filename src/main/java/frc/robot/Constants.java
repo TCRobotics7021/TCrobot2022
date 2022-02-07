@@ -38,6 +38,43 @@ public static final double leftScaleConstant = 1.00;
 public static final double rightScaleConstant = 1.00;
 
 
+  public static double LIFT_ENC_RESET_HEIGHT = 1000;
+
+  public static double LIFT_ENC_CONV_FACTOR = 1;
+
+  public static double LIFT_TARGET_ACCURACY = 2;
+
+  public static double LIFT_MOTOR_P = .02;
+
+  public static double GANTRY_ENC_RESET_HEIGHT = 1000;
+
+  public static double GANTRY_ENC_CONV_FACTOR = 1;
+
+  public static double GANTRY_TARGET_ACCURACY = 2;
+
+  public static double GANTRY_MOTOR_P = .02;
+
+
+  public static double TURBO_FBMULTI = 1;
+
+  public static double TURBO_LRMULTI = 1; 
+
+
+  public static double AIM_P = .01; 
+
+  public static double MAX_AIM_SPEED = .3;
+  public static double MIN_AIM_SPEED = .1;
+
+  public static double ACCUSPEED = .5;
+
+
+  public static double DIST_CALC_A = 0.277;
+  public static double DIST_CALC_B = -10.4;
+  public static double DIST_CALC_C = 117;
+
+  public static double SHORTRANGEPOWER = .39;
+  public static double MIDRANGEPOWER = .4;
+  public static double LONGRANGEPOWER = .7;
 
 
 }
