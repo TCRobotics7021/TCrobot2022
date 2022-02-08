@@ -44,6 +44,9 @@ public static final double rightScaleConstant = 1.00;
   public static double GANTRY_TARGET_ACCURACY = 2;
   public static double GANTRY_MOTOR_P = .02;
 
+  //turret limits
+  public static double TURRET_ENC_CONV_FACTOR = 1; 
+
   //arcade drive
   public static double TURBO_FBMULTI = 1;
   public static double TURBO_LRMULTI = 1; 
