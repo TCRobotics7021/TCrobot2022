@@ -43,8 +43,14 @@ RightJoystick_X = RobotContainer.RightJoystick.getX();
 RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
 LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);
 
+if(RobotContainer.drive_subsystem.controlreverse = true){
+  RobotContainer.drive_subsystem.setSpeed(-RSpeed, -LSpeed);
+}
+else{
+  RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
+}
 
-RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
+
 
   }
 

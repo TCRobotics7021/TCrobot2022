@@ -13,6 +13,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.aim_and_shoot;
 import frc.robot.commands.aim_limelight;
 import frc.robot.commands.cancel;
+import frc.robot.commands.controlreverse;
 import frc.robot.commands.deaultshooter;
 import frc.robot.commands.defaultaccumulate;
 import frc.robot.commands.defaultintake;
@@ -87,6 +88,7 @@ new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
 new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
 new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
 new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
+new JoystickButton(OPpanel, 8).whenPressed(new controlreverse() , true);
   }
 
   /**

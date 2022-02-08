@@ -49,34 +49,18 @@ public class drive extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
 
   // Creates the Master Motors for both sides
-  public final WPI_TalonFX leftMaster = new WPI_TalonFX(Constants.kLeftMotorPort1);
-  public final WPI_TalonFX rightMaster = new WPI_TalonFX(Constants.kRightMotorPort1);
+  public final WPI_TalonFX FLmotor = new WPI_TalonFX(1);
+  public final WPI_TalonFX FRmotor = new WPI_TalonFX(2);
 
 
   // Creates the slave(follow) motors for both sides
-  private final WPI_TalonFX leftSlave = new WPI_TalonFX(Constants.kLeftMotorPort2);
-  private final WPI_TalonFX rightSlave = new WPI_TalonFX(Constants.kRightMotorPort2);
+  private final WPI_TalonFX BLmotor = new WPI_TalonFX(3);
+  private final WPI_TalonFX BRmotor = new WPI_TalonFX(4);
 
   //Creates the gyro object 
   AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 
-  public drive() {}
-  public void drivecoast(){
-    FRmotor.setNeutralMode(NeutralMode.Coast);
-  FLmotor.setNeutralMode(NeutralMode.Coast);
-  BRmotor.setNeutralMode(NeutralMode.Coast);
-  BLmotor.setNeutralMode(NeutralMode.Coast);
-  }
-public void drivebrake(){
-  FRmotor.setNeutralMode(NeutralMode.Brake);
-  FLmotor.setNeutralMode(NeutralMode.Brake);
-  BRmotor.setNeutralMode(NeutralMode.Brake);
-  BLmotor.setNeutralMode(NeutralMode.Brake);
-}
-public void setSpeed(double rightspeed, double leftspeed){
-
-
-  public boolean ControlsInverted = false;
+  boolean ControlsInverted = false;
 
   // Created the kinematics class
   //  DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics()
@@ -92,22 +76,41 @@ public void setSpeed(double rightspeed, double leftspeed){
   PIDController leftPIDController = new PIDController(Constants.kp, 0, 0);
   PIDController rightPIDController = new PIDController(Constants.kp, 0, 0);
 
-  // Creates the Robot's Drivetrain
+  public boolean controlreverse = false; 
+
+
   public drive() {
-    leftSlave.follow(leftMaster);
-    rightSlave.follow(rightMaster);
+    BLmotor.follow(FLmotor);
+    BRmotor.follow(FRmotor);
 
     // sets the polarity for the motors
-    leftMaster.setInverted(true);
-    leftSlave.setInverted(true);
-    rightMaster.setInverted(false);
+   FLmotor.setInverted(true);
+    BLmotor.setInverted(true);
+    FRmotor.setInverted(false);
 
   }
 
-  public void setSpeed(double RSpeed, double LSpeed){
-    leftMaster.set(LSpeed);
-    rightMaster.set(RSpeed);
+  public void drivecoast(){
+    FRmotor.setNeutralMode(NeutralMode.Coast);
+  FLmotor.setNeutralMode(NeutralMode.Coast);
+  BRmotor.setNeutralMode(NeutralMode.Coast);
+  BLmotor.setNeutralMode(NeutralMode.Coast);
   }
+
+public void drivebrake(){
+  FRmotor.setNeutralMode(NeutralMode.Brake);
+  FLmotor.setNeutralMode(NeutralMode.Brake);
+  BRmotor.setNeutralMode(NeutralMode.Brake);
+  BLmotor.setNeutralMode(NeutralMode.Brake);
+}
+
+
+
+
+ 
+  // Creates the Robot's Drivetrain
+
+
   protected static Trajectory loadTrajectory(String trajectoryName) throws IOException {
     return TrajectoryUtil.fromPathweaverJson(
         Filesystem.getDeployDirectory().toPath().resolve(Paths.get("output", trajectoryName + ".wpilib.json")));
@@ -119,8 +122,8 @@ public void setSpeed(double rightspeed, double leftspeed){
 
   public DifferentialDriveWheelSpeeds getSpeeds() {
     return new DifferentialDriveWheelSpeeds(
-      leftMaster.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant,
-      rightMaster.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant
+     FLmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant,
+      FRmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant
     ); 
   }
 
@@ -144,6 +147,12 @@ public void setSpeed(double rightspeed, double leftspeed){
       else {
         return ramseteCommand.andThen(() -> setOutput(0, 0));
       }
+  }
+
+  public void setSpeed(double RSpeed, double LSpeed){
+    FLmotor.set(LSpeed);
+    FRmotor.set(RSpeed);
+
   }
   
   public Trajectory loadTrajectoryFromFile(String filename) {
@@ -172,8 +181,8 @@ public void setSpeed(double rightspeed, double leftspeed){
   }
 
   public void resetEncoderPos(){
-    leftMaster.setSelectedSensorPosition(0);
-    rightMaster.setSelectedSensorPosition(0);
+   FLmotor.setSelectedSensorPosition(0);
+    FRmotor.setSelectedSensorPosition(0);
   }
 
   public Pose2d getPose(){
@@ -186,13 +195,13 @@ public void setSpeed(double rightspeed, double leftspeed){
   }
 
   public void resetEncoders(){
-    leftMaster.setSelectedSensorPosition(0);
-    rightMaster.setSelectedSensorPosition(0);
+   FLmotor.setSelectedSensorPosition(0);
+    FRmotor.setSelectedSensorPosition(0);
   }
 
   public void setOutput(double leftVolts, double rightVolts){
-    leftMaster.set(leftVolts / 12);
-    rightMaster.set(rightVolts / 12);
+   FLmotor.set(leftVolts / 12);
+    FRmotor.set(rightVolts / 12);
   }
 
   public PIDController getLeftPIDController(){
@@ -205,16 +214,17 @@ public void setSpeed(double rightspeed, double leftspeed){
 
   @Override
   public void periodic() {
-    pose = odometry.update(getHeading(),  leftMaster.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant,
-    rightMaster.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant);
+    pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant,
+    FRmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant);
     test = 0;
     var translation = odometry.getPoseMeters().getTranslation();
 
-    SmartDashboard.putNumber("Left Encoder", leftMaster.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant);
-    SmartDashboard.putNumber("Right Encoder", rightMaster.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant);
+    SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant);
+    SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant);
     SmartDashboard.putNumber("Rotation", getYaw());
     SmartDashboard.putNumber("Test", test);
     SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumferenceInches));
     SmartDashboard.putNumber("Fused Heading", Constants.encoderTicksPerRev);
+    //This stuff is intersting 
   }
 }

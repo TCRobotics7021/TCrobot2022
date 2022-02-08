@@ -14,12 +14,7 @@ package frc.robot;
  */
 public final class Constants {
 
-// Motor Ports
-public static final int kLeftMotorPort1 = 4;
-public static final int kLeftMotorPort2 = 2;
 
-public static final int kRightMotorPort1 = 3;
-public static final int kRightMotorPort2 = 1;
 
 // results from characterization tool
 public static final double ks = 0.696;
@@ -37,41 +32,36 @@ public static final double encoderTicksPerRev = 2048;
 public static final double leftScaleConstant = 1.00;
 public static final double rightScaleConstant = 1.00;
 
-
+  //Lift (lifts the robot)
   public static double LIFT_ENC_RESET_HEIGHT = 1000;
-
   public static double LIFT_ENC_CONV_FACTOR = 1;
-
   public static double LIFT_TARGET_ACCURACY = 2;
-
   public static double LIFT_MOTOR_P = .02;
-
+  
+  //gantry (moving lift)
   public static double GANTRY_ENC_RESET_HEIGHT = 1000;
-
   public static double GANTRY_ENC_CONV_FACTOR = 1;
-
   public static double GANTRY_TARGET_ACCURACY = 2;
-
   public static double GANTRY_MOTOR_P = .02;
 
-
+  //arcade drive
   public static double TURBO_FBMULTI = 1;
-
   public static double TURBO_LRMULTI = 1; 
 
-
+  //turret
   public static double AIM_P = .01; 
-
   public static double MAX_AIM_SPEED = .3;
   public static double MIN_AIM_SPEED = .1;
 
+  //accumulater 
   public static double ACCUSPEED = .5;
 
-
+  // Distance calculation 
   public static double DIST_CALC_A = 0.277;
   public static double DIST_CALC_B = -10.4;
   public static double DIST_CALC_C = 117;
 
+  //ditsance shooting 
   public static double SHORTRANGEPOWER = .39;
   public static double MIDRANGEPOWER = .4;
   public static double LONGRANGEPOWER = .7;
