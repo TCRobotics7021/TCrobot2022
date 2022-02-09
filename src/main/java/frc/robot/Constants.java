@@ -15,7 +15,6 @@ package frc.robot;
 public final class Constants {
 
 
-
 // results from characterization tool
 public static final double ks = 0.696;
 public static final double kv = 1.6; // was at 1.6

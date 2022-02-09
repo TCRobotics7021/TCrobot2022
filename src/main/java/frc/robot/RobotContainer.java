@@ -12,6 +12,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.aim_and_shoot;
 import frc.robot.commands.aim_limelight;
+import frc.robot.commands.autoturretaim;
 import frc.robot.commands.cancel;
 import frc.robot.commands.controlreverse;
 import frc.robot.commands.deaultshooter;
@@ -22,6 +23,7 @@ import frc.robot.commands.drivebrake;
 import frc.robot.commands.intakecommand;
 import frc.robot.commands.shootercommand;
 import frc.robot.commands.turbo_drive;
+import frc.robot.commands.turretscan;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Lift;
@@ -67,6 +69,7 @@ public class RobotContainer {
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     shooter_subsystem.setDefaultCommand(new deaultshooter());
+    turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
   
 
@@ -92,6 +95,8 @@ new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
 new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
 new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
 new JoystickButton(OPpanel, 8).whenPressed(new controlreverse() , true);
+new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
+
   }
 
   /**
