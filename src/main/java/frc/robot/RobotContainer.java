@@ -12,6 +12,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.aim_and_shoot;
 import frc.robot.commands.aim_limelight;
+import frc.robot.commands.autoturretaim;
 import frc.robot.commands.cancel;
 import frc.robot.commands.controlreverse;
 import frc.robot.commands.deaultshooter;
@@ -22,6 +23,7 @@ import frc.robot.commands.drivebrake;
 import frc.robot.commands.intakecommand;
 import frc.robot.commands.shootercommand;
 import frc.robot.commands.turbo_drive;
+import frc.robot.commands.turretscan;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Lift;
@@ -31,6 +33,7 @@ import frc.robot.subsystems.intake;
 import frc.robot.subsystems.limelight;
 import frc.robot.subsystems.shooter;
 import frc.robot.subsystems.testlift;
+import frc.robot.subsystems.turret;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -53,6 +56,7 @@ public class RobotContainer {
   public static Gantry gantry_subsystem = new Gantry();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   public static limelight limelight_subsystem = new limelight(); 
+  public static turret turret_subsystem = new turret(); 
 
 
   public static Joystick LeftJoystick = new Joystick(0);
@@ -65,7 +69,9 @@ public class RobotContainer {
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     shooter_subsystem.setDefaultCommand(new deaultshooter());
+    turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
+  
 
     // Configure the button bindings
     configureButtonBindings();
@@ -89,6 +95,8 @@ new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
 new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
 new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
 new JoystickButton(OPpanel, 8).whenPressed(new controlreverse() , true);
+new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
+
   }
 
   /**

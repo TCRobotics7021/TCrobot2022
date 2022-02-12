@@ -15,7 +15,6 @@ package frc.robot;
 public final class Constants {
 
 
-
 // results from characterization tool
 public static final double ks = 0.696;
 public static final double kv = 1.6; // was at 1.6
@@ -43,6 +42,9 @@ public static final double rightScaleConstant = 1.00;
   public static double GANTRY_ENC_CONV_FACTOR = 1;
   public static double GANTRY_TARGET_ACCURACY = 2;
   public static double GANTRY_MOTOR_P = .02;
+
+  //turret limits
+  public static double TURRET_ENC_CONV_FACTOR = 1; 
 
   //arcade drive
   public static double TURBO_FBMULTI = 1;
