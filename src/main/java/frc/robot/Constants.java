@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -20,12 +22,15 @@ public static final double ks = 0.696;
 public static final double kv = 1.6; // was at 1.6
 public static final double ka = 0.005; // was at .005
 public static final double kp = 0.05; // was at .05
+public static final double track_width = 0; // Has to be in meters
+
 
 // Sets up gear ratio and other info
-public static final double gearRatio = .1528;
+public static final double gearRatio = 84/8;
 public static final double wheelDiameterInches = 6;
-public static final double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
+public static final double wheelCircumference = Units.inchesToMeters(wheelDiameterInches * Math.PI);
 public static final double encoderTicksPerRev = 2048;
+public static final double metersPerEncoderTick = wheelCircumference / (encoderTicksPerRev * gearRatio);
 
 // Randoms
 public static final double leftScaleConstant = 1.00;

@@ -64,7 +64,7 @@ public class drive extends SubsystemBase {
 
   // Created the kinematics class
   //  DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics()
-  DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(24.5));
+  DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.track_width);
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
 
   // Creates variable to store position
@@ -122,9 +122,9 @@ public void drivebrake(){
 
   public DifferentialDriveWheelSpeeds getSpeeds() {
     return new DifferentialDriveWheelSpeeds(
-     FLmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant,
-      FRmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant
-    ); 
+     FLmotor.getSelectedSensorPosition() * Constants.encoderTicksPerRev,
+    FRmotor.getSelectedSensorPosition() * Constants.encoderTicksPerRev
+    );
   }
 
   public Command createCommandForTrajectory(Trajectory trajectory, Boolean initPose){
@@ -214,16 +214,15 @@ public void drivebrake(){
 
   @Override
   public void periodic() {
-    pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant,
-    FRmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant);
+    pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     test = 0;
-    var translation = odometry.getPoseMeters().getTranslation();
+    //var translation = odometry.getPoseMeters().getTranslation();
 
-    SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.leftScaleConstant);
-    SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.gearRatio / Constants.encoderTicksPerRev * Units.inchesToMeters(Constants.wheelCircumferenceInches) * Constants.rightScaleConstant);
+    SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
+    SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     SmartDashboard.putNumber("Rotation", getYaw());
     SmartDashboard.putNumber("Test", test);
-    SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumferenceInches));
+    SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumference));
     SmartDashboard.putNumber("Fused Heading", Constants.encoderTicksPerRev);
     //This stuff is intersting 
   }
