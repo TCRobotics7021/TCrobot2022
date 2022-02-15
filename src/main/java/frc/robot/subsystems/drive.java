@@ -113,7 +113,7 @@ public void drivebrake(){
 
   protected static Trajectory loadTrajectory(String trajectoryName) throws IOException {
     return TrajectoryUtil.fromPathweaverJson(
-        Filesystem.getDeployDirectory().toPath().resolve(Paths.get("output", trajectoryName + ".wpilib.json")));
+        Filesystem.getDeployDirectory().toPath().resolve(Paths.get("paths/", trajectoryName + ".wpilib.json")));
   }
   
   public Rotation2d getHeading() {
@@ -122,9 +122,10 @@ public void drivebrake(){
 
   public DifferentialDriveWheelSpeeds getSpeeds() {
     return new DifferentialDriveWheelSpeeds(
-     FLmotor.getSelectedSensorPosition() * Constants.encoderTicksPerRev,
-    FRmotor.getSelectedSensorPosition() * Constants.encoderTicksPerRev
+     FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick,
+    FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick
     );
+    
   }
 
   public Command createCommandForTrajectory(Trajectory trajectory, Boolean initPose){
@@ -223,7 +224,7 @@ public void drivebrake(){
     SmartDashboard.putNumber("Rotation", getYaw());
     SmartDashboard.putNumber("Test", test);
     SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumference));
-    SmartDashboard.putNumber("Fused Heading", Constants.encoderTicksPerRev);
+    
     //This stuff is intersting 
   }
 }

@@ -14,17 +14,17 @@ import frc.robot.subsystems.drive;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class pathweavertest extends SequentialCommandGroup {
+public class pathweavertest2 extends SequentialCommandGroup {
   /** Creates a new pathweavertest. */
-  public pathweavertest() {
-    Trajectory trajectory1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("test_path");
+  public pathweavertest2() {
+    Trajectory trajectory1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("test_path2");
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new InstantCommand(()->{
       RobotContainer.drive_subsystem.resetOdometry(trajectory1.getInitialPose());
     }), 
-    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false).withTimeout(100).withName("debug")
+    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false).withTimeout(15).withName("debug")
     
     );
   }
