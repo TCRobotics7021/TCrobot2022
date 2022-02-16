@@ -15,6 +15,7 @@ import frc.robot.commandgroups.pathweavertest2;
 import frc.robot.commandgroups.pathweavertest3;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ResetHeading;
 import frc.robot.commands.aim_and_shoot;
 import frc.robot.commands.aim_limelight;
 import frc.robot.commands.autoturretaim;
@@ -81,10 +82,10 @@ public class RobotContainer {
 
 
 
-    //drive_subsystem.setDefaultCommand(new ArcadeDrive());
+    drive_subsystem.setDefaultCommand(new ArcadeDrive());
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
-    //shooter_subsystem.setDefaultCommand(new deaultshooter());
+    shooter_subsystem.setDefaultCommand(new deaultshooter());
    // turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
 
@@ -105,13 +106,14 @@ public class RobotContainer {
 
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
+//new JoystickButton(RightJoystick, 1).whenPressed(new ResetHeading(), false);
 //new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
-//new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
+new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
 new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
 //new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
-//new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
+new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
 new JoystickButton(OPpanel, 8).whenPressed(new controlreverse() , true);
 //new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
 

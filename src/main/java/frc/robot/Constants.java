@@ -18,17 +18,17 @@ public final class Constants {
 
 
 // results from characterization tool
-public static final double ks = 0.65333;
-public static final double kv = 2.2774; // was at 1.6
-public static final double ka = 0.34205; // was at .005
-public static final double kp = 0.49152; // was at .05
-public static final double track_width = 0.68323; // Has to be in meters
+public static final double ks = 0.60069;
+public static final double kv = 2.3549; // was at 1.6
+public static final double ka = 0.3997; // was at .005
+public static final double kp = .077925; // was at .05
+public static final double track_width = 0.6431; // Has to be in meters
 
 
 // Sets up gear ratio and other info
 public static final double gearRatio = 84/8;
 public static final double wheelDiameterInches = 6;
-public static final double wheelCircumference = Units.inchesToMeters(wheelDiameterInches * Math.PI);
+public static final double wheelCircumference = 0.4592;
 public static final double encoderTicksPerRev = 2048;
 public static final double metersPerEncoderTick = wheelCircumference / (encoderTicksPerRev * gearRatio);
 

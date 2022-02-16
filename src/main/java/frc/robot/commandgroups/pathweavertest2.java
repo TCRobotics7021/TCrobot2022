@@ -17,14 +17,20 @@ import frc.robot.subsystems.drive;
 public class pathweavertest2 extends SequentialCommandGroup {
   /** Creates a new pathweavertest. */
   public pathweavertest2() {
-    Trajectory trajectory1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("test_path2");
+    Trajectory trajectory1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("position1");
+    Trajectory trajectory2 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("position2");
+    Trajectory trajectory3 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("position3");
+    Trajectory trajectory4 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("position4");
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new InstantCommand(()->{
       RobotContainer.drive_subsystem.resetOdometry(trajectory1.getInitialPose());
     }), 
-    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false).withTimeout(15).withName("debug")
+    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false).withTimeout(15).withName("debugtra1"),
+    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory2, false).withTimeout(15).withName("debugtra2"),
+    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory3, false).withTimeout(15).withName("debugtra3"),
+    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory4, false).withTimeout(15).withName("debugtra4")
     
     );
   }

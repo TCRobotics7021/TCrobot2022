@@ -28,7 +28,7 @@ public class aim_and_shoot extends CommandBase {
     addRequirements(RobotContainer.limelight_subsystem);
     addRequirements(RobotContainer.drive_subsystem);
     addRequirements(RobotContainer.shooter_subsystem);
-    //addRequirements(RobotContainer.accumulator_subsystem);
+    addRequirements(RobotContainer.accumulator_subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -49,18 +49,18 @@ public class aim_and_shoot extends CommandBase {
     targetX = RobotContainer.limelight_subsystem.getTx();
     distancetotarget = RobotContainer.limelight_subsystem.getDistance();
     
-    if (distancetotarget > 150){ 
-      shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
-    } 
-    if (distancetotarget >= 150 && distancetotarget <= 110){
-      shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
-    }
-    if (distancetotarget <110){
-      shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
-    }
-    
-      Lspeed = -Pvalue * targetX;
-      Rspeed = Pvalue * targetX; 
+    // if (distancetotarget > 150){ 
+    //   shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
+    // } 
+    // if (distancetotarget >= 150 && distancetotarget <= 110){
+    //   shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
+    // }
+    // if (distancetotarget <110){
+    //   shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
+    // }
+    shotspeed = SmartDashboard.getNumber("shotspeed",0);
+      Lspeed = Pvalue * targetX;
+      Rspeed = -Pvalue * targetX; 
      
     
    
@@ -90,7 +90,7 @@ public class aim_and_shoot extends CommandBase {
 
     RobotContainer.drive_subsystem.setSpeed(Rspeed, Lspeed);
 
-     actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
+     actualrpms = -RobotContainer.shooter_subsystem.getshooterspeed();
     RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
     SmartDashboard.putNumber("RPMs", actualrpms);
     if (actualrpms > 7000 && targetX <= 1 && targetX >= -1){
