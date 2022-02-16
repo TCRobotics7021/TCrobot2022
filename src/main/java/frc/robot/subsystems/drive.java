@@ -181,6 +181,7 @@ public void drivebrake(){
     return -gyro.getYaw();
   }
 
+
   public void resetEncoderPos(){
    FLmotor.setSelectedSensorPosition(0);
     FRmotor.setSelectedSensorPosition(0);
@@ -216,12 +217,14 @@ public void drivebrake(){
   @Override
   public void periodic() {
     pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
+    
     test = 0;
-    //var translation = odometry.getPoseMeters().getTranslation();
-
+    var translation = odometry.getPoseMeters().getTranslation();
+    SmartDashboard.putNumber("Odometry X", translation.getX());
+    SmartDashboard.putNumber("Odometry Y", translation.getY());
     SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
-    SmartDashboard.putNumber("Rotation", getYaw());
+    SmartDashboard.putNumber("Rotation", odometry.getPoseMeters().getRotation().getDegrees());
     SmartDashboard.putNumber("Test", test);
     SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumference));
     

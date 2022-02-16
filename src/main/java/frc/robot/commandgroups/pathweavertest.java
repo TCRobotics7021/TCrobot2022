@@ -8,6 +8,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
+import frc.robot.commands.drivebrake;
 import frc.robot.commands.shootercommand;
 import frc.robot.subsystems.drive;
 
@@ -18,13 +19,15 @@ public class pathweavertest extends SequentialCommandGroup {
   /** Creates a new pathweavertest. */
   public pathweavertest() {
     Trajectory trajectory1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("test_path");
+    
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new InstantCommand(()->{
       RobotContainer.drive_subsystem.resetOdometry(trajectory1.getInitialPose());
     }), 
-    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false).withTimeout(100).withName("debug")
+    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false),
+    new drivebrake()
     
     );
   }

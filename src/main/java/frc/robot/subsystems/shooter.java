@@ -24,12 +24,12 @@ shooterspeed = -shotmotor.getSelectedSensorVelocity();
 }
 
 public void setfeedspeed(double feedspeed){
-feedmotor2.set(ControlMode.PercentOutput, -feedspeed);
-  feedmotor.set(ControlMode.PercentOutput, feedspeed);
+feedmotor2.set(ControlMode.PercentOutput, feedspeed);
+  feedmotor.set(ControlMode.PercentOutput, -feedspeed);
 }
   public void setshotSpeed(double shotspeed){
 
-    shotmotor.set(ControlMode.PercentOutput, -shotspeed);
+    shotmotor.set(ControlMode.PercentOutput, shotspeed);
   }
 
   @Override
