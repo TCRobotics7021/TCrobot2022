@@ -191,6 +191,11 @@ public class drive extends SubsystemBase {
     return rightPIDController;
   }
 
+  public void resetOdometry(Pose2d pose){
+    resetEncoderPos();
+    odometry.resetPosition(pose, getHeading());
+  }
+
   @Override
   public void periodic() {
     
