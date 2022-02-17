@@ -9,15 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -28,15 +20,11 @@ import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.RobotContainer;
-import frc.robot.commands.setMotors;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.math.trajectory.TrajectoryUtil;
@@ -48,86 +36,90 @@ import java.nio.file.Paths;
 public class drive extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
 
-  // Creates the Master Motors for both sides
+  // Motors defined
   public final WPI_TalonFX FLmotor = new WPI_TalonFX(1);
   public final WPI_TalonFX FRmotor = new WPI_TalonFX(2);
-
-
-  // Creates the slave(follow) motors for both sides
   private final WPI_TalonFX BLmotor = new WPI_TalonFX(3);
   private final WPI_TalonFX BRmotor = new WPI_TalonFX(4);
 
-  //Creates the gyro object 
+  //Gyro defined 
   AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 
-  boolean ControlsInverted = false;
-
-  // Created the kinematics class
-  //  DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics()
+  // kinematics and odometry defined
+  // the odometry object keeps track of where the robot is on the field
   DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.track_width);
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
 
-  // Creates variable to store position
+  //Defines a variable to store position
   Pose2d pose;
-  double test = 0;
 
+  //Defines a feedforward system using the constants found from the characterization tool
   SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.ks, Constants.kv, Constants.ka);
   
+  //Defines the PID controllers for the left and right drives using kp found from the characterization tool
   PIDController leftPIDController = new PIDController(Constants.kp, 0, 0);
   PIDController rightPIDController = new PIDController(Constants.kp, 0, 0);
 
+  //Controls are inverted if this is true
   public boolean controlreverse = false; 
 
 
   public drive() {
+    // sets the follower motors to follow
     BLmotor.follow(FLmotor);
     BRmotor.follow(FRmotor);
 
     // sets the polarity for the motors
-   FLmotor.setInverted(true);
+    FLmotor.setInverted(true);
     BLmotor.setInverted(true);
     FRmotor.setInverted(false);
+    BRmotor.setInverted(false);
 
   }
 
+  //When this mode is active the motors will coast when given a speed of 0;
   public void drivecoast(){
     FRmotor.setNeutralMode(NeutralMode.Coast);
-  FLmotor.setNeutralMode(NeutralMode.Coast);
-  BRmotor.setNeutralMode(NeutralMode.Coast);
-  BLmotor.setNeutralMode(NeutralMode.Coast);
+    FLmotor.setNeutralMode(NeutralMode.Coast);
+    BRmotor.setNeutralMode(NeutralMode.Coast);
+    BLmotor.setNeutralMode(NeutralMode.Coast);
   }
 
-public void drivebrake(){
-  FRmotor.setNeutralMode(NeutralMode.Brake);
-  FLmotor.setNeutralMode(NeutralMode.Brake);
-  BRmotor.setNeutralMode(NeutralMode.Brake);
-  BLmotor.setNeutralMode(NeutralMode.Brake);
-}
-
-
-
-
- 
-  // Creates the Robot's Drivetrain
-
-
-  protected static Trajectory loadTrajectory(String trajectoryName) throws IOException {
-    return TrajectoryUtil.fromPathweaverJson(
-        Filesystem.getDeployDirectory().toPath().resolve(Paths.get("paths/", trajectoryName + ".wpilib.json")));
+  //When this mode is active the motors will brake when given a speed of 0;
+  public void drivebrake(){
+    FRmotor.setNeutralMode(NeutralMode.Brake);
+    FLmotor.setNeutralMode(NeutralMode.Brake);
+    BRmotor.setNeutralMode(NeutralMode.Brake);
+    BLmotor.setNeutralMode(NeutralMode.Brake);
   }
-  
+
+  //Returns the current heading
   public Rotation2d getHeading() {
     return Rotation2d.fromDegrees(-gyro.getYaw());
   }
 
+  //Returns the wheel speeds (needed for ramsete function)
   public DifferentialDriveWheelSpeeds getSpeeds() {
     return new DifferentialDriveWheelSpeeds(
      FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick,
     FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick
     );
-    
   }
 
+  //These two functions load the path file and generate a trajectory
+  public Trajectory loadTrajectoryFromFile(String filename) {
+    try {
+      return loadTrajectory(filename);
+    } catch (IOException e) {
+      DriverStation.reportError("Failed to load auto trajectory: " + filename, false);
+      return new Trajectory();
+    }
+  }
+  protected static Trajectory loadTrajectory(String trajectoryName) throws IOException {
+    return TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(Paths.get("paths/", trajectoryName + ".wpilib.json")));
+  }
+
+  //This is the ramsete function, it creates an autonomous command from a trajectory
   public Command createCommandForTrajectory(Trajectory trajectory, Boolean initPose){
     resetEncoderPos();
     RamseteCommand ramseteCommand = new RamseteCommand(
@@ -150,21 +142,18 @@ public void drivebrake(){
       }
   }
 
+  //Sets the motor speeds based on percent output
   public void setSpeed(double RSpeed, double LSpeed){
     FLmotor.set(LSpeed);
     FRmotor.set(RSpeed);
-
   }
+
+  //Sets the motor speeds based on voltage
+  public void setOutput(double leftVolts, double rightVolts){
+     FLmotor.set(leftVolts / 12);
+     FRmotor.set(rightVolts / 12);
+   }
   
-  public Trajectory loadTrajectoryFromFile(String filename) {
-    try {
-      return loadTrajectory(filename);
-    } catch (IOException e) {
-      DriverStation.reportError("Failed to load auto trajectory: " + filename, false);
-      return new Trajectory();
-    }
-  }
-
   public SimpleMotorFeedforward getFeedForward() {
     return feedforward;
   }
@@ -173,37 +162,25 @@ public void drivebrake(){
     return kinematics;
   }
 
+  //tells the odometry object where the robot currently is
   public void setHeading(Pose2d poseMeters, Rotation2d gyroAngle){
     odometry.resetPosition(poseMeters, gyroAngle);
   }
 
+  //returns the current rotation from the navX
   public double getYaw(){
     return -gyro.getYaw();
   }
 
-
+  //resets the value of the encoders to 0
   public void resetEncoderPos(){
-   FLmotor.setSelectedSensorPosition(0);
+    FLmotor.setSelectedSensorPosition(0);
     FRmotor.setSelectedSensorPosition(0);
   }
 
+  //Returns the current position from the odometry object
   public Pose2d getPose(){
     return odometry.getPoseMeters();
-  }
-
-  public void resetOdometry(Pose2d pose){
-    resetEncoders();
-    odometry.resetPosition(pose, getHeading());
-  }
-
-  public void resetEncoders(){
-   FLmotor.setSelectedSensorPosition(0);
-    FRmotor.setSelectedSensorPosition(0);
-  }
-
-  public void setOutput(double leftVolts, double rightVolts){
-   FLmotor.set(leftVolts / 12);
-    FRmotor.set(rightVolts / 12);
   }
 
   public PIDController getLeftPIDController(){
@@ -216,16 +193,16 @@ public void drivebrake(){
 
   @Override
   public void periodic() {
-    pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     
-    test = 0;
+    //This updates the odometry object so it can keep track of where the robot is
+    pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
+  
     var translation = odometry.getPoseMeters().getTranslation();
     SmartDashboard.putNumber("Odometry X", translation.getX());
     SmartDashboard.putNumber("Odometry Y", translation.getY());
     SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     SmartDashboard.putNumber("Rotation", odometry.getPoseMeters().getRotation().getDegrees());
-    SmartDashboard.putNumber("Test", test);
     SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumference));
     
     //This stuff is intersting 

@@ -9,29 +9,25 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commandgroups.climb1;
-import frc.robot.commandgroups.pathweavertest;
-import frc.robot.commandgroups.pathweavertest2;
-import frc.robot.commandgroups.pathweavertest3;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.ResetHeading;
-import frc.robot.commands.aim_and_shoot;
-import frc.robot.commands.aim_limelight;
-import frc.robot.commands.autoturretaim;
-import frc.robot.commands.cancel;
-import frc.robot.commands.controlreverse;
-import frc.robot.commands.deaultshooter;
-import frc.robot.commands.defaultaccumulate;
-import frc.robot.commands.defaultintake;
-import frc.robot.commands.defaultliftcommand;
-import frc.robot.commands.drivebrake;
-import frc.robot.commands.intakecommand;
-import frc.robot.commands.shootercommand;
-import frc.robot.commands.test_pathweaver;
-import frc.robot.commands.turbo_drive;
-import frc.robot.commands.turretscan;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commandgroups.Autonomous.pathweavertest;
+import frc.robot.commandgroups.Autonomous.pathweavertest2;
+import frc.robot.commandgroups.Autonomous.pathweavertest3;
+import frc.robot.commandgroups.Climbing.climb1;
+import frc.robot.commands.Climbing.defaultliftcommand;
+import frc.robot.commands.Driving.ArcadeDrive;
+import frc.robot.commands.Driving.controlreverse;
+import frc.robot.commands.Driving.drivebrake;
+import frc.robot.commands.Driving.turbo_drive;
+import frc.robot.commands.Other.ResetHeading;
+import frc.robot.commands.Other.cancel;
+import frc.robot.commands.Other.defaultaccumulate;
+import frc.robot.commands.Other.defaultintake;
+import frc.robot.commands.Other.intakecommand;
+import frc.robot.commands.Shooting.aim_and_shoot;
+import frc.robot.commands.Shooting.aim_limelight;
+import frc.robot.commands.Shooting.autoturretaim;
+import frc.robot.commands.Shooting.defaultshooter;
+import frc.robot.commands.Shooting.turretscan;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.accumulator;
@@ -51,17 +47,14 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
+  // The robot's subsystems and commands are defined here...
   public static drive drive_subsystem = new drive();
   public static intake intake_subsystem = new intake();
   public static accumulator accumulator_subsystem = new accumulator();
   public static shooter shooter_subsystem = new shooter();
-  //public static testlift Lift_subsystem = new testlift();
   public static Lift Lift_subsystem = new Lift();
   public static Gantry gantry_subsystem = new Gantry();
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   public static limelight limelight_subsystem = new limelight(); 
   public static turret turret_subsystem = new turret(); 
 
@@ -85,7 +78,7 @@ public class RobotContainer {
     drive_subsystem.setDefaultCommand(new ArcadeDrive());
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
-    shooter_subsystem.setDefaultCommand(new deaultshooter());
+    shooter_subsystem.setDefaultCommand(new defaultshooter());
    // turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
 
