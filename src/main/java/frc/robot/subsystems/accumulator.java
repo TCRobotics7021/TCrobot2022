@@ -14,11 +14,10 @@ public class accumulator extends SubsystemBase {
   public accumulator() {}
 TalonFX accuMotor = new TalonFX(6);
 
-public void setSpeed(double accuspeed) {
+  public void setSpeed(double accuspeed) {
+    accuMotor.set(ControlMode.PercentOutput, -accuspeed);
+  }
 
-accuMotor.set(ControlMode.PercentOutput, -accuspeed);
-
-}
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
