@@ -48,19 +48,16 @@ public class Aim_and_shoot_turret extends CommandBase {
     targetX = RobotContainer.limelight_subsystem.getTx();
     distancetotarget = RobotContainer.limelight_subsystem.getDistance();
     
-    // if (distancetotarget > 150){ 
-    //   shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
-    // } 
-    // if (distancetotarget >= 150 && distancetotarget <= 110){
-    //   shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
-    // }
-    // if (distancetotarget <110){
-    //   shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
-    // }
-    shotspeed = SmartDashboard.getNumber("shotspeed",0);
-       
-     
-     
+    if (distancetotarget > 150){ 
+      shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
+    } 
+    if (distancetotarget >= 150 && distancetotarget <= 110){
+      shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
+    }
+    if (distancetotarget <110){
+      shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
+    }
+    
      
       turret_speed = Pvalue * targetX; 
       if (Math.abs(turret_speed) > Maxspeed){

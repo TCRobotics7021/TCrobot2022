@@ -4,11 +4,12 @@
 
 package frc.robot.commands.Shooting;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class defaultshooter extends CommandBase {
-  /** Creates a new deaultshooter. */
+  /** Creates a new defaultshooter. */
   public defaultshooter() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter_subsystem);
@@ -21,8 +22,13 @@ public class defaultshooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter_subsystem.setshotSpeed(0);
-    RobotContainer.shooter_subsystem.setfeedspeed(0);
+    RobotContainer.shooter_subsystem.setshotSpeed(SmartDashboard.getNumber("shotspeed", 0));
+    if (RobotContainer.accumulator_subsystem.isSensorBlocked() && !RobotContainer.shooter_subsystem.isSensorBlocked()) {
+      RobotContainer.shooter_subsystem.setfeedspeed(1);
+    }
+    else {
+  RobotContainer.shooter_subsystem.setfeedspeed(0);
+    }
   }
 
   // Called once the command ends or is interrupted.
