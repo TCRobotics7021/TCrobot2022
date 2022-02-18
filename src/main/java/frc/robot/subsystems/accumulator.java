@@ -16,7 +16,7 @@ public class accumulator extends SubsystemBase {
   public accumulator() {}
 TalonFX accuMotor = new TalonFX(6);
 
-DigitalInput accumulator_sensor = new DigitalInput(3);
+DigitalInput accumulator_sensor = new DigitalInput(8);
 
   public void setSpeed(double accuspeed) {
     accuMotor.set(ControlMode.PercentOutput, -accuspeed);

@@ -15,7 +15,7 @@ public class shooter extends SubsystemBase {
 TalonFX feedmotor = new TalonFX(7);
 TalonFX feedmotor2 = new TalonFX(8);
   TalonFX shotmotor = new TalonFX(9);
-  DigitalInput FeederSensor = new DigitalInput(2);
+  DigitalInput FeederSensor = new DigitalInput(7);
   /** Creates a new shooter. */
   public shooter() {}
 
