@@ -16,9 +16,9 @@ import frc.robot.commands.Other.nothingfinished;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class DrivePath extends SequentialCommandGroup {
+public class drivepath extends SequentialCommandGroup {
   /** Creates a new DrivePath. */
-  public DrivePath(String pathname) {
+  public drivepath(String pathname) {
 
     Trajectory path = RobotContainer.drive_subsystem.loadTrajectoryFromFile(pathname);
     

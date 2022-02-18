@@ -23,7 +23,7 @@ public class scrimmagepath1 extends SequentialCommandGroup {
     new DriveFirstPathAndIntake("Scrimmage1part1"),
     new Aim_and_shoot_turret().withTimeout(3),
     new DrivePathAndIntake("Scrimmage1part2"),
-    new DrivePath("Scrimmage1part3"),
+    new drivepath("Scrimmage1part3"),
     new Aim_and_shoot_turret().withTimeout(3),
     new drivebrake()
     
