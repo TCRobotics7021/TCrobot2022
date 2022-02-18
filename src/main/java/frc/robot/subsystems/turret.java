@@ -58,6 +58,12 @@ return TurretMotor.getSelectedSensorPosition() * Constants.TURRET_ENC_CONV_FACTO
 
   @Override
   public void periodic() {
+    SmartDashboard.putBoolean("turretleftlimit", LLimit.get());
+    SmartDashboard.putBoolean("turretRightlimit", RLimit.get());
+    
+
+
+
     if(TurretMotor.getSelectedSensorVelocity() < 0 && !LLimit.get()){
         setSpeed(0);
        }
@@ -65,10 +71,7 @@ return TurretMotor.getSelectedSensorPosition() * Constants.TURRET_ENC_CONV_FACTO
          setSpeed(0);
        }
   
-       if(LLimit.get() == false){
-         Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
-       }
-      SmartDashboard.putNumber("Turret Encoder Position", TurretMotor.getSelectedSensorPosition() * Constants.TURRET_ENC_CONV_FACTOR);
+       
     // This method will be called once per scheduler run
   }
 }

@@ -29,9 +29,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    SmartDashboard.putNumber("FBmulti", .3);
-    SmartDashboard.putNumber("LRmulti", .1);
-    SmartDashboard.putNumber("intakespeed", .3);
+    SmartDashboard.putNumber("FBmulti", Constants.FBMULTI);
+    SmartDashboard.putNumber("LRmulti", Constants.LRMULTI);
+    SmartDashboard.putNumber("intakespeed", Constants.INTAKESPEED);
     SmartDashboard.putNumber("accuspeed", .5);
     SmartDashboard.putNumber("feedspeed", 1);
     SmartDashboard.putNumber("shotspeed", .42);
