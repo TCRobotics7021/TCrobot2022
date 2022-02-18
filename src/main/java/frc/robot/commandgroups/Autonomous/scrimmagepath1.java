@@ -19,21 +19,21 @@ public class scrimmagepath1 extends SequentialCommandGroup {
   public scrimmagepath1() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Trajectory scrimmagepath1part1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("Scrimmage1part1");
-    Trajectory scrimmagepath1part2 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("Scrimmage1part2");
-    Trajectory scrimmagepath1part3 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("Scrimmage1part3");
+    Trajectory path1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("Scrimmage1part1");
+    Trajectory path2 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("Scrimmage1part2");
+    Trajectory path3 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("Scrimmage1part3");
     
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new InstantCommand(()->{
-      RobotContainer.drive_subsystem.resetOdometry(scrimmagepath1part1.getInitialPose());
+      RobotContainer.drive_subsystem.resetOdometry(path1.getInitialPose());
     }), 
-    new DrivePathAndIntake(scrimmagepath1part1),
-    new Aim_and_shoot_turret().withTimeout(5),
-    new DrivePathAndIntake(scrimmagepath1part2),
-    new drivepath(scrimmagepath1part3),
-    new Aim_and_shoot_turret().withTimeout(4),
+    new DrivePath("Scrimmage1part1",true,true),
+    new Aim_and_shoot_turret().withTimeout(3),
+    new DrivePath("Scrimmage1part2",false,true),
+    new DrivePath("Scrimmage1part3", false, false),
+    new Aim_and_shoot_turret().withTimeout(3),
     new drivebrake()
     
     );

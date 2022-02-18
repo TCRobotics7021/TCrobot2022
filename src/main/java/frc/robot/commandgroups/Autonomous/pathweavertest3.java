@@ -12,14 +12,10 @@ import frc.robot.RobotContainer;
 public class pathweavertest3 extends SequentialCommandGroup {
   /** Creates a new pathweavertest. */
   public pathweavertest3() {
-   
-    Trajectory trajectory1 = RobotContainer.drive_subsystem.loadTrajectoryFromFile("test_path3");
-
+  
     addCommands(
-    new InstantCommand(()->{
-      RobotContainer.drive_subsystem.resetOdometry(trajectory1.getInitialPose());
-    }), 
-    RobotContainer.drive_subsystem.createCommandForTrajectory(trajectory1, false).withTimeout(15).withName("debug")
+
+        new DriveFirstPath("test_path3")
     
     );
   }
