@@ -7,12 +7,15 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class shooter extends SubsystemBase {
 TalonFX feedmotor = new TalonFX(7);
 TalonFX feedmotor2 = new TalonFX(8);
   TalonFX shotmotor = new TalonFX(9);
+  DigitalInput FeederSensor = new DigitalInput(2);
   /** Creates a new shooter. */
   public shooter() {}
 
@@ -21,6 +24,10 @@ double shooterspeed;
 shooterspeed = shotmotor.getSelectedSensorVelocity();
   return shooterspeed;
 
+}
+
+public boolean isSensorBlocked() {
+  return FeederSensor.get();
 }
 
 public void setfeedspeed(double feedspeed){
@@ -35,5 +42,6 @@ feedmotor2.set(ControlMode.PercentOutput, feedspeed);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
   }
 }

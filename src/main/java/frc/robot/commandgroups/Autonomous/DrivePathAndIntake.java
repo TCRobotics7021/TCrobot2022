@@ -4,21 +4,28 @@
 
 package frc.robot.commandgroups.Autonomous;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.RobotContainer;
+import frc.robot.commands.Other.defaultintake;
 import frc.robot.commands.Other.intakecommand;
+import frc.robot.commands.Other.nothing;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class DrivePathAndIntake extends ParallelRaceGroup {
-  /** Creates a new DrivePathAndIntake. */
-  public DrivePathAndIntake(Trajectory path){
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+
+  public DrivePathAndIntake(String pathname){
+
+    Trajectory path = RobotContainer.drive_subsystem.loadTrajectoryFromFile(pathname);
+
     addCommands(
-      new intakecommand(), RobotContainer.drive_subsystem.createCommandForTrajectory(path, false)
+      RobotContainer.drive_subsystem.createCommandForTrajectory(path, false), 
+      new intakecommand()
     );
   }
 }

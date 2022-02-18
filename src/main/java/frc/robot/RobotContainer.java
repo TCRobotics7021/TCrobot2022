@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commandgroups.Autonomous.CoolPath;
 import frc.robot.commandgroups.Autonomous.pathweavertest;
 import frc.robot.commandgroups.Autonomous.pathweavertest2;
 import frc.robot.commandgroups.Autonomous.pathweavertest3;
@@ -70,6 +71,7 @@ public class RobotContainer {
   public RobotContainer() {
     
     AutonomousChooser.setDefaultOption("Scrimmage path", new scrimmagepath1());
+    AutonomousChooser.addOption("Cool Path", new CoolPath());
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
 
