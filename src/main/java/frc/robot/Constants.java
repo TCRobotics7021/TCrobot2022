@@ -75,5 +75,5 @@ public static final double rightScaleConstant = 1.00;
   public static double MIDRANGEPOWER = .4;
   public static double LONGRANGEPOWER = .7;
 
-
+  public static double INTAKESPEED = 1;
 }

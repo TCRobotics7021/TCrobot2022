@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     SmartDashboard.putNumber("FBmulti", Constants.FBMULTI);
     SmartDashboard.putNumber("LRmulti", Constants.LRMULTI);
-    SmartDashboard.putNumber("intakespeed", .3);
+    SmartDashboard.putNumber("intakespeed", Constants.INTAKESPEED);
     SmartDashboard.putNumber("accuspeed", .5);
     SmartDashboard.putNumber("feedspeed", 1);
     SmartDashboard.putNumber("shotspeed", .42);

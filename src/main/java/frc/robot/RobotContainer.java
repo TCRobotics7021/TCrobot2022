@@ -68,9 +68,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    AutonomousChooser.addOption("Pathweavertest", new pathweavertest());
-    AutonomousChooser.addOption("Pathweavertest2", new pathweavertest2());
-    AutonomousChooser.addOption("Pathweavertest3", new pathweavertest3());
+    
     AutonomousChooser.setDefaultOption("Scrimmage path", new scrimmagepath1());
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);

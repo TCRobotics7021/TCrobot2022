@@ -18,7 +18,7 @@ TalonFX feedmotor2 = new TalonFX(8);
 
 public double getshooterspeed(){
 double shooterspeed;
-shooterspeed = -shotmotor.getSelectedSensorVelocity();
+shooterspeed = shotmotor.getSelectedSensorVelocity();
   return shooterspeed;
 
 }

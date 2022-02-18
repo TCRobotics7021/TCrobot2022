@@ -6,6 +6,7 @@ package frc.robot.commands.Other;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class intakecommand extends CommandBase {
@@ -22,7 +23,7 @@ double accuspeed;
   @Override
   public void initialize() {
 
-inspeed = SmartDashboard.getNumber("intakespeed", 0);
+inspeed = SmartDashboard.getNumber("intakespeed", Constants.INTAKESPEED);
 accuspeed = SmartDashboard.getNumber("accuspeed", 0);
   }
 
