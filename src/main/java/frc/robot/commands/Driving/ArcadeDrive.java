@@ -6,6 +6,7 @@ package frc.robot.commands.Driving;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class ArcadeDrive extends CommandBase {
@@ -35,8 +36,8 @@ double LRmulti;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    FBmulti = SmartDashboard.getNumber("FBmulti", 0);
-    LRmulti = SmartDashboard.getNumber("LRmulti", 0);
+    FBmulti = SmartDashboard.getNumber("FBmulti", Constants.FBMULTI);
+    LRmulti = SmartDashboard.getNumber("LRmulti", Constants.LRMULTI);
 LeftJoystick_Y = RobotContainer.LeftJoystick.getY();
 RightJoystick_X = RobotContainer.RightJoystick.getX();
 

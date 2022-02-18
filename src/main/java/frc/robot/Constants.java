@@ -54,6 +54,8 @@ public static final double rightScaleConstant = 1.00;
   //arcade drive
   public static double TURBO_FBMULTI = 1;
   public static double TURBO_LRMULTI = 1; 
+  public static double FBMULTI = .5;
+  public static double LRMULTI = .3;
 
   //turret
   public static double AIM_P = .01; 

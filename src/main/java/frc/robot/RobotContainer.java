@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commandgroups.Autonomous.pathweavertest;
 import frc.robot.commandgroups.Autonomous.pathweavertest2;
 import frc.robot.commandgroups.Autonomous.pathweavertest3;
+import frc.robot.commandgroups.Autonomous.scrimmagepath1;
 import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commands.Climbing.defaultliftcommand;
 import frc.robot.commands.Driving.ArcadeDrive;
@@ -23,6 +24,7 @@ import frc.robot.commands.Other.cancel;
 import frc.robot.commands.Other.defaultaccumulate;
 import frc.robot.commands.Other.defaultintake;
 import frc.robot.commands.Other.intakecommand;
+import frc.robot.commands.Shooting.Aim_and_shoot_turret;
 import frc.robot.commands.Shooting.aim_and_shoot;
 import frc.robot.commands.Shooting.aim_limelight;
 import frc.robot.commands.Shooting.autoturretaim;
@@ -66,9 +68,10 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    AutonomousChooser.setDefaultOption("Pathweavertest", new pathweavertest());
+    AutonomousChooser.addOption("Pathweavertest", new pathweavertest());
     AutonomousChooser.addOption("Pathweavertest2", new pathweavertest2());
     AutonomousChooser.addOption("Pathweavertest3", new pathweavertest3());
+    AutonomousChooser.setDefaultOption("Scrimmage path", new scrimmagepath1());
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
 
@@ -79,7 +82,7 @@ public class RobotContainer {
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     shooter_subsystem.setDefaultCommand(new defaultshooter());
-   // turret_subsystem.setDefaultCommand(new autoturretaim());
+    //turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
 
 
@@ -101,12 +104,13 @@ public class RobotContainer {
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 //new JoystickButton(RightJoystick, 1).whenPressed(new ResetHeading(), false);
 //new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
+new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret()); 
 new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
 new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
-//new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
-new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
+new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
+//new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
 new JoystickButton(OPpanel, 8).whenPressed(new controlreverse() , true);
 //new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
 
