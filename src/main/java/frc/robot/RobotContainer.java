@@ -9,12 +9,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commandgroups.Autonomous.CoolPath;
+//import frc.robot.commandgroups.Autonomous.CoolPath;
 import frc.robot.commandgroups.Autonomous.pathweavertest;
 import frc.robot.commandgroups.Autonomous.pathweavertest2;
 import frc.robot.commandgroups.Autonomous.pathweavertest3;
 import frc.robot.commandgroups.Autonomous.scrimmagepath1;
+import frc.robot.commandgroups.Autonomous.scrimmagepath2;
 import frc.robot.commandgroups.Climbing.climb1;
+import frc.robot.commands.TurretTurn;
 import frc.robot.commands.Climbing.defaultliftcommand;
 import frc.robot.commands.Driving.ArcadeDrive;
 import frc.robot.commands.Driving.controlreverse;
@@ -24,8 +26,10 @@ import frc.robot.commands.Other.ResetHeading;
 import frc.robot.commands.Other.cancel;
 import frc.robot.commands.Other.defaultaccumulate;
 import frc.robot.commands.Other.defaultintake;
+import frc.robot.commands.Other.ejector;
 import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.Aim_and_shoot_turret;
+import frc.robot.commands.Shooting.DefaultTurret;
 import frc.robot.commands.Shooting.aim_and_shoot;
 import frc.robot.commands.Shooting.aim_limelight;
 import frc.robot.commands.Shooting.autoturretaim;
@@ -63,15 +67,16 @@ public class RobotContainer {
 
   SendableChooser AutonomousChooser = new SendableChooser<Command>();
 
-  public static Joystick LeftJoystick = new Joystick(0);
-  public static Joystick RightJoystick = new Joystick(1);
+  public static Joystick LeftJoystick = new Joystick(1);
+  public static Joystick RightJoystick = new Joystick(0);
   public static Joystick OPpanel = new Joystick(2);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     
     AutonomousChooser.setDefaultOption("Scrimmage path", new scrimmagepath1());
-    AutonomousChooser.addOption("Cool Path", new CoolPath());
+    //AutonomousChooser.addOption("Scrimmage path 2", new scrimmagepath2());
+   // AutonomousChooser.addOption("Cool Path", new CoolPath());
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
 
@@ -82,6 +87,8 @@ public class RobotContainer {
     intake_subsystem.setDefaultCommand(new defaultintake());
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     shooter_subsystem.setDefaultCommand(new defaultshooter());
+    turret_subsystem.setDefaultCommand(new DefaultTurret());
+    
     //turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
 
@@ -111,9 +118,11 @@ new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
 new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
 new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
 //new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
-new JoystickButton(OPpanel, 8).whenPressed(new controlreverse() , true);
+//new JoystickButton(RightJoystick, 2).whenPressed(new controlreverse() , true);
 //new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
-
+new JoystickButton(OPpanel, 2).whileHeld(new ejector(), true);
+new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
+new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
   }
 
   /**

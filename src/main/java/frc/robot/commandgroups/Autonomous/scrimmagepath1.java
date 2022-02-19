@@ -8,8 +8,12 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
+import frc.robot.commands.Driving.DriveCoast;
 import frc.robot.commands.Driving.drivebrake;
+import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.Aim_and_shoot_turret;
+import frc.robot.commands.Shooting.AutonomousShooting;
+import frc.robot.commands.Shooting.defaultshooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -19,13 +23,14 @@ public class scrimmagepath1 extends SequentialCommandGroup {
   public scrimmagepath1() {
 
     addCommands(
- 
+    new defaultshooter().withTimeout(.05),
     new DriveFirstPathAndIntake("Scrimmage1part1"),
-    new Aim_and_shoot_turret().withTimeout(3),
+    new AutonomousShooting(.44).withTimeout(2),
     new DrivePathAndIntake("Scrimmage1part2"),
-    new drivepath("Scrimmage1part3"),
-    new Aim_and_shoot_turret().withTimeout(3),
-    new drivebrake()
+    new intakecommand().withTimeout(2),
+    new DrivePathAndIntake("Scrimmage1part3"),
+    new AutonomousShooting(.42).withTimeout(1.5),
+    new DriveCoast()
     
     );
   }

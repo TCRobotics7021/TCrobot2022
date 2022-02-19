@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Other.defaultintake;
 import frc.robot.commands.Other.intakecommand;
-import frc.robot.commands.Other.nothing;
+import frc.robot.commands.Shooting.defaultshooter;
+
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -25,7 +26,8 @@ public class DrivePathAndIntake extends ParallelRaceGroup {
 
     addCommands(
       RobotContainer.drive_subsystem.createCommandForTrajectory(path, false), 
-      new intakecommand()
+      new intakecommand(),
+      new defaultshooter()
     );
   }
 }

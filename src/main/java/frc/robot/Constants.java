@@ -61,9 +61,11 @@ public static final double rightScaleConstant = 1.00;
   public static double AIM_P = .01; 
   public static double MAX_AIM_SPEED = .3;
   public static double MIN_AIM_SPEED = .1;
+  public static double TURRET_TURN_SPEED = .2;
 
   //accumulater 
   public static double ACCUSPEED = .5;
+  public static double SHOOTERSENSORDELAYTIME = .1;
 
   // Distance calculation 
   public static double DIST_CALC_A = 0.277;
@@ -76,4 +78,6 @@ public static final double rightScaleConstant = 1.00;
   public static double LONGRANGEPOWER = .7;
 
   public static double INTAKESPEED = 1;
+  public static double FEEDSPEED = 1;
+  public static double SHOTSPEED = .42;
 }

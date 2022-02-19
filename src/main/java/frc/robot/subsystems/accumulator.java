@@ -16,14 +16,14 @@ public class accumulator extends SubsystemBase {
   public accumulator() {}
 TalonFX accuMotor = new TalonFX(6);
 
-DigitalInput accumulator_sensor = new DigitalInput(8);
+DigitalInput accumulator_sensor = new DigitalInput(2);
 
   public void setSpeed(double accuspeed) {
     accuMotor.set(ControlMode.PercentOutput, -accuspeed);
   }
 
   public boolean isSensorBlocked(){
-    return accumulator_sensor.get();
+    return !accumulator_sensor.get();
   }
 
   @Override

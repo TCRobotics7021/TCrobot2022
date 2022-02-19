@@ -6,6 +6,7 @@ package frc.robot.commands.Shooting;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class defaultshooter extends CommandBase {
@@ -22,8 +23,10 @@ public class defaultshooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter_subsystem.setshotSpeed(SmartDashboard.getNumber("shotspeed", 0));
-    if (RobotContainer.accumulator_subsystem.isSensorBlocked() && !RobotContainer.shooter_subsystem.isSensorBlocked()) {
+    
+  RobotContainer.shooter_subsystem.setshotSpeed(SmartDashboard.getNumber("shotspeed", Constants.SHOTSPEED));
+  
+  if ((RobotContainer.accumulator_subsystem.isSensorBlocked() || RobotContainer.shooter_subsystem.isSensorBlocked()) && !RobotContainer.shooter_subsystem.isSensorBlockedWithdelay()) {
       RobotContainer.shooter_subsystem.setfeedspeed(1);
     }
     else {
