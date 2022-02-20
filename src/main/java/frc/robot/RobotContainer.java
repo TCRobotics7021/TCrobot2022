@@ -29,6 +29,7 @@ import frc.robot.commands.Other.defaultintake;
 import frc.robot.commands.Other.ejector;
 import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.Aim_and_shoot_turret;
+import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.DefaultTurret;
 import frc.robot.commands.Shooting.aim_and_shoot;
 import frc.robot.commands.Shooting.aim_limelight;
@@ -111,7 +112,7 @@ public class RobotContainer {
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 //new JoystickButton(RightJoystick, 1).whenPressed(new ResetHeading(), false);
 //new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
-new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret()); 
+new JoystickButton(RightJoystick, 1).whileHeld(new AutonomousShooting(.42));
 new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
