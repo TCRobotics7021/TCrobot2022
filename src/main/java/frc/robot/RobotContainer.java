@@ -112,7 +112,7 @@ public class RobotContainer {
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 //new JoystickButton(RightJoystick, 1).whenPressed(new ResetHeading(), false);
 //new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
-new JoystickButton(RightJoystick, 1).whileHeld(new AutonomousShooting(.42));
+new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret());
 new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);

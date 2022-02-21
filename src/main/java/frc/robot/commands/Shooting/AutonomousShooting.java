@@ -76,7 +76,9 @@ public class AutonomousShooting extends CommandBase {
       RobotContainer.shooter_subsystem.setshotSpeed(shooterspeed);
       SmartDashboard.putNumber("RPMs", actualrpms);
       if (targetX <= 1 && targetX >= -1 && RobotContainer.limelight_subsystem.getTa() > .005){
-        RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
+        if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
+          RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
+        }
         RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
       }
   }

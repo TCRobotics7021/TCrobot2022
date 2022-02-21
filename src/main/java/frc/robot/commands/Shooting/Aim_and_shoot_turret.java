@@ -37,15 +37,7 @@ public class Aim_and_shoot_turret extends CommandBase {
     Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
     Minspeed = SmartDashboard.getNumber("Aim Min", Constants.MIN_AIM_SPEED);
     Pvalue = SmartDashboard.getNumber("Aim P", Constants.AIM_P);
-  
-  }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    RobotContainer.drive_subsystem.setSpeed(0, 0);
-    RobotContainer.drive_subsystem.drivebrake();
-    targetX = RobotContainer.limelight_subsystem.getTx();
     distancetotarget = RobotContainer.limelight_subsystem.getDistance();
     
     if (distancetotarget > 150){ 
@@ -57,6 +49,16 @@ public class Aim_and_shoot_turret extends CommandBase {
     if (distancetotarget <110){
       shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
     }
+  
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    RobotContainer.drive_subsystem.setSpeed(0, 0);
+    RobotContainer.drive_subsystem.drivebrake();
+    targetX = RobotContainer.limelight_subsystem.getTx();
+    
     
      
       turret_speed = Pvalue * targetX; 
@@ -84,8 +86,11 @@ public class Aim_and_shoot_turret extends CommandBase {
        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
       RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
       SmartDashboard.putNumber("RPMs", actualrpms);
-      if (actualrpms > 7000 && targetX <= 1 && targetX >= -1){
-        RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
+
+      if (actualrpms > 4000 && targetX <= 1 && targetX >= -1){
+        if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
+          RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
+        }
   
       RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
       }

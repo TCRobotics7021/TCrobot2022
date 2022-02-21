@@ -22,6 +22,7 @@ TalonFX feedmotor2 = new TalonFX(8);
   DigitalInput FeederSensor = new DigitalInput(3);
 
   Timer sensor_on_delay = new Timer();
+  Timer sensor_off_delay = new Timer();
   /** Creates a new shooter. */
   public shooter() {}
 
@@ -38,6 +39,14 @@ public boolean isSensorBlocked() {
 
 public boolean isSensorBlockedWithdelay() {
   if(sensor_on_delay.get() > SmartDashboard.getNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME)){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+public boolean isSensorBlockedWithoffdelay() {
+  if(sensor_off_delay.get() < SmartDashboard.getNumber("Shooter Sensor Off Delay Time", Constants.SHOOTERSENSOROFFDELAYTIME)){
     return true;
   }
   else{
@@ -64,6 +73,12 @@ feedmotor2.set(ControlMode.PercentOutput, feedspeed);
     }
      else {
       sensor_on_delay.reset();
+    }
+    if (isSensorBlocked() == false) {
+      sensor_off_delay.start();
+    }
+     else {
+      sensor_off_delay.reset();
     }
   }
 }
