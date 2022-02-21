@@ -65,7 +65,7 @@ return GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTO
      if(BWDLimit.get() == false){
        Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
      }
-    //SmartDashboard.putNumber("Gantry Encoder Position", GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTOR);
+    SmartDashboard.putNumber("Gantry Encoder Position", GantryMotor.getSelectedSensorPosition() * Constants.GANTRY_ENC_CONV_FACTOR);
     // This method will be called once per scheduler run
   }
 }
