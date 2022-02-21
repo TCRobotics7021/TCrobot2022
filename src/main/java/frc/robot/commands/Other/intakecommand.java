@@ -30,7 +30,12 @@ accuspeed = SmartDashboard.getNumber("accuspeed", 0);
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-RobotContainer.accumulator_subsystem.setSpeed(accuspeed);
+    if(RobotContainer.shooter_subsystem.isSensorBlocked() && RobotContainer.accumulator_subsystem.isSensorBlocked()){
+      RobotContainer.accumulator_subsystem.setSpeed(0);
+    }
+    else{
+    RobotContainer.accumulator_subsystem.setSpeed(accuspeed);
+    }
     RobotContainer.intake_subsystem.setSpeed(inspeed);
   }
 

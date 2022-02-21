@@ -38,8 +38,8 @@ double LRmulti;
   public void execute() {
     FBmulti = SmartDashboard.getNumber("FBmulti", Constants.FBMULTI);
     LRmulti = SmartDashboard.getNumber("LRmulti", Constants.LRMULTI);
-LeftJoystick_Y = RobotContainer.LeftJoystick.getY();
-RightJoystick_X = RobotContainer.RightJoystick.getX();
+LeftJoystick_Y = RobotContainer.RightJoystick.getY();
+RightJoystick_X = RobotContainer.LeftJoystick.getX();
 
 RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
 LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);

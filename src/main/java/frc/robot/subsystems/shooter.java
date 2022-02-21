@@ -4,18 +4,25 @@
 
 package frc.robot.subsystems;
 
+
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class shooter extends SubsystemBase {
 TalonFX feedmotor = new TalonFX(7);
 TalonFX feedmotor2 = new TalonFX(8);
   TalonFX shotmotor = new TalonFX(9);
-  DigitalInput FeederSensor = new DigitalInput(7);
+  DigitalInput FeederSensor = new DigitalInput(3);
+
+  Timer sensor_on_delay = new Timer();
+  Timer sensor_off_delay = new Timer();
   /** Creates a new shooter. */
   public shooter() {}
 
@@ -27,7 +34,24 @@ shooterspeed = shotmotor.getSelectedSensorVelocity();
 }
 
 public boolean isSensorBlocked() {
-  return FeederSensor.get();
+  return !FeederSensor.get();
+}
+
+public boolean isSensorBlockedWithdelay() {
+  if(sensor_on_delay.get() > SmartDashboard.getNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME)){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+public boolean isSensorBlockedWithoffdelay() {
+  if(sensor_off_delay.get() < SmartDashboard.getNumber("Shooter Sensor Off Delay Time", Constants.SHOOTERSENSOROFFDELAYTIME)){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 public void setfeedspeed(double feedspeed){
@@ -43,5 +67,18 @@ feedmotor2.set(ControlMode.PercentOutput, feedspeed);
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
+
+    if (isSensorBlocked() == true) {
+      sensor_on_delay.start();
+    }
+     else {
+      sensor_on_delay.reset();
+    }
+    if (isSensorBlocked() == false) {
+      sensor_off_delay.start();
+    }
+     else {
+      sensor_off_delay.reset();
+    }
   }
 }

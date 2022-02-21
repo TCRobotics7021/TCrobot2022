@@ -33,8 +33,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LRmulti", Constants.LRMULTI);
     SmartDashboard.putNumber("intakespeed", Constants.INTAKESPEED);
     SmartDashboard.putNumber("accuspeed", .5);
-    SmartDashboard.putNumber("feedspeed", 1);
-    SmartDashboard.putNumber("shotspeed", .42);
+    SmartDashboard.putNumber("feedspeed", Constants.FEEDSPEED);
+    SmartDashboard.putNumber("shotspeed", Constants.SHOTSPEED);
     SmartDashboard.putNumber("RPMs", 0);
     SmartDashboard.putNumber("Aim P", .01);
     SmartDashboard.putNumber("Aim Max", .3);
@@ -42,8 +42,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Short Range Power", Constants.SHORTRANGEPOWER);
     SmartDashboard.putNumber("Mid Range Power", Constants.MIDRANGEPOWER);
     SmartDashboard.putNumber("Long Range Power", Constants.LONGRANGEPOWER);
+    SmartDashboard.putNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME);
   }
-
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.

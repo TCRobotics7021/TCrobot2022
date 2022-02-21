@@ -5,16 +5,18 @@
 package frc.robot.commands.Other;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.shooter;
 
-public class defaultaccumulate extends CommandBase {
-  /** Creates a new defaultaccumulate. */
-  public defaultaccumulate() {
+public class ejector extends CommandBase {
+  /** Creates a new ejector. */
+  public ejector() {
     // Use addRequirements() here to declare subsystem dependencies.
-
-  addRequirements(RobotContainer.accumulator_subsystem);
+    addRequirements(RobotContainer.accumulator_subsystem);
+    addRequirements(RobotContainer.intake_subsystem);
+    addRequirements(RobotContainer.shooter_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -24,14 +26,9 @@ public class defaultaccumulate extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    
-    if (RobotContainer.accumulator_subsystem.isSensorBlocked() && !RobotContainer.shooter_subsystem.isSensorBlockedWithdelay()) {
-      RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
-    }
-    else {
-      RobotContainer.accumulator_subsystem.setSpeed(0);
-    }
+    RobotContainer.intake_subsystem.setSpeed(-Constants.INTAKESPEED);
+    RobotContainer.accumulator_subsystem.setSpeed(-Constants.ACCUSPEED);
+    RobotContainer.shooter_subsystem.setfeedspeed(-1);
   }
 
   // Called once the command ends or is interrupted.

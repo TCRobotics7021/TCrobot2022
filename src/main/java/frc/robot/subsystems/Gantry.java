@@ -18,8 +18,8 @@ public class Gantry extends SubsystemBase {
 
   private WPI_TalonFX GantryMotor = new WPI_TalonFX(12);
   /** Creates a new Gantry. */
-  private DigitalInput FWDLimit = new DigitalInput(2);
-  private DigitalInput BWDLimit = new DigitalInput(3);
+  private DigitalInput FWDLimit = new DigitalInput(7);
+  private DigitalInput BWDLimit = new DigitalInput(8);
   public Gantry() {
 
     SmartDashboard.putNumber("Test Height", 0);
