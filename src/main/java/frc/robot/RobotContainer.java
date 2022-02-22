@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import frc.robot.commandgroups.Autonomous.CoolPath;
-import frc.robot.commandgroups.Autonomous.scrimmagepath1;
-import frc.robot.commandgroups.Autonomous.scrimmagepath2;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine1;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine2;
 import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commands.TurretTurn;
 import frc.robot.commands.Climbing.defaultliftcommand;
@@ -72,9 +71,12 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     
-    AutonomousChooser.setDefaultOption("Scrimmage path full", new scrimmagepath1());
-    AutonomousChooser.addOption("Scrimmage path short", new scrimmagepath2());
-   // AutonomousChooser.addOption("Cool Path", new CoolPath());
+    AutonomousChooser.setDefaultOption("AR1: One Ball and Shoot", new AutonomousRoutine1());
+    AutonomousChooser.addOption("AR2: ", new AutonomousRoutine2());
+    AutonomousChooser.addOption("AR3: ", new AutonomousRoutine2());
+    AutonomousChooser.addOption("AR4: ", new AutonomousRoutine2());
+    AutonomousChooser.addOption("AR5: ", new AutonomousRoutine2());
+
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
 

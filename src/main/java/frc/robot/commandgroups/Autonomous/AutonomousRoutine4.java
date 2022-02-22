@@ -10,15 +10,14 @@ import frc.robot.commands.Shooting.defaultshooter;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class scrimmagepath2 extends SequentialCommandGroup {
-  /** Creates a new scrimmagepath2. */
-  public scrimmagepath2() {
+public class AutonomousRoutine4 extends SequentialCommandGroup {
+  /** Creates a new AutonomousRoutine4. */
+  public AutonomousRoutine4() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-    new defaultshooter().withTimeout(.05),
-    new DriveFirstPathAndIntake("Path4")
+          new defaultshooter().withTimeout(.05),
+          new DriveFirstPathAndIntake("AR4 Path1")  
     );
-
   }
 }
