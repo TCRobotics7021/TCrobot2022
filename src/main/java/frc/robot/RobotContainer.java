@@ -10,9 +10,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.commandgroups.Autonomous.CoolPath;
-import frc.robot.commandgroups.Autonomous.pathweavertest;
-import frc.robot.commandgroups.Autonomous.pathweavertest2;
-import frc.robot.commandgroups.Autonomous.pathweavertest3;
 import frc.robot.commandgroups.Autonomous.scrimmagepath1;
 import frc.robot.commandgroups.Autonomous.scrimmagepath2;
 import frc.robot.commandgroups.Climbing.climb1;
@@ -75,8 +72,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     
-    AutonomousChooser.setDefaultOption("Scrimmage path", new scrimmagepath1());
-    //AutonomousChooser.addOption("Scrimmage path 2", new scrimmagepath2());
+    AutonomousChooser.setDefaultOption("Scrimmage path full", new scrimmagepath1());
+    AutonomousChooser.addOption("Scrimmage path short", new scrimmagepath2());
    // AutonomousChooser.addOption("Cool Path", new CoolPath());
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);

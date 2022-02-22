@@ -17,7 +17,7 @@ public class scrimmagepath2 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new defaultshooter().withTimeout(.05),
-    new DriveFirstPathAndIntake("Scrimmage2part1")
+    new DriveFirstPathAndIntake("Path4")
     );
 
   }

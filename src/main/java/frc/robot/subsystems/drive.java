@@ -51,7 +51,7 @@ public class drive extends SubsystemBase {
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
 
   //Defines a variable to store position
-  Pose2d pose;
+  //Pose2d pose;
 
   //Defines a feedforward system using the constants found from the characterization tool
   SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.ks, Constants.kv, Constants.ka);
@@ -93,17 +93,17 @@ public class drive extends SubsystemBase {
     BLmotor.setNeutralMode(NeutralMode.Brake);
   }
 
-  //Returns the current heading
-  public Rotation2d getHeading() {
-    return Rotation2d.fromDegrees(-gyro.getYaw());
-  }
+ 
 
   //Returns the wheel speeds (needed for ramsete function)
   public DifferentialDriveWheelSpeeds getSpeeds() {
+    // return new DifferentialDriveWheelSpeeds(
+    //  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick,
+    // FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick
+    // );
     return new DifferentialDriveWheelSpeeds(
-     FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick,
-    FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick
-    );
+    FLmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10,
+    FRmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
   }
 
   //These two functions load the path file and generate a trajectory
@@ -116,7 +116,9 @@ public class drive extends SubsystemBase {
     }
   }
   protected static Trajectory loadTrajectory(String trajectoryName) throws IOException {
-    return TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(Paths.get("paths/", trajectoryName + ".wpilib.json")));
+    //return TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(Paths.get("paths/", trajectoryName + ".wpilib.json")));
+    return TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(Paths.get("pathplanner/generatedJSON/", trajectoryName + ".wpilib.json")));
+    //return TrajectoryUtil.fromPathweaverJson(path)
   }
 
   //This is the ramsete function, it creates an autonomous command from a trajectory
@@ -150,8 +152,8 @@ public class drive extends SubsystemBase {
 
   //Sets the motor speeds based on voltage
   public void setOutput(double leftVolts, double rightVolts){
-     FLmotor.set(leftVolts / 12);
-     FRmotor.set(rightVolts / 12);
+     FLmotor.setVoltage(leftVolts);
+     FRmotor.setVoltage(rightVolts);
    }
   
   public SimpleMotorFeedforward getFeedForward() {
@@ -161,15 +163,14 @@ public class drive extends SubsystemBase {
   public DifferentialDriveKinematics getKinematics(){
     return kinematics;
   }
-
+ //Returns the current heading
+  public Rotation2d getHeading() {
+    return Rotation2d.fromDegrees(-gyro.getYaw());
+    //return gyro.getRotation2d();
+  }
   //tells the odometry object where the robot currently is
   public void setHeading(Pose2d poseMeters, Rotation2d gyroAngle){
     odometry.resetPosition(poseMeters, gyroAngle);
-  }
-
-  //returns the current rotation from the navX
-  public double getYaw(){
-    return -gyro.getYaw();
   }
 
   //resets the value of the encoders to 0
@@ -200,16 +201,17 @@ public class drive extends SubsystemBase {
   public void periodic() {
     
     //This updates the odometry object so it can keep track of where the robot is
-    pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
-  
+    odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
+    //pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     var translation = odometry.getPoseMeters().getTranslation();
     SmartDashboard.putNumber("Odometry X", translation.getX());
     SmartDashboard.putNumber("Odometry Y", translation.getY());
     SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
-    SmartDashboard.putNumber("Rotation", odometry.getPoseMeters().getRotation().getDegrees());
-    SmartDashboard.putNumber("wheelCirc", Units.inchesToMeters(Constants.wheelCircumference));
-    
+    SmartDashboard.putNumber("Odometry Rotation Degrees", odometry.getPoseMeters().getRotation().getDegrees());
+    SmartDashboard.putNumber("Odometry Rotation Radians", odometry.getPoseMeters().getRotation().getRadians());
+    SmartDashboard.putNumber("Left Velocity m/s", FLmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
+    SmartDashboard.putNumber("Right Velocity m/s", FRmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
     //This stuff is intersting 
   }
 }

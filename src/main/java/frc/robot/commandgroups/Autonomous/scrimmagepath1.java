@@ -24,12 +24,12 @@ public class scrimmagepath1 extends SequentialCommandGroup {
 
     addCommands(
     new defaultshooter().withTimeout(.05),
-    new DriveFirstPathAndIntake("Scrimmage1part1"),
+    new DriveFirstPathAndIntake("Path1"),
     new AutonomousShooting(.42).withTimeout(3),
-    //new DrivePathAndIntake("Scrimmage1part2"),
-    //new intakecommand().withTimeout(2),
-   // new DrivePathAndIntake("Scrimmage1part3"),
-    //new AutonomousShooting(.42).withTimeout(1.5),
+    new DrivePathAndIntake("Path2"),
+    new intakecommand().withTimeout(2),
+    new DrivePathAndIntake("Path3"),
+    new AutonomousShooting(.42).withTimeout(1.5),
     new DriveCoast()
     
     );
