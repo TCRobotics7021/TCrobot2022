@@ -165,8 +165,8 @@ public class drive extends SubsystemBase {
   }
  //Returns the current heading
   public Rotation2d getHeading() {
-    return Rotation2d.fromDegrees(-gyro.getYaw());
-    //return gyro.getRotation2d();
+    //return Rotation2d.fromDegrees(-gyro.getYaw());
+    return gyro.getRotation2d();
   }
   //tells the odometry object where the robot currently is
   public void setHeading(Pose2d poseMeters, Rotation2d gyroAngle){
