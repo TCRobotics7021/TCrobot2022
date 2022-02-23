@@ -43,6 +43,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Mid Range Power", Constants.MIDRANGEPOWER);
     SmartDashboard.putNumber("Long Range Power", Constants.LONGRANGEPOWER);
     SmartDashboard.putNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME);
+
+    SmartDashboard.putNumber("Shooter kP", Constants.SHOOTER_kP);
+    SmartDashboard.putNumber("Shooter kD", Constants.SHOOTER_kD);
+    SmartDashboard.putNumber("SHooter kF", Constants.SHOOTER_kF);
   }
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like

@@ -50,7 +50,7 @@ if(RobotContainer.drive_subsystem.controlreverse = true){
 else{
   RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
 }
-
+RobotContainer.drive_subsystem.drivecoast();
 
 
   }

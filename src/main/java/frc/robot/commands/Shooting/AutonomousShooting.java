@@ -73,8 +73,8 @@ public class AutonomousShooting extends CommandBase {
       RobotContainer.turret_subsystem.setSpeed(turret_speed);
   
        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
-      RobotContainer.shooter_subsystem.setshotSpeed(shooterspeed);
-      SmartDashboard.putNumber("RPMs", actualrpms);
+      RobotContainer.shooter_subsystem.setShooterVelocity(shooterspeed);
+      
       if (targetX <= 1 && targetX >= -1 && RobotContainer.limelight_subsystem.getTa() > .005){
         if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);

@@ -87,20 +87,16 @@ public class drive extends SubsystemBase {
 
   //When this mode is active the motors will brake when given a speed of 0;
   public void drivebrake(){
-    FRmotor.setNeutralMode(NeutralMode.Brake);
-    FLmotor.setNeutralMode(NeutralMode.Brake);
-    BRmotor.setNeutralMode(NeutralMode.Brake);
-    BLmotor.setNeutralMode(NeutralMode.Brake);
+    // FRmotor.setNeutralMode(NeutralMode.Brake);
+    // FLmotor.setNeutralMode(NeutralMode.Brake);
+    // BRmotor.setNeutralMode(NeutralMode.Brake);
+    // BLmotor.setNeutralMode(NeutralMode.Brake);
   }
 
  
 
   //Returns the wheel speeds (needed for ramsete function)
   public DifferentialDriveWheelSpeeds getSpeeds() {
-    // return new DifferentialDriveWheelSpeeds(
-    //  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick,
-    // FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick
-    // );
     return new DifferentialDriveWheelSpeeds(
     FLmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10,
     FRmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
