@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import frc.robot.commandgroups.Autonomous.CoolPath;
-import frc.robot.commandgroups.Autonomous.scrimmagepath1;
-import frc.robot.commandgroups.Autonomous.scrimmagepath2;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine1;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine2;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine3;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine4;
+import frc.robot.commandgroups.Autonomous.AutonomousRoutine5;
 import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commands.TurretTurn;
 import frc.robot.commands.Climbing.defaultliftcommand;
@@ -43,6 +45,7 @@ import frc.robot.subsystems.shooter;
 import frc.robot.subsystems.testlift;
 import frc.robot.subsystems.turret;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -72,9 +75,12 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     
-    AutonomousChooser.setDefaultOption("Scrimmage path full", new scrimmagepath1());
-    AutonomousChooser.addOption("Scrimmage path short", new scrimmagepath2());
-   // AutonomousChooser.addOption("Cool Path", new CoolPath());
+    AutonomousChooser.setDefaultOption("AR1: One Ball and Shoot", new AutonomousRoutine1());
+    AutonomousChooser.addOption("AR2: 4 Balls", new AutonomousRoutine2());
+    AutonomousChooser.addOption("AR3: ", new AutonomousRoutine3());
+    AutonomousChooser.addOption("AR4: ", new AutonomousRoutine4());
+    AutonomousChooser.addOption("AR5: Test Path", new AutonomousRoutine5());
+
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
 
@@ -107,8 +113,6 @@ public class RobotContainer {
 
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
-//new JoystickButton(RightJoystick, 1).whenPressed(new ResetHeading(), false);
-//new JoystickButton(RightJoystick, 1).whileHeld(new shootercommand(), true);
 new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret());
 new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);

@@ -65,7 +65,7 @@ public static final double rightScaleConstant = 1.00;
 
   //accumulater 
   public static double ACCUSPEED = .5;
-  public static double SHOOTERSENSORDELAYTIME = .1;
+  public static double SHOOTERSENSORDELAYTIME = .07;
   public static double SHOOTERSENSOROFFDELAYTIME = .45;
 
   // Distance calculation 
@@ -74,11 +74,16 @@ public static final double rightScaleConstant = 1.00;
   public static double DIST_CALC_C = 96.4;
 
   //ditsance shooting 
-  public static double SHORTRANGEPOWER = .39;
-  public static double MIDRANGEPOWER = .42;
-  public static double LONGRANGEPOWER = .6;
+  public static double SHORTRANGEPOWER = 2000;
+  public static double MIDRANGEPOWER = 2100;
+  public static double LONGRANGEPOWER = 2500;
 
   public static double INTAKESPEED = 1;
   public static double FEEDSPEED = 1;
-  public static double SHOTSPEED = .42;
+  public static double SHOTSPEED = 2100;
+
+  //Shooter PID
+  public static double SHOOTER_kP = .25;
+  public static double SHOOTER_kD = 0;
+  public static double SHOOTER_kF = .044;
 }

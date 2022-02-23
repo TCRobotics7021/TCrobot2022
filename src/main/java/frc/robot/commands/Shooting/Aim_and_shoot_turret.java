@@ -40,15 +40,15 @@ public class Aim_and_shoot_turret extends CommandBase {
 
     distancetotarget = RobotContainer.limelight_subsystem.getDistance();
     
-    if (distancetotarget > 150){ 
-      shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
-    } 
-    if (distancetotarget >= 150 && distancetotarget <= 110){
-      shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
-    }
-    if (distancetotarget <110){
-      shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
-    }
+    // if (distancetotarget > 150){ 
+    //   shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
+    // } 
+    // if (distancetotarget >= 150 && distancetotarget <= 110){
+    //   shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
+    // }
+    // if (distancetotarget <110){
+    //   shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
+    // }
   
   }
 
@@ -84,10 +84,10 @@ public class Aim_and_shoot_turret extends CommandBase {
       RobotContainer.turret_subsystem.setSpeed(turret_speed);
   
        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
-      RobotContainer.shooter_subsystem.setshotSpeed(shotspeed);
-      SmartDashboard.putNumber("RPMs", actualrpms);
+      RobotContainer.shooter_subsystem.setShooterVelocity(shotspeed);
+      
 
-      if (actualrpms > 4000 && targetX <= 1 && targetX >= -1){
+      if (RobotContainer.shooter_subsystem.atRPMS() && targetX <= 1 && targetX >= -1){
         if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
         }
@@ -100,7 +100,7 @@ public class Aim_and_shoot_turret extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.shooter_subsystem.setfeedspeed(0);
-    RobotContainer.shooter_subsystem.setshotSpeed(0);
+    RobotContainer.shooter_subsystem.setShooterVelocity(0);
     RobotContainer.accumulator_subsystem.setSpeed(0);
     RobotContainer.turret_subsystem.setSpeed(0);
   }

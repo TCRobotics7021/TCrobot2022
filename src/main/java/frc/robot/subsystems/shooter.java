@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -21,16 +22,31 @@ TalonFX feedmotor2 = new TalonFX(8);
   TalonFX shotmotor = new TalonFX(9);
   DigitalInput FeederSensor = new DigitalInput(3);
 
+double targetRPM;
+
   Timer sensor_on_delay = new Timer();
   Timer sensor_off_delay = new Timer();
   /** Creates a new shooter. */
-  public shooter() {}
+  public shooter() {
+    setupShooterMotor();
+    setupShooterPID();
+  }
 
 public double getshooterspeed(){
 double shooterspeed;
-shooterspeed = shotmotor.getSelectedSensorVelocity();
+ shooterspeed = shotmotor.getSelectedSensorVelocity() / 2048 * 600;
   return shooterspeed;
 
+}
+
+private void setupShooterMotor() {
+  shotmotor.setNeutralMode(NeutralMode.Coast);
+}
+
+private void setupShooterPID() {
+  shotmotor.config_kP(0, SmartDashboard.getNumber("Shooter kP", Constants.SHOOTER_kP));
+  shotmotor.config_kD(0, SmartDashboard.getNumber("Shooter kD", Constants.SHOOTER_kD));
+  shotmotor.config_kF(0, SmartDashboard.getNumber("Shooter kF", Constants.SHOOTER_kF));
 }
 
 public boolean isSensorBlocked() {
@@ -63,11 +79,27 @@ feedmotor2.set(ControlMode.PercentOutput, feedspeed);
     shotmotor.set(ControlMode.PercentOutput, shotspeed);
   }
 
+  public void setShooterVelocity(double velocity){
+    shotmotor.set(ControlMode.Velocity, velocity * 2048 / 600);
+    targetRPM = velocity;
+    
+  }
+
+  public boolean atRPMS() {
+    if (targetRPM * .9 < getshooterspeed() && targetRPM * 1.1 > getshooterspeed()) {
+return true;
+    } else {
+      return false;
+    }
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
-
+    SmartDashboard.putBoolean("At RPMs", atRPMS());
+    SmartDashboard.putNumber("Current RPMs", getshooterspeed());
+    setupShooterPID();
     if (isSensorBlocked() == true) {
       sensor_on_delay.start();
     }

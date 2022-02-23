@@ -24,7 +24,7 @@ public class defaultshooter extends CommandBase {
   @Override
   public void execute() {
     
-  RobotContainer.shooter_subsystem.setshotSpeed(SmartDashboard.getNumber("shotspeed", Constants.SHOTSPEED));
+  RobotContainer.shooter_subsystem.setShooterVelocity(SmartDashboard.getNumber("shotspeed", Constants.SHOTSPEED));
   
   if ((RobotContainer.accumulator_subsystem.isSensorBlocked() || RobotContainer.shooter_subsystem.isSensorBlocked()) && !RobotContainer.shooter_subsystem.isSensorBlockedWithdelay()) {
       RobotContainer.shooter_subsystem.setfeedspeed(1);

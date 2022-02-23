@@ -17,7 +17,7 @@ TalonFX InMotor = new TalonFX(5);
 
  public void setSpeed(double inspeed) {
 
-InMotor.set(ControlMode.PercentOutput, inspeed);
+InMotor.set(ControlMode.PercentOutput, -inspeed);
 
  }
 
