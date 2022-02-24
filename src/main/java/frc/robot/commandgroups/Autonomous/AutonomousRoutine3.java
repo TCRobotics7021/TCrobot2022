@@ -19,10 +19,10 @@ public class AutonomousRoutine3 extends SequentialCommandGroup {
     addCommands(
       new defaultshooter().withTimeout(.05),
       new DriveFirstPathAndIntake("AR3 Path1"),  
-      new AutonomousShooting(2000),
+      new AutonomousShooting(2100).withTimeout(2),
       new DrivePathAndIntake("AR3 Path2"),
-      new drivepath("AR3 Path3"),
-      new AutonomousShooting(2200)
+      new DrivePathAndIntake("AR3 Path3"),
+      new AutonomousShooting(2200).withTimeout(3)
     );
   }
 }

@@ -73,6 +73,12 @@ public static final double rightScaleConstant = 1.00;
   public static double DIST_CALC_B = -2.44;
   public static double DIST_CALC_C = 96.4;
 
+  //RPM calc
+  public static double RPMDIST_CALC_A = 0.000318;
+  public static double RPMDIST_CALC_B = -1.47;
+  public static double RPMDIST_CALC_C = 3741;
+
+
   //ditsance shooting 
   public static double SHORTRANGEPOWER = 2000;
   public static double MIDRANGEPOWER = 2100;

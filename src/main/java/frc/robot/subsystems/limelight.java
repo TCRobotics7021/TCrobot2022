@@ -20,6 +20,7 @@ public class limelight extends SubsystemBase {
   double yposition; 
   double xposition = 0; 
   double distance = 0; 
+  double distancetorpms = 0;
   
 public double getTx() {
 
@@ -47,6 +48,11 @@ public double getDistance() {
   distance = Math.pow(yposition,2)*Constants.DIST_CALC_A+Constants.DIST_CALC_B*yposition+Constants.DIST_CALC_C;
 
   return distance;
+}
+public double getDistancetoRPMs(){
+  setPipeline(0);
+  distancetorpms = Math.pow(distance, 2)*Constants.RPMDIST_CALC_A+Constants.RPMDIST_CALC_B*distance+Constants.RPMDIST_CALC_C;
+  return  distancetorpms;
 }
 
 
