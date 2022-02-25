@@ -41,6 +41,7 @@ public static final double rightScaleConstant = 1.00;
   public static double LIFT_ENC_CONV_FACTOR = 1;
   public static double LIFT_TARGET_ACCURACY = 2;
   public static double LIFT_MOTOR_P = .02;
+  public static double LIFTMOTORV = .20; 
   
   //gantry (moving lift)
   public static double GANTRY_ENC_RESET_HEIGHT = 1000;
@@ -58,7 +59,7 @@ public static final double rightScaleConstant = 1.00;
   public static double LRMULTI = .3;
 
   //turret
-  public static double AIM_P = .01; 
+  public static double AIM_P = .02; 
   public static double MAX_AIM_SPEED = .3;
   public static double MIN_AIM_SPEED = .1;
   public static double TURRET_TURN_SPEED = .2;
@@ -69,9 +70,9 @@ public static final double rightScaleConstant = 1.00;
   public static double SHOOTERSENSOROFFDELAYTIME = .45;
 
   // Distance calculation 
-  public static double DIST_CALC_A = 0.324;
-  public static double DIST_CALC_B = -2.44;
-  public static double DIST_CALC_C = 96.4;
+  public static double DIST_CALC_A = 6.37;
+  public static double DIST_CALC_B = -115;
+  public static double DIST_CALC_C = 2186;
 
   //RPM calc
   public static double RPMDIST_CALC_A = 0.000318;
@@ -92,4 +93,7 @@ public static final double rightScaleConstant = 1.00;
   public static double SHOOTER_kP = .25;
   public static double SHOOTER_kD = 0;
   public static double SHOOTER_kF = .044;
+
+  //INTAKE
+  public static double INTAKE_DELAY = .5;
 }

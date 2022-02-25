@@ -13,13 +13,14 @@ public class Aim_and_shoot_turret extends CommandBase {
   double targetX;
   double turret_speed; 
   double distancetotarget;
-
+  double TargetRPM;
   double feedspeed;
   double shotspeed;
   double actualrpms;
   double Pvalue;
   double Maxspeed; 
   double Minspeed; 
+  boolean Startedshooting;
   /** Creates a new Aim_and_shoot_turret. */
   public Aim_and_shoot_turret() {
     addRequirements(RobotContainer.limelight_subsystem);
@@ -37,18 +38,10 @@ public class Aim_and_shoot_turret extends CommandBase {
     Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
     Minspeed = SmartDashboard.getNumber("Aim Min", Constants.MIN_AIM_SPEED);
     Pvalue = SmartDashboard.getNumber("Aim P", Constants.AIM_P);
-
-    distancetotarget = RobotContainer.limelight_subsystem.getDistance();
+    Startedshooting = false;
+    RobotContainer.turret_subsystem.setcoastmode();
     
-    // if (distancetotarget > 150){ 
-    //   shotspeed = SmartDashboard.getNumber("Long Range Power", Constants.LONGRANGEPOWER);
-    // } 
-    // if (distancetotarget >= 150 && distancetotarget <= 110){
-    //   shotspeed = SmartDashboard.getNumber("Mid Range Power", Constants.MIDRANGEPOWER);
-    // }
-    // if (distancetotarget <110){
-    //   shotspeed = SmartDashboard.getNumber("Short Range Power", Constants.SHORTRANGEPOWER);
-    // }
+    
   
   }
 
@@ -56,7 +49,7 @@ public class Aim_and_shoot_turret extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.drive_subsystem.setSpeed(0, 0);
-    RobotContainer.drive_subsystem.drivebrake();
+   // RobotContainer.drive_subsystem.drivebrake();
     targetX = RobotContainer.limelight_subsystem.getTx();
     
     
@@ -80,11 +73,28 @@ public class Aim_and_shoot_turret extends CommandBase {
          
       }
   
-  
       RobotContainer.turret_subsystem.setSpeed(turret_speed);
-  
+      // if (Startedshooting == true) {
+      //   RobotContainer.turret_subsystem.setSpeed(turret_speed);
+      // }
+      // else {
+      //   RobotContainer.turret_subsystem.setSpeed(0);
+      // }
+      distancetotarget = RobotContainer.limelight_subsystem.getDistance();
+      if (!Startedshooting) {
+        TargetRPM = RobotContainer.limelight_subsystem.getDistancetoRPMs(distancetotarget);
+      }
+
+    
        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
-      RobotContainer.shooter_subsystem.setShooterVelocity(shotspeed);
+       if (RobotContainer.OPpanel.getRawButton(4)){
+        RobotContainer.shooter_subsystem.setShooterVelocity(shotspeed);
+       }
+       else {
+        RobotContainer.shooter_subsystem.setShooterVelocity(TargetRPM);
+
+       }
+      
       
 
       if (RobotContainer.shooter_subsystem.atRPMS() && targetX <= 1 && targetX >= -1){
@@ -93,6 +103,7 @@ public class Aim_and_shoot_turret extends CommandBase {
         }
   
       RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
+      Startedshooting = true;
       }
   }
 

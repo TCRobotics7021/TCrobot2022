@@ -16,7 +16,10 @@ import frc.robot.commandgroups.Autonomous.AutonomousRoutine4;
 import frc.robot.commandgroups.Autonomous.AutonomousRoutine5;
 import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commands.TurretTurn;
+import frc.robot.commands.Climbing.ManualGantry;
+import frc.robot.commands.Climbing.ManualLift;
 import frc.robot.commands.Climbing.defaultliftcommand;
+import frc.robot.commands.Climbing.liftcommand;
 import frc.robot.commands.Driving.ArcadeDrive;
 import frc.robot.commands.Driving.controlreverse;
 import frc.robot.commands.Driving.drivebrake;
@@ -114,17 +117,23 @@ public class RobotContainer {
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret());
-new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
-new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
-new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
-new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
-new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
-//new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
-//new JoystickButton(RightJoystick, 2).whenPressed(new controlreverse() , true);
-//new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
-new JoystickButton(OPpanel, 2).whileHeld(new ejector(), true);
+new JoystickButton(RightJoystick, 2).whileHeld(new ejector(), true);
+
 new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
 new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
+
+//new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
+new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
+
+
+new JoystickButton(OPpanel, 6).whileHeld(new ManualLift(-Constants.LIFTMOTORV) );
+new JoystickButton(OPpanel, 7).whileHeld(new ManualLift(Constants.LIFTMOTORV) );
+
+new JoystickButton(OPpanel, 15).whileHeld(new ManualGantry(Constants.LIFTMOTORV) );
+new JoystickButton(OPpanel, 16).whileHeld(new ManualGantry(-Constants.LIFTMOTORV) );
+
+//new JoystickButton(OPpanel, 5).whileHeld(new liftcommand(SmartDashboard.getNumber("testlift height", 0)) );
+
   }
 
   /**

@@ -47,6 +47,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Shooter kP", Constants.SHOOTER_kP);
     SmartDashboard.putNumber("Shooter kD", Constants.SHOOTER_kD);
     SmartDashboard.putNumber("SHooter kF", Constants.SHOOTER_kF);
+
+    SmartDashboard.putNumber("testlift height", 2000);
   }
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like

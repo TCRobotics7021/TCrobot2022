@@ -39,9 +39,9 @@ public class gantrycommand extends CommandBase {
     difference = gantrytarget - gantrycurrentposition; 
     gantryvelocity = difference * Constants.LIFT_MOTOR_P;
     RobotContainer.gantry_subsystem.setSpeed(gantryvelocity);
-if(gantrycurrentposition > gantrytarget-Constants.GANTRY_TARGET_ACCURACY && gantrycurrentposition < gantrytarget+Constants.GANTRY_TARGET_ACCURACY){
-RobotContainer.gantry_subsystem.setSpeed(0.0); 
-finish = true;
+  if(gantrycurrentposition > gantrytarget-Constants.GANTRY_TARGET_ACCURACY && gantrycurrentposition < gantrytarget+Constants.GANTRY_TARGET_ACCURACY){
+  RobotContainer.gantry_subsystem.setSpeed(0.0); 
+  finish = true;
 }
   }
 

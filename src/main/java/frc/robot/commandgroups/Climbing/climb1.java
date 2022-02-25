@@ -19,12 +19,12 @@ public class climb1 extends SequentialCommandGroup {
     addCommands(
 new liftcommand(1000),
 //drive move forward actually backward
-new liftcommand(-500),
-new liftcommand(-450),
+new liftcommand(500),
+new liftcommand(550),
 new gantrycommand(500),
 new liftcommand(1000),
 new gantrycommand(0),
-new liftcommand(-500)
+new liftcommand(500)
 
 
 
