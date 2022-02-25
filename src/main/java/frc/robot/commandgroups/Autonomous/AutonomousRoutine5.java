@@ -16,8 +16,7 @@ public class AutonomousRoutine5 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-    new defaultshooter().withTimeout(.05),
-    new DriveFirstPathAndIntake("AR5 Path1")  
+    new defaultshooter().withTimeout(.05)
     );
   }
 }

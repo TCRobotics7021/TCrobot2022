@@ -8,18 +8,25 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class accumulator extends SubsystemBase {
   /** Creates a new accumulator. */
-  public accumulator() {}
-TalonFX accuMotor = new TalonFX(6);
+  TalonFX accuMotor = new TalonFX(6);
+  DigitalInput accumulator_sensor = new DigitalInput(2);
 
-DigitalInput accumulator_sensor = new DigitalInput(2);
+  Timer delaytimer = new Timer();
+  double motoron = 0;
+
+  public accumulator() {}
+
 
   public void setSpeed(double accuspeed) {
-    accuMotor.set(ControlMode.PercentOutput, accuspeed);
+    motoron = accuspeed;
   }
 
   public boolean isSensorBlocked(){
@@ -29,6 +36,17 @@ DigitalInput accumulator_sensor = new DigitalInput(2);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Accumulator Sensor", isSensorBlocked());
+    if(Constants.SHOW_DATA){
+      SmartDashboard.putBoolean("Accumulator Sensor", isSensorBlocked());
+    }
+    delaytimer.start();
+    if((motoron > 0 && (!isSensorBlocked() || !RobotContainer.shooter_subsystem.isSensorBlocked())) || motoron < 0) {
+      delaytimer.reset();
+      accuMotor.set(ControlMode.PercentOutput, motoron);
+    }
+
+    if((motoron == 0 && delaytimer.get() > Constants.ACCUMULATOR_DELAY) || (isSensorBlocked() && RobotContainer.shooter_subsystem.isSensorBlocked())) {
+      accuMotor.set(ControlMode.PercentOutput, 0);
+    }
   }
 }
