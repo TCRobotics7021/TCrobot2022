@@ -10,10 +10,7 @@ import frc.robot.RobotContainer;
 
 public class gantrycommand extends CommandBase {
 
-  double gantryvelocity; 
   double gantrytarget;
-  double gantrycurrentposition;
-  double difference;
   boolean finish; 
 
 
@@ -28,35 +25,23 @@ public class gantrycommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.gantry_subsystem.setbrakemode();
-
     finish = false;
+    RobotContainer.gantry_subsystem.setposition(gantrytarget);
   }
+
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    difference = gantrytarget - gantrycurrentposition; 
-    gantryvelocity = difference * Constants.LIFT_MOTOR_P;
-    RobotContainer.gantry_subsystem.setSpeed(gantryvelocity);
-  if(gantrycurrentposition > gantrytarget-Constants.GANTRY_TARGET_ACCURACY && gantrycurrentposition < gantrytarget+Constants.GANTRY_TARGET_ACCURACY){
-  RobotContainer.gantry_subsystem.setSpeed(0.0); 
-  finish = true;
-}
+    if(RobotContainer.gantry_subsystem.atPosition()){
+      finish = true;
   }
-
-
-
-
-
-
+  }
   
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    RobotContainer.gantry_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

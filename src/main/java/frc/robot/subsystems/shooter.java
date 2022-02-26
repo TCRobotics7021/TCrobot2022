@@ -94,11 +94,7 @@ public boolean isSensorBlockedWithoffdelay() {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
-    SmartDashboard.putBoolean("At RPMs", atRPMS());
-    SmartDashboard.putNumber("Current RPMs", getshooterspeed());
     
-    setupShooterPID();
 
     if (isSensorBlocked() == true) {
       sensor_on_delay.start();
@@ -111,6 +107,13 @@ public boolean isSensorBlockedWithoffdelay() {
     }
      else {
       sensor_off_delay.reset();
+    }
+
+    if(Constants.SHOW_DATA){
+      setupShooterPID();
+      SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
+      SmartDashboard.putBoolean("At RPMs", atRPMS());
+      SmartDashboard.putNumber("Current RPMs", getshooterspeed());
     }
   }
 }

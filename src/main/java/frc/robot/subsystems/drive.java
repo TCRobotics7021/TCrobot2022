@@ -200,14 +200,16 @@ public class drive extends SubsystemBase {
     odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     //pose = odometry.update(getHeading(),  FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick, FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
     var translation = odometry.getPoseMeters().getTranslation();
-    SmartDashboard.putNumber("Odometry X", translation.getX());
-    SmartDashboard.putNumber("Odometry Y", translation.getY());
-    SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
-    SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
-    SmartDashboard.putNumber("Odometry Rotation Degrees", odometry.getPoseMeters().getRotation().getDegrees());
-    SmartDashboard.putNumber("Odometry Rotation Radians", odometry.getPoseMeters().getRotation().getRadians());
-    SmartDashboard.putNumber("Left Velocity m/s", FLmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
-    SmartDashboard.putNumber("Right Velocity m/s", FRmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
+    if(Constants.SHOW_DATA){
+      SmartDashboard.putNumber("Odometry X", translation.getX());
+      SmartDashboard.putNumber("Odometry Y", translation.getY());
+      SmartDashboard.putNumber("Left Encoder", FLmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
+      SmartDashboard.putNumber("Right Encoder", FRmotor.getSelectedSensorPosition() * Constants.metersPerEncoderTick);
+      SmartDashboard.putNumber("Odometry Rotation Degrees", odometry.getPoseMeters().getRotation().getDegrees());
+      SmartDashboard.putNumber("Odometry Rotation Radians", odometry.getPoseMeters().getRotation().getRadians());
+      SmartDashboard.putNumber("Left Velocity m/s", FLmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
+      SmartDashboard.putNumber("Right Velocity m/s", FRmotor.getSelectedSensorVelocity() * Constants.metersPerEncoderTick / 10);
+    }
     //This stuff is intersting 
   }
 }

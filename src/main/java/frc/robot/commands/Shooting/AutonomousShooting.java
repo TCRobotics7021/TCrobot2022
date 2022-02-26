@@ -48,6 +48,7 @@ public class AutonomousShooting extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     RobotContainer.drive_subsystem.setSpeed(0, 0);
     RobotContainer.drive_subsystem.drivebrake();
     targetX = RobotContainer.limelight_subsystem.getTx();
@@ -55,6 +56,7 @@ public class AutonomousShooting extends CommandBase {
     
   
       turret_speed = Pvalue * targetX; 
+
       if (Math.abs(turret_speed) > Maxspeed){
         turret_speed = Maxspeed * Math.signum(turret_speed);
       }
@@ -72,8 +74,8 @@ public class AutonomousShooting extends CommandBase {
          RobotContainer.turret_subsystem.setSpeed(0);
       }
   
-       actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
-      RobotContainer.shooter_subsystem.setShooterVelocity(shooterspeed);
+        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
+        RobotContainer.shooter_subsystem.setShooterVelocity(shooterspeed);
       
       if (targetX <= 1 && targetX >= -1 && RobotContainer.limelight_subsystem.getTa() > .005 && RobotContainer.shooter_subsystem.atRPMS()){
         if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){

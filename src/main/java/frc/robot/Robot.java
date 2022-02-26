@@ -33,9 +33,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("shotspeed", Constants.SHOTSPEED);
     SmartDashboard.putNumber("RPMs", 0);
 
-    SmartDashboard.putNumber("Aim P", .01);
-    SmartDashboard.putNumber("Aim Max", .3);
-    SmartDashboard.putNumber("Aim Min", .1);
+    SmartDashboard.putNumber("Aim P", Constants.AIM_P);
+    SmartDashboard.putNumber("Aim Max", Constants.MAX_AIM_SPEED);
+    SmartDashboard.putNumber("Aim Min", Constants.MIN_AIM_SPEED);
 
     SmartDashboard.putNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME);
 
@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Shooter kD", Constants.SHOOTER_kD);
     SmartDashboard.putNumber("SHooter kF", Constants.SHOOTER_kF);
 
-    SmartDashboard.putNumber("lift test height", 2000);
+    SmartDashboard.putNumber("mitch", 2000);
     SmartDashboard.putNumber("gantry test position", 500);
   }
   /**
@@ -108,5 +108,6 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 }

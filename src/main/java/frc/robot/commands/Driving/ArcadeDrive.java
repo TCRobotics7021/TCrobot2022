@@ -29,28 +29,28 @@ double LRmulti;
   @Override
   public void initialize() {
 
-
+    RobotContainer.drive_subsystem.drivecoast();
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    FBmulti = SmartDashboard.getNumber("FBmulti", Constants.FBMULTI);
-    LRmulti = SmartDashboard.getNumber("LRmulti", Constants.LRMULTI);
-LeftJoystick_Y = RobotContainer.RightJoystick.getY();
-RightJoystick_X = RobotContainer.LeftJoystick.getX();
+    FBmulti = Constants.FBMULTI;
+    LRmulti = Constants.LRMULTI;
+    LeftJoystick_Y = RobotContainer.RightJoystick.getY();
+    RightJoystick_X = RobotContainer.LeftJoystick.getX();
 
-RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
-LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);
+    RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
+    LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);
 
-if(RobotContainer.drive_subsystem.controlreverse = true){
-  RobotContainer.drive_subsystem.setSpeed(-RSpeed, -LSpeed);
-}
-else{
-  RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
-}
-RobotContainer.drive_subsystem.drivecoast();
+    if(RobotContainer.drive_subsystem.controlreverse = true){
+      RobotContainer.drive_subsystem.setSpeed(-RSpeed, -LSpeed);
+    }
+    else{
+      RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
+    }
+    
 
 
   }
@@ -58,7 +58,9 @@ RobotContainer.drive_subsystem.drivecoast();
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+
     RobotContainer.drive_subsystem.setSpeed(0, 0);
+    
   }
 
   // Returns true when the command should end.

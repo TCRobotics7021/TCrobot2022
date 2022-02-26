@@ -17,16 +17,11 @@ public class climb1 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-new liftcommand(1000),
-//drive move forward actually backward
-new liftcommand(500),
-new liftcommand(550),
-new gantrycommand(500),
-new liftcommand(1000),
-new gantrycommand(0),
+new liftcommand(50),
+new gantrycommand(50),
+new liftcommand(100),
+new gantrycommand(400),
 new liftcommand(500)
-
-
 
     );
   }

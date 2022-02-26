@@ -25,6 +25,7 @@ boolean finish;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    finish = false;
       RobotContainer.Lift_subsystem.setposition(target);
    
   }
@@ -41,7 +42,6 @@ boolean finish;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.Lift_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

@@ -13,9 +13,6 @@ public class ManualGantry extends CommandBase {
   public ManualGantry(double speed) {
     addRequirements(RobotContainer.gantry_subsystem);
     this.speed = speed;
-    
-
-    
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -32,7 +29,7 @@ public class ManualGantry extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.Lift_subsystem.setSpeed(0);
+    RobotContainer.gantry_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

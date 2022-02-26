@@ -47,10 +47,10 @@ public double getDistance() {
   return Math.pow(yposition,2)*Constants.DIST_CALC_A+Constants.DIST_CALC_B*yposition+Constants.DIST_CALC_C;
 }
 public double getDistancetoRPMs(double distance){
-
   setPipeline(0);
   return Math.pow(distance, 2)*Constants.RPMDIST_CALC_A+Constants.RPMDIST_CALC_B*distance+Constants.RPMDIST_CALC_C;
 }
+
 
 
 
@@ -75,9 +75,11 @@ public void setLEDmode(int LEDmode) {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("targetX", getTx());
-    SmartDashboard.putNumber("distance", getDistance());
-
-
+    if(Constants.SHOW_DATA){
+      SmartDashboard.putNumber("targetX", getTx());
+      SmartDashboard.putNumber("targetY", getTy());
+      SmartDashboard.putNumber("distance", getDistance());
+      SmartDashboard.putNumber("calculated RPM", getDistancetoRPMs(getDistance()));
+    }
   }
 }

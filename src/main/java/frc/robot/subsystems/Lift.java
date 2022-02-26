@@ -38,10 +38,9 @@ public class Lift extends SubsystemBase {
   boolean holdposition = false;
 
 
-
   public Lift() {
-    SmartDashboard.putNumber("Test Height", 0);
-   
+    holdposition = false;
+    targetposition = 0;
   }
   public void setcoastmode(){
     LiftMotor.setNeutralMode(NeutralMode.Coast);
@@ -57,30 +56,30 @@ public class Lift extends SubsystemBase {
     if(speed > 0 && !top_limit.get()){
       speed = 0;
     }
-    LiftMotor.set(ControlMode.PercentOutput, speed);
+    LiftMotor.set(ControlMode.PercentOutput, -speed);
+    setbrakemode();
     holdposition = false;
   }
 
-public void setposition(double target){
-  targetposition = target; 
-  holdposition = true;
-}
+  public void setposition(double target){
+    targetposition = target; 
+    holdposition = true;
+  }
 
-public boolean atPosition(){
-  if(currentposition > target-Constants.LIFT_TARGET_ACCURACY && currentposition < target+Constants.LIFT_TARGET_ACCURACY){
-    return true;
-    }
-    else{
-      return false;
-    }
-}
+  public boolean atPosition(){
+    if(currentposition > targetposition-Constants.LIFT_TARGET_ACCURACY && currentposition < targetposition+Constants.LIFT_TARGET_ACCURACY){
+      return true;
+      }
+      else{
+        return false;
+      }
+  }
 
+  public double Get_enc(){
+ 
+  return LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR;
 
- public double Get_enc(){
-//return 0;
-return LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR;
-
- }
+  }
   public void Set_enc(double Enc_set){
     LiftMotor.setSelectedSensorPosition(Enc_set);
   }
@@ -89,30 +88,46 @@ return LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR;
   public void periodic() {
 
     if(holdposition){
-      currentposition = RobotContainer.Lift_subsystem.Get_enc();
-      difference = target - currentposition; 
+      currentposition = Get_enc();
+      difference = targetposition - currentposition; 
       velocity = difference * Constants.LIFT_MOTOR_P;
+      if(Math.abs(velocity) < Constants.LIFT_MOTOR_MIN && !atPosition()){
+        if(velocity>0){
+          velocity = Constants.LIFT_MOTOR_MIN;
+        }else{
+          velocity = -Constants.LIFT_MOTOR_MIN;
+        }
+    }
       if(velocity > 0 && !top_limit.get()){
-      RobotContainer.Lift_subsystem.setSpeed(0);
+        velocity = 0;
       }
-      if(velocity < 0 && !bottom_limit.get()){
-        RobotContainer.Lift_subsystem.setSpeed(0);
+      else if(velocity < 0 && !bottom_limit.get()){
+        velocity = 0;
       }
+
+    
+      
+        LiftMotor.set(ControlMode.PercentOutput, -velocity);
+        setbrakemode();
     }
 
-
-     if(LiftMotor.getSelectedSensorVelocity() < 0 && !bottom_limit.get()){
-        setSpeed(0);
+     if(-LiftMotor.getSelectedSensorVelocity() < 0 && !bottom_limit.get()){
+        LiftMotor.set(ControlMode.PercentOutput, 0);
      }
-     if(LiftMotor.getSelectedSensorVelocity() > 0 && !top_limit.get()){
-       setSpeed(0);
+     if(-LiftMotor.getSelectedSensorVelocity() > 0 && !top_limit.get()){
+        LiftMotor.set(ControlMode.PercentOutput, 0);
      }
 
-     if(bottom_limit.get() == false){
+     if(!bottom_limit.get()){
        Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
      }
 
-    SmartDashboard.putNumber("Lift Encoder Position", LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR);
+     if(Constants.SHOW_DATA){
+          SmartDashboard.putNumber("Lift Encoder Position", Get_enc());
+          
+          SmartDashboard.putBoolean("Lift Top Limit", !top_limit.get());
+          SmartDashboard.putBoolean("Lift Bottom Limit", !bottom_limit.get());
+     }
     //This method will be called once per scheduler run
   }
 

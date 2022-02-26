@@ -33,7 +33,7 @@ TalonFX InMotor = new TalonFX(5);
   @Override
   public void periodic() {
     delaytimer.start();
-    if(motoron > 0 && (!RobotContainer.accumulator_subsystem.isSensorBlocked() || !RobotContainer.shooter_subsystem.isSensorBlocked())) {
+    if((motoron > 0 && (!RobotContainer.accumulator_subsystem.isSensorBlocked() || !RobotContainer.shooter_subsystem.isSensorBlocked())) || motoron < 0) {
       delaytimer.reset();
       InMotor.set(ControlMode.PercentOutput, -motoron);
     }

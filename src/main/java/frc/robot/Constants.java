@@ -16,6 +16,9 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
 
+// 
+public static final boolean SHOW_DATA = true;
+  
 
 // results from characterization tool
 public static final double ks = 0.60069;
@@ -37,17 +40,19 @@ public static final double leftScaleConstant = 1.00;
 public static final double rightScaleConstant = 1.00;
 
   //Lift (lifts the robot)
-  public static double LIFT_ENC_RESET_HEIGHT = 1000;
-  public static double LIFT_ENC_CONV_FACTOR = 1;
-  public static double LIFT_TARGET_ACCURACY = 2;
-  public static double LIFT_MOTOR_P = .02;
+  public static double LIFT_ENC_RESET_HEIGHT = 0;
+  public static double LIFT_ENC_CONV_FACTOR = -0.0014568574;
+  public static double LIFT_TARGET_ACCURACY = 10;
+  public static double LIFT_MOTOR_P = .01;
+  public static double LIFT_MOTOR_MIN = -.2;
   public static double LIFTMOTORV = .20; 
   
   //gantry (moving lift)
-  public static double GANTRY_ENC_RESET_HEIGHT = 1000;
-  public static double GANTRY_ENC_CONV_FACTOR = 1;
-  public static double GANTRY_TARGET_ACCURACY = 2;
-  public static double GANTRY_MOTOR_P = .02;
+  public static double GANTRY_ENC_RESET_HEIGHT = 0;
+  public static double GANTRY_ENC_CONV_FACTOR = -0.0015506126;
+  public static double GANTRY_TARGET_ACCURACY = 3;
+  public static double GANTRY_MOTOR_MIN = .3;
+  public static double GANTRY_MOTOR_P = .005;
 
   //turret limits
   public static double TURRET_ENC_CONV_FACTOR = 1; 
@@ -59,7 +64,7 @@ public static final double rightScaleConstant = 1.00;
   public static double LRMULTI = .3;
 
   //turret
-  public static double AIM_P = .02; 
+  public static double AIM_P = .03; 
   public static double MAX_AIM_SPEED = .3;
   public static double MIN_AIM_SPEED = .1;
   public static double TURRET_TURN_SPEED = .2;
@@ -68,6 +73,7 @@ public static final double rightScaleConstant = 1.00;
   public static double ACCUSPEED = .5;
   public static double SHOOTERSENSORDELAYTIME = .07;
   public static double SHOOTERSENSOROFFDELAYTIME = .45;
+  public static double ACCUMULATOR_DELAY = 2;
 
   // Distance calculation 
   public static double DIST_CALC_A = 6.37;
@@ -87,7 +93,7 @@ public static final double rightScaleConstant = 1.00;
 
   public static double INTAKESPEED = 1;
   public static double FEEDSPEED = 1;
-  public static double SHOTSPEED = 2100;
+  public static double SHOTSPEED = 0;
 
   //Shooter PID
   public static double SHOOTER_kP = .25;

@@ -18,7 +18,7 @@ import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commands.TurretTurn;
 import frc.robot.commands.Climbing.ManualGantry;
 import frc.robot.commands.Climbing.ManualLift;
-import frc.robot.commands.Climbing.defaultliftcommand;
+import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Climbing.liftcommand;
 import frc.robot.commands.Driving.ArcadeDrive;
 import frc.robot.commands.Driving.controlreverse;
@@ -120,18 +120,20 @@ new JoystickButton(RightJoystick, 2).whileHeld(new ejector(), true);
 new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
 new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
 
-new JoystickButton(OPpanel, 6).whileHeld(new ManualLift(-Constants.LIFTMOTORV) );
-new JoystickButton(OPpanel, 7).whileHeld(new ManualLift(Constants.LIFTMOTORV) );
+new JoystickButton(OPpanel, 7).whileHeld(new ManualLift(-Constants.LIFTMOTORV) );
+new JoystickButton(OPpanel, 6).whileHeld(new ManualLift(Constants.LIFTMOTORV) );
 
 new JoystickButton(OPpanel, 15).whileHeld(new ManualGantry(Constants.LIFTMOTORV) );
 new JoystickButton(OPpanel, 16).whileHeld(new ManualGantry(-Constants.LIFTMOTORV) );
 
-new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
+new JoystickButton(OPpanel, 1).whenPressed(new climb1(), false);
 
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 
-//new JoystickButton(OPpanel, 5).whileHeld(new liftcommand(SmartDashboard.getNumber("testlift height", 0)) );
-
+// new JoystickButton(OPpanel, 5).whenPressed(new liftcommand(580));
+// new JoystickButton(OPpanel, 9).whenPressed(new liftcommand(100));
+new JoystickButton(OPpanel, 5).whenPressed(new gantrycommand(100));
+new JoystickButton(OPpanel, 9).whenPressed(new gantrycommand(300));
   }
 
   /**
