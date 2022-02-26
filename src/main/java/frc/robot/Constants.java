@@ -43,7 +43,7 @@ public static final double rightScaleConstant = 1.00;
   public static double LIFT_ENC_RESET_HEIGHT = 0;
   public static double LIFT_ENC_CONV_FACTOR = -0.0014568574;
   public static double LIFT_TARGET_ACCURACY = 10;
-  public static double LIFT_MOTOR_P = .01;
+  public static double LIFT_MOTOR_P = .02;
   public static double LIFT_MOTOR_MIN = -.2;
   public static double LIFTMOTORV = .20; 
   
@@ -76,9 +76,9 @@ public static final double rightScaleConstant = 1.00;
   public static double ACCUMULATOR_DELAY = 2;
 
   // Distance calculation 
-  public static double DIST_CALC_A = 6.37;
-  public static double DIST_CALC_B = -115;
-  public static double DIST_CALC_C = 2186;
+  public static double DIST_CALC_A = 3.88;
+  public static double DIST_CALC_B = -222;
+  public static double DIST_CALC_C = 4373;
 
   //RPM calc
   public static double RPMDIST_CALC_A = 0.000318;

@@ -17,12 +17,13 @@ public class climb1 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-new liftcommand(50),
+new liftcommand(300),
+new gantrycommnad(0),
+new liftcommand(5).withTimeout(10),
 new gantrycommand(50),
-new liftcommand(100),
-new gantrycommand(400),
-new liftcommand(500)
-
+new liftcommand(200),
+new gantrycommand(430),
+new liftcommand(640)
     );
   }
 }
