@@ -70,36 +70,32 @@ public boolean isSensorBlockedWithoffdelay() {
   }
 }
 
-public void setfeedspeed(double feedspeed){
-feedmotor2.set(ControlMode.PercentOutput, feedspeed);
-  feedmotor.set(ControlMode.PercentOutput, -feedspeed);
-}
+  public void setfeedspeed(double feedspeed){
+    feedmotor2.set(ControlMode.PercentOutput, feedspeed);
+    feedmotor.set(ControlMode.PercentOutput, -feedspeed);
+  }
   public void setshotSpeed(double shotspeed){
-
     shotmotor.set(ControlMode.PercentOutput, shotspeed);
   }
 
   public void setShooterVelocity(double velocity){
     shotmotor.set(ControlMode.Velocity, velocity * 2048 / 600);
     targetRPM = velocity;
-    
   }
 
   public boolean atRPMS() {
     if (targetRPM * .9 < getshooterspeed() && targetRPM * 1.1 > getshooterspeed()) {
-return true;
+      return true;
     } else {
       return false;
-    }
+    } 
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
-    SmartDashboard.putBoolean("At RPMs", atRPMS());
-    SmartDashboard.putNumber("Current RPMs", getshooterspeed());
-    setupShooterPID();
+    
+
     if (isSensorBlocked() == true) {
       sensor_on_delay.start();
     }
@@ -111,6 +107,13 @@ return true;
     }
      else {
       sensor_off_delay.reset();
+    }
+
+    if(Constants.SHOW_DATA){
+      setupShooterPID();
+      SmartDashboard.putBoolean("Feeder Sensor", isSensorBlocked());
+      SmartDashboard.putBoolean("At RPMs", atRPMS());
+      SmartDashboard.putNumber("Current RPMs", getshooterspeed());
     }
   }
 }

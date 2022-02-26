@@ -29,24 +29,22 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    SmartDashboard.putNumber("FBmulti", Constants.FBMULTI);
-    SmartDashboard.putNumber("LRmulti", Constants.LRMULTI);
-    SmartDashboard.putNumber("intakespeed", Constants.INTAKESPEED);
-    SmartDashboard.putNumber("accuspeed", .5);
-    SmartDashboard.putNumber("feedspeed", Constants.FEEDSPEED);
+    
     SmartDashboard.putNumber("shotspeed", Constants.SHOTSPEED);
     SmartDashboard.putNumber("RPMs", 0);
-    SmartDashboard.putNumber("Aim P", .01);
-    SmartDashboard.putNumber("Aim Max", .3);
-    SmartDashboard.putNumber("Aim Min", .1);
-    SmartDashboard.putNumber("Short Range Power", Constants.SHORTRANGEPOWER);
-    SmartDashboard.putNumber("Mid Range Power", Constants.MIDRANGEPOWER);
-    SmartDashboard.putNumber("Long Range Power", Constants.LONGRANGEPOWER);
+
+    SmartDashboard.putNumber("Aim P", Constants.AIM_P);
+    SmartDashboard.putNumber("Aim Max", Constants.MAX_AIM_SPEED);
+    SmartDashboard.putNumber("Aim Min", Constants.MIN_AIM_SPEED);
+
     SmartDashboard.putNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME);
 
     SmartDashboard.putNumber("Shooter kP", Constants.SHOOTER_kP);
     SmartDashboard.putNumber("Shooter kD", Constants.SHOOTER_kD);
     SmartDashboard.putNumber("SHooter kF", Constants.SHOOTER_kF);
+
+    SmartDashboard.putNumber("mitch", 2000);
+    SmartDashboard.putNumber("gantry test position", 500);
   }
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
@@ -110,5 +108,6 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 }

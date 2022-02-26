@@ -22,9 +22,8 @@ double accuspeed;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-inspeed = SmartDashboard.getNumber("intakespeed", Constants.INTAKESPEED);
-accuspeed = SmartDashboard.getNumber("accuspeed", 0);
+      inspeed = Constants.INTAKESPEED;
+      accuspeed = Constants.ACCUSPEED;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,7 +41,7 @@ accuspeed = SmartDashboard.getNumber("accuspeed", 0);
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-RobotContainer.accumulator_subsystem.setSpeed(0);
+    RobotContainer.accumulator_subsystem.setSpeed(0);
     RobotContainer.intake_subsystem.setSpeed(0);
   }
 

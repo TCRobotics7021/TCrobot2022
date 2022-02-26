@@ -20,6 +20,7 @@ public class turret extends SubsystemBase {
   private static final String Enc_set = null;
   private DigitalInput LLimit = new DigitalInput(4);
   private DigitalInput RLimit = new DigitalInput(5);
+  private DigitalInput MidLimit = new DigitalInput(9);
   /** Creates a new turret. */
   public turret() {}
 
@@ -55,15 +56,13 @@ return TurretMotor.getSelectedSensorPosition() * Constants.TURRET_ENC_CONV_FACTO
   public boolean isRightLim(){
     return !RLimit.get();
   }
+  public boolean middleLim(){
+    return !MidLimit.get();
+  }
 
   @Override
   public void periodic() {
-    SmartDashboard.putBoolean("turretleftlimit", LLimit.get());
-    SmartDashboard.putBoolean("turretRightlimit", RLimit.get());
-    
-
-
-
+ 
     if(TurretMotor.getSelectedSensorVelocity() < 0 && !LLimit.get()){
         setSpeed(0);
        }
@@ -71,7 +70,11 @@ return TurretMotor.getSelectedSensorPosition() * Constants.TURRET_ENC_CONV_FACTO
          setSpeed(0);
        }
   
-       
+      if(Constants.SHOW_DATA){
+        SmartDashboard.putBoolean("turret left limit switch", LLimit.get());
+        SmartDashboard.putBoolean("turret right limit switch", RLimit.get());
+        SmartDashboard.putBoolean("turret middle limit switch", RLimit.get());
+      }
     // This method will be called once per scheduler run
   }
 }

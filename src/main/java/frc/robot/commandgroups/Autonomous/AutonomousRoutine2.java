@@ -21,11 +21,11 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
     addCommands(   
       new defaultshooter().withTimeout(.05),
       new DriveFirstPathAndIntake("AR2 Path1"),
-      new AutonomousShooting(.42).withTimeout(3),
+      new AutonomousShooting(2100).withTimeout(3),
       new DrivePathAndIntake("AR2 Path2"),
       new intakecommand().withTimeout(2),
       new DrivePathAndIntake("AR2 Path3"),
-      new AutonomousShooting(.42).withTimeout(1.5),
+      new AutonomousShooting(2100).withTimeout(1.5),
       new DriveCoast()
     );
   }

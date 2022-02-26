@@ -16,7 +16,10 @@ import frc.robot.commandgroups.Autonomous.AutonomousRoutine4;
 import frc.robot.commandgroups.Autonomous.AutonomousRoutine5;
 import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commands.TurretTurn;
-import frc.robot.commands.Climbing.defaultliftcommand;
+import frc.robot.commands.Climbing.ManualGantry;
+import frc.robot.commands.Climbing.ManualLift;
+import frc.robot.commands.Climbing.gantrycommand;
+import frc.robot.commands.Climbing.liftcommand;
 import frc.robot.commands.Driving.ArcadeDrive;
 import frc.robot.commands.Driving.controlreverse;
 import frc.robot.commands.Driving.drivebrake;
@@ -30,7 +33,6 @@ import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.Aim_and_shoot_turret;
 import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.DefaultTurret;
-import frc.robot.commands.Shooting.aim_and_shoot;
 import frc.robot.commands.Shooting.aim_limelight;
 import frc.robot.commands.Shooting.autoturretaim;
 import frc.robot.commands.Shooting.defaultshooter;
@@ -42,7 +44,6 @@ import frc.robot.subsystems.drive;
 import frc.robot.subsystems.intake;
 import frc.robot.subsystems.limelight;
 import frc.robot.subsystems.shooter;
-import frc.robot.subsystems.testlift;
 import frc.robot.subsystems.turret;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
@@ -79,7 +80,7 @@ public class RobotContainer {
     AutonomousChooser.addOption("AR2: 4 Balls", new AutonomousRoutine2());
     AutonomousChooser.addOption("AR3: ", new AutonomousRoutine3());
     AutonomousChooser.addOption("AR4: ", new AutonomousRoutine4());
-    AutonomousChooser.addOption("AR5: Test Path", new AutonomousRoutine5());
+    AutonomousChooser.addOption("AR5: Do Nothing", new AutonomousRoutine5());
 
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
@@ -114,17 +115,25 @@ public class RobotContainer {
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret());
-new JoystickButton(OPpanel, 1).whenPressed(new climb1(), true);
-new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
-new JoystickButton(LeftJoystick, 2).whileHeld(new drivebrake(), true);
-new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive(), true);
-new JoystickButton(RightJoystick, 3).whileHeld(new aim_limelight(), true); 
-//new JoystickButton(RightJoystick, 4).whileHeld(new aim_and_shoot(), true);
-//new JoystickButton(RightJoystick, 2).whenPressed(new controlreverse() , true);
-//new JoystickButton(OPpanel, 4).whenPressed(new turretscan(), true); 
-new JoystickButton(OPpanel, 2).whileHeld(new ejector(), true);
+new JoystickButton(RightJoystick, 2).whileHeld(new ejector(), true);
+
 new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
 new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
+
+new JoystickButton(OPpanel, 7).whileHeld(new ManualLift(-Constants.LIFTMOTORV) );
+new JoystickButton(OPpanel, 6).whileHeld(new ManualLift(Constants.LIFTMOTORV) );
+
+new JoystickButton(OPpanel, 15).whileHeld(new ManualGantry(Constants.LIFTMOTORV) );
+new JoystickButton(OPpanel, 16).whileHeld(new ManualGantry(-Constants.LIFTMOTORV) );
+
+new JoystickButton(OPpanel, 1).whenPressed(new climb1(), false);
+
+new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
+
+// new JoystickButton(OPpanel, 5).whenPressed(new liftcommand(580));
+// new JoystickButton(OPpanel, 9).whenPressed(new liftcommand(100));
+new JoystickButton(OPpanel, 5).whenPressed(new gantrycommand(100));
+new JoystickButton(OPpanel, 9).whenPressed(new gantrycommand(300));
   }
 
   /**

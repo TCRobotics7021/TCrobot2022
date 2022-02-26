@@ -20,7 +20,8 @@ public class AutonomousRoutine1 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new defaultshooter().withTimeout(.05),
-      new DriveFirstPathAndIntake("AR1 Path1")
+      new DriveFirstPathAndIntake("AR1 Path1"),
+      new AutonomousShooting(2100)
     );
   }
 }

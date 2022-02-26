@@ -5,14 +5,13 @@
 package frc.robot.commands.Other;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.accumulator;
 
 public class cancel extends CommandBase {
   /** Creates a new cancel. */
   public cancel() {
-    addRequirements(RobotContainer.Lift_subsystem);
-    addRequirements(RobotContainer.gantry_subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -22,7 +21,9 @@ public class cancel extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    CommandScheduler.getInstance().cancelAll();
+  }
 
   // Called once the command ends or is interrupted.
   @Override

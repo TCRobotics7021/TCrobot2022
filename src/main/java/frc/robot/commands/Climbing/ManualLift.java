@@ -5,42 +5,34 @@
 package frc.robot.commands.Climbing;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class defaultliftcommand extends CommandBase {
-  double velocity; 
-  double currentposition;
-  double difference;
-  double target;
-  /** Creates a new defaultliftcommand. */
-  public defaultliftcommand() {
+public class ManualLift extends CommandBase {
+  /** Creates a new Lift. */
+
+double speed;
+
+  public ManualLift(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.Lift_subsystem);
+    this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.Lift_subsystem.setbrakemode();
+    RobotContainer.Lift_subsystem.setSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    target = RobotContainer.Lift_subsystem.targetposition;
-    currentposition = RobotContainer.Lift_subsystem.Get_enc();
-difference = target - currentposition; 
-velocity = difference * Constants.LIFT_MOTOR_P;
-RobotContainer.Lift_subsystem.setSpeed(velocity);
-if(currentposition > target-Constants.LIFT_TARGET_ACCURACY && currentposition < target+Constants.LIFT_TARGET_ACCURACY){
-RobotContainer.Lift_subsystem.setSpeed(0);
-}
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.Lift_subsystem.setSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override

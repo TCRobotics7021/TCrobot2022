@@ -8,6 +8,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 //import com.revrobotics.CANEncoder;
@@ -25,24 +26,27 @@ import frc.robot.RobotContainer;
 
 public class Lift extends SubsystemBase {
   public double targetposition;
-  //private WPI_TalonFX LiftMotor = new WPI_TalonFX(11);
+  private WPI_TalonFX LiftMotor = new WPI_TalonFX(11);
  
   private DigitalInput top_limit = new DigitalInput(1);
   private DigitalInput bottom_limit = new DigitalInput(0);
-  //private Solenoid latch = new Solenoid(11,0);
-  
-
+ 
+  double currentposition = 0;
+  double difference = 0;
+  double target = 0;
+  double velocity = 0;
+  boolean holdposition = false;
 
 
   public Lift() {
-    SmartDashboard.putNumber("Test Height", 0);
-   
+    holdposition = false;
+    targetposition = 0;
   }
   public void setcoastmode(){
-    //LiftMotor.setNeutralMode(NeutralMode.Coast);
+    LiftMotor.setNeutralMode(NeutralMode.Coast);
   }
   public void setbrakemode(){
-    //LiftMotor.setNeutralMode(NeutralMode.Brake);
+    LiftMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void setSpeed(double speed) {
@@ -52,35 +56,79 @@ public class Lift extends SubsystemBase {
     if(speed > 0 && !top_limit.get()){
       speed = 0;
     }
-    //LiftMotor.set(speed);
-
+    LiftMotor.set(ControlMode.PercentOutput, -speed);
+    setbrakemode();
+    holdposition = false;
   }
 
- public double Get_enc(){
-return 0;
-//return LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR;
+  public void setposition(double target){
+    targetposition = target; 
+    holdposition = true;
+  }
 
- }
+  public boolean atPosition(){
+    if(currentposition > targetposition-Constants.LIFT_TARGET_ACCURACY && currentposition < targetposition+Constants.LIFT_TARGET_ACCURACY){
+      return true;
+      }
+      else{
+        return false;
+      }
+  }
+
+  public double Get_enc(){
+ 
+  return LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR;
+
+  }
   public void Set_enc(double Enc_set){
-    //LiftMotor.setSelectedSensorPosition(Enc_set);
+    LiftMotor.setSelectedSensorPosition(Enc_set);
   }
 
     @Override
   public void periodic() {
-  
 
-    //  if(LiftMotor.getSelectedSensorVelocity() < 0 && !bottom_limit.get()){
-    //     setSpeed(0);
-    //  }
-    //  if(LiftMotor.getSelectedSensorVelocity() > 0 && !top_limit.get()){
-    //    setSpeed(0);
-    //  }
+    if(holdposition){
+      currentposition = Get_enc();
+      difference = targetposition - currentposition; 
+      velocity = difference * Constants.LIFT_MOTOR_P;
+      if(Math.abs(velocity) < Constants.LIFT_MOTOR_MIN && !atPosition()){
+        if(velocity>0){
+          velocity = Constants.LIFT_MOTOR_MIN;
+        }else{
+          velocity = -Constants.LIFT_MOTOR_MIN;
+        }
+    }
+      if(velocity > 0 && !top_limit.get()){
+        velocity = 0;
+      }
+      else if(velocity < 0 && !bottom_limit.get()){
+        velocity = 0;
+      }
 
-    //  if(bottom_limit.get() == false){
-    //    Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
-    //  }
-    //SmartDashboard.putNumber("Lift Encoder Position", LiftMotor.getSelectedSensorPosition() * Constants.LIFT_ENC_CONV_FACTOR);
-    // This method will be called once per scheduler run
+    
+      
+        LiftMotor.set(ControlMode.PercentOutput, -velocity);
+        setbrakemode();
+    }
+
+     if(-LiftMotor.getSelectedSensorVelocity() < 0 && !bottom_limit.get()){
+        LiftMotor.set(ControlMode.PercentOutput, 0);
+     }
+     if(-LiftMotor.getSelectedSensorVelocity() > 0 && !top_limit.get()){
+        LiftMotor.set(ControlMode.PercentOutput, 0);
+     }
+
+     if(!bottom_limit.get()){
+       Set_enc(Constants.LIFT_ENC_RESET_HEIGHT);
+     }
+
+     if(Constants.SHOW_DATA){
+          SmartDashboard.putNumber("Lift Encoder Position", Get_enc());
+          
+          SmartDashboard.putBoolean("Lift Top Limit", !top_limit.get());
+          SmartDashboard.putBoolean("Lift Bottom Limit", !bottom_limit.get());
+     }
+    //This method will be called once per scheduler run
   }
 
 

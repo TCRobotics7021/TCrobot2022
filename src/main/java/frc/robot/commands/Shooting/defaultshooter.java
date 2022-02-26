@@ -11,6 +11,9 @@ import frc.robot.RobotContainer;
 
 public class defaultshooter extends CommandBase {
   /** Creates a new defaultshooter. */
+double shotspeed;
+
+
   public defaultshooter() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter_subsystem);
@@ -18,13 +21,15 @@ public class defaultshooter extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    shotspeed = SmartDashboard.getNumber("shotspeed", Constants.SHOTSPEED);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     
-  RobotContainer.shooter_subsystem.setShooterVelocity(SmartDashboard.getNumber("shotspeed", Constants.SHOTSPEED));
+  RobotContainer.shooter_subsystem.setShooterVelocity(shotspeed);
   
   if ((RobotContainer.accumulator_subsystem.isSensorBlocked() || RobotContainer.shooter_subsystem.isSensorBlocked()) && !RobotContainer.shooter_subsystem.isSensorBlockedWithdelay()) {
       RobotContainer.shooter_subsystem.setfeedspeed(1);

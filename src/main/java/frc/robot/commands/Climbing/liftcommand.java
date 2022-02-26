@@ -10,10 +10,8 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class liftcommand extends CommandBase {
-double velocity; 
+
 double target;
-double currentposition;
-double difference; 
 boolean finish;
   /** Creates a new liftcommand. */
   public liftcommand(double target) {
@@ -27,27 +25,23 @@ boolean finish;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-RobotContainer.Lift_subsystem.targetposition = target;
     finish = false;
+      RobotContainer.Lift_subsystem.setposition(target);
+   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-currentposition = RobotContainer.Lift_subsystem.Get_enc();
-difference = target - currentposition; 
-velocity = difference * Constants.LIFT_MOTOR_P;
-RobotContainer.Lift_subsystem.setSpeed(velocity);
-if(currentposition > target-Constants.LIFT_TARGET_ACCURACY && currentposition < target+Constants.LIFT_TARGET_ACCURACY){
-RobotContainer.Lift_subsystem.setSpeed(0);
-finish = true;
-}
+
+    if(RobotContainer.Lift_subsystem.atPosition()){
+        finish = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.Lift_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

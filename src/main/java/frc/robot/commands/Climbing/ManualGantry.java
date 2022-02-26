@@ -5,48 +5,36 @@
 package frc.robot.commands.Climbing;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class gantrycommand extends CommandBase {
-
-  double gantrytarget;
-  boolean finish; 
-
-
-  /** Creat1es a new gantrycommand. */
-  public gantrycommand(double target) {
-
-    this.gantrytarget = target;
-    // Use addRequirements() here to declare subsystem dependencies.
+public class ManualGantry extends CommandBase {
+  double speed;
+  /** Creates a new ManualGantry. */
+  public ManualGantry(double speed) {
     addRequirements(RobotContainer.gantry_subsystem);
+    this.speed = speed;
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finish = false;
-    RobotContainer.gantry_subsystem.setposition(gantrytarget);
+    RobotContainer.gantry_subsystem.setSpeed(speed);
   }
-
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if(RobotContainer.gantry_subsystem.atPosition()){
-      finish = true;
-  }
-  }
-  
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.gantry_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finish;
+    return false;
   }
 }
