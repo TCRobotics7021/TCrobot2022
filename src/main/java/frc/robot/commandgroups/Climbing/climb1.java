@@ -4,7 +4,10 @@
 
 package frc.robot.commandgroups.Climbing;
 
+import java.util.Timer;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Climbing.liftcommand;
 
@@ -17,13 +20,15 @@ public class climb1 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-new liftcommand(300),
-new gantrycommnad(0),
-new liftcommand(5).withTimeout(10),
+new liftcommand(400),
+new gantrycommand(0),
+new liftcommand(0),
+new WaitCommand(5),
 new gantrycommand(50),
 new liftcommand(200),
 new gantrycommand(430),
-new liftcommand(640)
+new WaitCommand(5),
+new liftcommand(620)
     );
   }
 }
