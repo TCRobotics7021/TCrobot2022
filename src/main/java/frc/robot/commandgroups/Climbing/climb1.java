@@ -22,13 +22,15 @@ public class climb1 extends SequentialCommandGroup {
     addCommands(
 new liftcommand(400),
 new gantrycommand(0),
-new liftcommand(0),
-new WaitCommand(5),
+new liftcommand(-15),
+new WaitCommand(1),
 new gantrycommand(50),
 new liftcommand(200),
 new gantrycommand(430),
-new WaitCommand(5),
-new liftcommand(620)
+new liftcommand(502),
+new WaitCommand(3),
+new liftcommand(640),
+new gantrycommand(400)
     );
   }
 }

@@ -52,7 +52,7 @@ public static final double rightScaleConstant = 1.00;
   public static double GANTRY_ENC_CONV_FACTOR = -0.0015506126;
   public static double GANTRY_TARGET_ACCURACY = 3;
   public static double GANTRY_MOTOR_MIN = .3;
-  public static double GANTRY_MOTOR_P = .005;
+  public static double GANTRY_MOTOR_P = .002;
 
   //turret limits
   public static double TURRET_ENC_CONV_FACTOR = 1; 

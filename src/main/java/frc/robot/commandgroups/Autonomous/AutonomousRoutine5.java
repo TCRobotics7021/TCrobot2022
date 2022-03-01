@@ -5,6 +5,7 @@
 package frc.robot.commandgroups.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.defaultshooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -16,7 +17,12 @@ public class AutonomousRoutine5 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-    new defaultshooter().withTimeout(.05)
+    new defaultshooter().withTimeout(.05),
+    new DriveFirstPathAndIntake("AR5 Path1"),
+    new AutonomousShooting(2050),
+    new DrivePathAndIntake("AR5 Path2"),
+    new drivepath("AR5 Path3"),
+    new AutonomousShooting(2200)
     );
   }
 }

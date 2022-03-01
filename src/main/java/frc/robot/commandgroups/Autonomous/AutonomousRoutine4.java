@@ -20,8 +20,8 @@ public class AutonomousRoutine4 extends SequentialCommandGroup {
           new defaultshooter().withTimeout(.05),
           new DriveFirstPathAndIntake("AR4 Path1"),
           new AutonomousShooting(2050),
-          new DrivePathAndIntake("AR3 Path2"),
-          new drivepath("AR3 Path3"),
+          new DrivePathAndIntake("AR4 Path2"),
+          new drivepath("AR4 Path3"),
           new AutonomousShooting(2200)
 
     );
