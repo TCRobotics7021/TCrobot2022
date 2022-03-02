@@ -93,7 +93,7 @@ public static final double rightScaleConstant = 1.00;
 
   public static double INTAKESPEED = 1;
   public static double FEEDSPEED = 1;
-  public static double SHOTSPEED = 0;
+  public static double SHOTSPEED = 2000;
 
   //Shooter PID
   public static double SHOOTER_kP = .25;
