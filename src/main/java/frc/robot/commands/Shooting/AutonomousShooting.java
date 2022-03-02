@@ -29,6 +29,7 @@ public class AutonomousShooting extends CommandBase {
     addRequirements(RobotContainer.limelight_subsystem);
     addRequirements(RobotContainer.turret_subsystem);
     addRequirements(RobotContainer.accumulator_subsystem);
+    addRequirements(RobotContainer.intake_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -41,7 +42,8 @@ public class AutonomousShooting extends CommandBase {
     targetX = 2;
     RobotContainer.turret_subsystem.setcoastmode();
     Startedshooting = false;
-  
+    RobotContainer.intake_subsystem.setSpeed(Constants.INTAKESPEED);
+    RobotContainer.shooter_subsystem.TurnOnIdle();
   }
   
 
@@ -95,6 +97,7 @@ public class AutonomousShooting extends CommandBase {
     RobotContainer.shooter_subsystem.setfeedspeed(0);
     RobotContainer.accumulator_subsystem.setSpeed(0);
     RobotContainer.turret_subsystem.setSpeed(0);
+    RobotContainer.intake_subsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

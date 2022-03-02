@@ -15,6 +15,7 @@ double speed;
   public ManualLift(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.Lift_subsystem);
+    addRequirements(RobotContainer.shooter_subsystem);
     this.speed = speed;
   }
 
@@ -22,6 +23,8 @@ double speed;
   @Override
   public void initialize() {
     RobotContainer.Lift_subsystem.setSpeed(speed);
+    RobotContainer.shooter_subsystem.TurnOffIdle();
+    RobotContainer.shooter_subsystem.setShooterVelocity(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
