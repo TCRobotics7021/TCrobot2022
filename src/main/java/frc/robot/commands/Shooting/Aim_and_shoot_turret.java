@@ -88,11 +88,11 @@ public class Aim_and_shoot_turret extends CommandBase {
       
        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
 
-      if (RobotContainer.shooter_subsystem.atRPMS() && targetX <= 1 && targetX >= -1 && RobotContainer.limelight_subsystem.getTa() > .005){
+      if (RobotContainer.shooter_subsystem.atRPMS() && targetX <= 1 && targetX >= -1){
         if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
         }
-        RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
+        RobotContainer.shooter_subsystem.setfeedspeed(1);
         RobotContainer.turret_subsystem.setbrakemode();
         Startedshooting = true;
       }

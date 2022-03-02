@@ -5,6 +5,7 @@
 package frc.robot.commandgroups.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Driving.DriveCoast;
 import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.AutonomousShooting;
@@ -18,12 +19,15 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
   public AutonomousRoutine2() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+
+    //once it gets to the end of the path the intake shuts off
     addCommands(   
+      new gantrycommand(0),
       new defaultshooter().withTimeout(.05),
       new DriveFirstPathAndIntake("AR2 Path1"),
-      new AutonomousShooting(2100).withTimeout(3),
+      new AutonomousShooting(2100).withTimeout(2.5),
       new DrivePathAndIntake("AR2 Path2"),
-      new intakecommand().withTimeout(2),
+      new intakecommand().withTimeout(1),
       new DrivePathAndIntake("AR2 Path3"),
       new AutonomousShooting(2100).withTimeout(1.5),
       new DriveCoast()

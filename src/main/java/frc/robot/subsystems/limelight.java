@@ -16,7 +16,7 @@ public class limelight extends SubsystemBase {
   /** Creates a new limelight. */
 
 
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-shooter");
   double yposition; 
   double xposition = 0; 
   double distancetorpms = 0;
