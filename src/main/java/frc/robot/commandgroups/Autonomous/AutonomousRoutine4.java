@@ -4,7 +4,9 @@
 
 package frc.robot.commandgroups.Autonomous;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.defaultshooter;
@@ -20,7 +22,8 @@ public class AutonomousRoutine4 extends SequentialCommandGroup {
     addCommands(
           new gantrycommand(0),
           new defaultshooter().withTimeout(0.5),
-          new DriveFirstPathAndIntake("AR4 Path1"),
+          new ParallelCommandGroup( new DriveFirstPathAndIntake("AR4 Path1"),new MoveLiftandGantryHome()),
+          //new DriveFirstPathAndIntake("AR4 Path1"),
           new AutonomousShooting(2050).withTimeout(2),
           new DrivePathAndIntake("AR4 Path2"),
           new drivepath("AR4 Path3"),

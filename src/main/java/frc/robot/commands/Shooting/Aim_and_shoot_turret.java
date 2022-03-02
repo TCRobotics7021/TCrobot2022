@@ -42,6 +42,7 @@ public class Aim_and_shoot_turret extends CommandBase {
     Startedshooting = false;
     RobotContainer.turret_subsystem.setcoastmode();
     targetX = 2;
+    RobotContainer.shooter_subsystem.TurnOnIdle();
   
   }
 

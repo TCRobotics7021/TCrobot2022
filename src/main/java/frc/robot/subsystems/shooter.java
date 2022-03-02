@@ -23,6 +23,7 @@ TalonFX feedmotor2 = new TalonFX(8);
   DigitalInput FeederSensor = new DigitalInput(3);
 
 double targetRPM;
+public boolean idle_on = true;
 
   Timer sensor_on_delay = new Timer();
   Timer sensor_off_delay = new Timer();
@@ -31,6 +32,13 @@ double targetRPM;
     setupShooterMotor();
     setupShooterPID();
   }
+
+public void TurnOnIdle(){
+  idle_on = true;
+}
+public void TurnOffIdle(){
+  idle_on = false;
+}
 
 public double getshooterspeed(){
 double shooterspeed;

@@ -75,6 +75,11 @@ public boolean atPosition(){
   public void Set_enc(double Enc_set){
     GantryMotor.setSelectedSensorPosition(Enc_set);
   }
+
+  public boolean atFwdProx(){
+    return !FWDLimit.get();
+  }
+
   @Override
   public void periodic() {
 
@@ -113,6 +118,9 @@ public boolean atPosition(){
      if(!FWDLimit.get()){
        Set_enc(Constants.GANTRY_ENC_RESET_HEIGHT);
      }
+
+     
+  
 
      if(Constants.SHOW_DATA){
           SmartDashboard.putNumber("Gantry Encoder Position", Get_enc());

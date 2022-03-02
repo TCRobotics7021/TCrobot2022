@@ -45,7 +45,7 @@ public static final double rightScaleConstant = 1.00;
   public static double LIFT_TARGET_ACCURACY = 10;
   public static double LIFT_MOTOR_P = .02;
   public static double LIFT_MOTOR_MIN = -.2;
-  public static double LIFTMOTORV = .20; 
+  public static double LIFT_MOTOR_MANUAL_POWER = .6; 
   
   //gantry (moving lift)
   public static double GANTRY_ENC_RESET_HEIGHT = 0;
@@ -53,6 +53,7 @@ public static final double rightScaleConstant = 1.00;
   public static double GANTRY_TARGET_ACCURACY = 3;
   public static double GANTRY_MOTOR_MIN = .3;
   public static double GANTRY_MOTOR_P = .002;
+  public static double GANTRY_MOTOR_MANUAL_POWER = .2;
 
   //turret limits
   public static double TURRET_ENC_CONV_FACTOR = 1; 

@@ -84,6 +84,11 @@ public class Lift extends SubsystemBase {
     LiftMotor.setSelectedSensorPosition(Enc_set);
   }
 
+  public boolean atBottom(){
+    return !bottom_limit.get();
+  }
+
+
     @Override
   public void periodic() {
 

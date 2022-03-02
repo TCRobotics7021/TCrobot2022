@@ -4,7 +4,10 @@
 
 package frc.robot.commandgroups.Autonomous;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Driving.DriveCoast;
 import frc.robot.commands.Other.intakecommand;
@@ -20,10 +23,11 @@ public class AutonomousRoutine1 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new gantrycommand(0),
       new defaultshooter().withTimeout(.05),
-      new DriveFirstPathAndIntake("AR1 Path1"),
-      new AutonomousShooting(2100)
+      new ParallelCommandGroup( new DriveFirstPathAndIntake("AR1 Path1"),new MoveLiftandGantryHome()),
+      //new MoveLiftandGantryHome(),
+      //new DriveFirstPathAndIntake("AR1 Path1"),
+      new AutonomousShooting(2100).withTimeout(6)
     );
   }
 }

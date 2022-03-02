@@ -28,8 +28,11 @@ double shotspeed;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-  RobotContainer.shooter_subsystem.setShooterVelocity(shotspeed);
+    if(RobotContainer.shooter_subsystem.idle_on){
+      RobotContainer.shooter_subsystem.setShooterVelocity(shotspeed);
+    }else{
+      RobotContainer.shooter_subsystem.setShooterVelocity(0);
+    }
   
   if ((RobotContainer.accumulator_subsystem.isSensorBlocked() || RobotContainer.shooter_subsystem.isSensorBlocked()) && !RobotContainer.shooter_subsystem.isSensorBlockedWithdelay()) {
       RobotContainer.shooter_subsystem.setfeedspeed(1);
