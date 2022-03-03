@@ -30,9 +30,9 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR2 Path1"),new MoveLiftandGantryHome()),
       //new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR2 Path1"),
-      new AutonomousShooting(2100).withTimeout(2.5),
+      new AutonomousShooting(2000).withTimeout(2.5),
       new DrivePathAndIntake("AR2 Path2"),
-      new intakecommand().withTimeout(1),
+     // new intakecommand().withTimeout(1),
       new DrivePathAndIntake("AR2 Path3"),
       new AutonomousShooting(2100).withTimeout(1.5),
       new DriveCoast()

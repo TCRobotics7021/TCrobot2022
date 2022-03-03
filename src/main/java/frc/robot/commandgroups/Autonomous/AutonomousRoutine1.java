@@ -27,7 +27,7 @@ public class AutonomousRoutine1 extends SequentialCommandGroup {
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR1 Path1"),new MoveLiftandGantryHome()),
       //new MoveLiftandGantryHome(),
       //new DriveFirstPathAndIntake("AR1 Path1"),
-      new AutonomousShooting(2100).withTimeout(6)
+      new AutonomousShooting(2000).withTimeout(6)
     );
   }
 }

@@ -24,10 +24,10 @@ public class AutonomousRoutine3 extends SequentialCommandGroup {
       new defaultshooter().withTimeout(.05),
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR3 Path1"),new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR3 Path1"),  
-      new AutonomousShooting(2100).withTimeout(3),
+      new AutonomousShooting(1950).withTimeout(3),
       new DrivePathAndIntake("AR3 Path2"),
       new DrivePathAndIntake("AR3 Path3"),
-      new AutonomousShooting(2200).withTimeout(3)
+      new AutonomousShooting(2100).withTimeout(3)
     );
   }
 }
