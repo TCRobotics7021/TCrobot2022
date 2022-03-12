@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Climbing.liftcommand;
+import frc.robot.commands.Climbing.waitforgantryathome;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,20 +22,22 @@ public class climb1 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
 new liftcommand(400),
-new gantrycommand(0),
+new gantrycommand(-25),
+new waitforgantryathome(),
 new liftcommand(0),
 new WaitCommand(.5),
 new gantrycommand(60),
-new WaitCommand(1),
+new WaitCommand(.5),
 new liftcommand(200),
 new gantrycommand(455),
 new liftcommand(502),
 //new WaitCommand(3),
 new liftcommand(640),
 new gantrycommand(400),
-new WaitCommand(1),
+new WaitCommand(.5),
 new liftcommand(400),
-new gantrycommand(-2),
+new gantrycommand(-25),
+new waitforgantryathome(),
 new liftcommand(0),
 new WaitCommand(0),
 new gantrycommand(60),

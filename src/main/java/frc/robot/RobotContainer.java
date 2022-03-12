@@ -38,6 +38,7 @@ import frc.robot.commands.Shooting.DefaultTurret;
 import frc.robot.commands.Shooting.aim_limelight;
 import frc.robot.commands.Shooting.autoturretaim;
 import frc.robot.commands.Shooting.defaultshooter;
+import frc.robot.commands.Shooting.fwdeject;
 import frc.robot.commands.Shooting.turretscan;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Lift;
@@ -117,7 +118,8 @@ public class RobotContainer {
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret());
-new JoystickButton(RightJoystick, 2).whileHeld(new ejector(), true);
+// new JoystickButton(RightJoystick, 2).whileHeld(new ejector(), true);
+new JoystickButton(RightJoystick, 2).whileHeld(new fwdeject(), true);
 
 new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
 new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
@@ -132,6 +134,8 @@ new JoystickButton(OPpanel, 1).whenPressed(new climb1(), false);
 new JoystickButton(OPpanel, 2).whenPressed(new climbstage2(), false);
 
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
+
+new JoystickButton(RightJoystick, 3).whileHeld(new AutonomousShooting(2000));
 
 // new JoystickButton(OPpanel, 5).whenPressed(new liftcommand(580));
 // new JoystickButton(OPpanel, 9).whenPressed(new liftcommand(100));

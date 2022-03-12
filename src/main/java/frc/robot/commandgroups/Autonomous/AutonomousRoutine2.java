@@ -25,14 +25,14 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
 
     //once it gets to the end of the path the intake shuts off
     addCommands(   
-      new gantrycommand(0),
+      //new gantrycommand(0),
       new defaultshooter().withTimeout(.05),
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR2 Path1"),new MoveLiftandGantryHome()),
       //new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR2 Path1"),
-      new AutonomousShooting(2100).withTimeout(2.5),
+      new AutonomousShooting(2000).withTimeout(2.5),
       new DrivePathAndIntake("AR2 Path2"),
-      new intakecommand().withTimeout(1),
+     // new intakecommand().withTimeout(1),
       new DrivePathAndIntake("AR2 Path3"),
       new AutonomousShooting(2100).withTimeout(1.5),
       new DriveCoast()

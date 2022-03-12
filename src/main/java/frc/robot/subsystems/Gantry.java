@@ -62,6 +62,10 @@ public boolean atPosition(){
   if(currentposition > targetposition-Constants.GANTRY_TARGET_ACCURACY && currentposition < targetposition+Constants.GANTRY_TARGET_ACCURACY){
     return true;
     }
+    else if(targetposition < 0 && atFwdProx()){
+      return true;
+
+    }
     else{
       return false;
     }

@@ -20,14 +20,14 @@ public class AutonomousRoutine3 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new gantrycommand(0),
+      //new gantrycommand(0),
       new defaultshooter().withTimeout(.05),
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR3 Path1"),new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR3 Path1"),  
-      new AutonomousShooting(2100).withTimeout(3),
+      new AutonomousShooting(2000).withTimeout(3),
       new DrivePathAndIntake("AR3 Path2"),
       new DrivePathAndIntake("AR3 Path3"),
-      new AutonomousShooting(2200).withTimeout(3)
+      new AutonomousShooting(2100).withTimeout(3)
     );
   }
 }
