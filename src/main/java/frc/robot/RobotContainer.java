@@ -27,6 +27,7 @@ import frc.robot.commands.Driving.controlreverse;
 import frc.robot.commands.Driving.drivebrake;
 import frc.robot.commands.Driving.turbo_drive;
 import frc.robot.commands.Other.ResetHeading;
+import frc.robot.commands.Other.Song;
 import frc.robot.commands.Other.cancel;
 import frc.robot.commands.Other.defaultaccumulate;
 import frc.robot.commands.Other.defaultintake;
@@ -118,8 +119,9 @@ public class RobotContainer {
 
 new JoystickButton(LeftJoystick, 1).whileHeld(new intakecommand(), true);
 new JoystickButton(RightJoystick, 1).whileHeld(new Aim_and_shoot_turret());
+new JoystickButton(RightJoystick, 2).whileHeld(new turbo_drive());
 // new JoystickButton(RightJoystick, 2).whileHeld(new ejector(), true);
-new JoystickButton(RightJoystick, 2).whileHeld(new fwdeject(), true);
+new JoystickButton(LeftJoystick, 2).whileHeld(new fwdeject(), true);
 
 new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
 new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
@@ -143,6 +145,8 @@ new JoystickButton(RightJoystick, 3).whileHeld(new AutonomousShooting(2000));
 //new JoystickButton(OPpanel, 9).whenPressed(new gantrycommand(300));
 
 new JoystickButton(OPpanel, 5).whenPressed(new MoveLiftandGantryHome());
+
+new JoystickButton(RightJoystick, 10).whenPressed(new Song().withTimeout(10));
 
   }
 

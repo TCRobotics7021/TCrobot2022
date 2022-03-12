@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
+import frc.robot.commands.Shooting.AutoShoot2Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.defaultshooter;
 
@@ -24,7 +25,7 @@ public class AutonomousRoutine3 extends SequentialCommandGroup {
       new defaultshooter().withTimeout(.05),
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR3 Path1"),new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR3 Path1"),  
-      new AutonomousShooting(2000).withTimeout(3),
+      new AutoShoot2Ball(2000),
       new DrivePathAndIntake("AR3 Path2"),
       new DrivePathAndIntake("AR3 Path3"),
       new AutonomousShooting(2100).withTimeout(3)

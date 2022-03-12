@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
+import frc.robot.commands.Other.intakecommand;
+import frc.robot.commands.Shooting.AutoShoot1Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.defaultshooter;
 
@@ -20,15 +22,15 @@ public class AutonomousRoutine4 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-          new gantrycommand(0),
-          new defaultshooter().withTimeout(0.5),
-          new ParallelCommandGroup( new DriveFirstPathAndIntake("AR4 Path1"),new MoveLiftandGantryHome()),
-          //new DriveFirstPathAndIntake("AR4 Path1"),
-          new AutonomousShooting(2050).withTimeout(2),
-          new DrivePathAndIntake("AR4 Path2"),
-          new drivepath("AR4 Path3"),
-          new AutonomousShooting(2100).withTimeout(2)
-
+      new defaultshooter().withTimeout(.05),
+      new ParallelCommandGroup( new DriveFirstPathAndIntake("AR4 Path1"),new MoveLiftandGantryHome()),
+      new AutoShoot1Ball(2000),
+      new DrivePathAndIntake("AR4 Path2"),
+      new AutoShoot1Ball(2100),
+      new DrivePathAndIntake("AR4 Path3"),
+      new intakecommand().withTimeout(1),
+      new DrivePathAndIntake("AR4 Path4"),
+      new AutonomousShooting(2100).withTimeout(7.8)
     );
   }
 }
