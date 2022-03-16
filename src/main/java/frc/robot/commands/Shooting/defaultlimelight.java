@@ -6,47 +6,23 @@ package frc.robot.commands.Shooting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.limelight;
 
-public class turretscan extends CommandBase {
-  double targetarea = 0; 
-  boolean finished = false; 
-  
-  /** Creates a new turretscan. */
-  public turretscan() {
+public class defaultlimelight extends CommandBase {
+  /** Creates a new defaultlimelight. */
+  public defaultlimelight() {
     addRequirements(RobotContainer.limelight_subsystem);
-    addRequirements(RobotContainer.turret_subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.limelight_subsystem.setLEDmode(3);
-    finished = false; 
-    RobotContainer.turret_subsystem.setSpeed(.5);
+    RobotContainer.limelight_subsystem.setLEDmode(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if(RobotContainer.turret_subsystem.isLeftLim() == true){
-     
-      RobotContainer.turret_subsystem.setSpeed(-.5);
-
-    }
-    if(RobotContainer.turret_subsystem.isRightLim() == true){
-     
-      RobotContainer.turret_subsystem.setSpeed(.5);
-
-    }
-    targetarea = RobotContainer.limelight_subsystem.getTa();
-    if(targetarea >= 1){
-      finished = true; 
-    }
-    
-
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
@@ -55,6 +31,6 @@ public class turretscan extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return false;
   }
 }

@@ -5,12 +5,16 @@
 package frc.robot.commandgroups.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.TurretTurn;
 import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.AutoShoot1Ball;
+import frc.robot.commands.Shooting.AutoShoot2Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
+import frc.robot.commands.Shooting.autoturretaim;
 import frc.robot.commands.Shooting.defaultshooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -24,12 +28,11 @@ public class AutonomousRoutine4 extends SequentialCommandGroup {
     addCommands(
       new defaultshooter().withTimeout(.05),
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR4 Path1"),new MoveLiftandGantryHome()),
-      new AutoShoot1Ball(2000),
-      new DrivePathAndIntake("AR4 Path2"),
-      new AutoShoot1Ball(2100),
+      new AutoShoot2Ball(2000),
+      new ParallelCommandGroup( new DrivePathAndIntake("AR4 Path2"), new TurretTurn(-.3).withTimeout(.2)),
+      new AutoShoot2Ball(2100),
       new DrivePathAndIntake("AR4 Path3"),
-      new intakecommand().withTimeout(1),
-      new DrivePathAndIntake("AR4 Path4"),
+     new ParallelRaceGroup(new DrivePathAndIntake("AR4 Path4"), new autoturretaim()),
       new AutonomousShooting(2100).withTimeout(7.8)
     );
   }

@@ -65,15 +65,15 @@ public static final double rightScaleConstant = 1.00;
   public static double LRMULTI = .3;
 
   //turret
-  public static double AIM_P = .03; 
-  public static double MAX_AIM_SPEED = .3;
+  public static double AIM_P = .04; 
+  public static double MAX_AIM_SPEED = .4;
   public static double MIN_AIM_SPEED = .1;
   public static double TURRET_TURN_SPEED = .2;
 
   //accumulater 
   public static double ACCUSPEED = .5;
-  public static double SHOOTERSENSORDELAYTIME = .07;
-  public static double SHOOTERSENSOROFFDELAYTIME = .45;
+  public static double SHOOTERSENSORDELAYTIME = .1;
+  public static double SHOOTERSENSOROFFDELAYTIME = .2;
   public static double ACCUMULATOR_DELAY = 2;
 
   // Distance calculation 

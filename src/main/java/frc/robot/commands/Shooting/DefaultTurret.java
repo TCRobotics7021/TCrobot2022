@@ -39,7 +39,7 @@ public class DefaultTurret extends CommandBase {
   @Override
   public void execute() {
    
-if(RobotContainer.OPpanel.getRawButton(9)) {
+if(RobotContainer.OPpanel.getRawButton(9) || RobotContainer.turret_subsystem.AUTOAIM == true) {
   targetX = RobotContainer.limelight_subsystem.getTx();
     
     

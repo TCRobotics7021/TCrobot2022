@@ -34,6 +34,7 @@ public class Aim_and_shoot_turret extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight_subsystem.setLEDmode(3);
     feedspeed = SmartDashboard.getNumber("feedspeed", 0);
     shotspeed = SmartDashboard.getNumber("shotspeed", Constants.SHOTSPEED);
     Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
@@ -90,9 +91,9 @@ public class Aim_and_shoot_turret extends CommandBase {
        actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
 
       if (RobotContainer.shooter_subsystem.atRPMS() && targetX <= 1 && targetX >= -1){
-        if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
+        //if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
-        }
+        //}
         RobotContainer.shooter_subsystem.setfeedspeed(1);
         RobotContainer.turret_subsystem.setbrakemode();
         Startedshooting = true;

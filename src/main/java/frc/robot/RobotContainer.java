@@ -23,6 +23,7 @@ import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Climbing.liftcommand;
 import frc.robot.commands.Driving.ArcadeDrive;
+import frc.robot.commands.Driving.ConstantDrive;
 import frc.robot.commands.Driving.controlreverse;
 import frc.robot.commands.Driving.drivebrake;
 import frc.robot.commands.Driving.turbo_drive;
@@ -34,10 +35,13 @@ import frc.robot.commands.Other.defaultintake;
 import frc.robot.commands.Other.ejector;
 import frc.robot.commands.Other.intakecommand;
 import frc.robot.commands.Shooting.Aim_and_shoot_turret;
+import frc.robot.commands.Shooting.AutoShoot1Ball;
+import frc.robot.commands.Shooting.AutoShoot2Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.DefaultTurret;
 import frc.robot.commands.Shooting.aim_limelight;
 import frc.robot.commands.Shooting.autoturretaim;
+import frc.robot.commands.Shooting.defaultlimelight;
 import frc.robot.commands.Shooting.defaultshooter;
 import frc.robot.commands.Shooting.fwdeject;
 import frc.robot.commands.Shooting.turretscan;
@@ -97,6 +101,7 @@ public class RobotContainer {
     accumulator_subsystem.setDefaultCommand(new defaultaccumulate());
     shooter_subsystem.setDefaultCommand(new defaultshooter());
     turret_subsystem.setDefaultCommand(new DefaultTurret());
+    //limelight_subsystem.setDefaultCommand(new defaultlimelight());
     
     //turret_subsystem.setDefaultCommand(new autoturretaim());
     //Lift_subsystem.setDefaultCommand(new defaultliftcommand());
@@ -139,14 +144,18 @@ new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 
 new JoystickButton(RightJoystick, 3).whileHeld(new AutonomousShooting(2000));
 
+new JoystickButton(RightJoystick, 11).whenPressed(new AutoShoot1Ball(2000));
+new JoystickButton(RightJoystick, 12).whenPressed(new AutoShoot2Ball(2000));
+
+new JoystickButton(RightJoystick, 13).whileHeld(new ConstantDrive());
+
 // new JoystickButton(OPpanel, 5).whenPressed(new liftcommand(580));
 // new JoystickButton(OPpanel, 9).whenPressed(new liftcommand(100));
 //new JoystickButton(OPpanel, 5).whenPressed(new gantrycommand(100));
 //new JoystickButton(OPpanel, 9).whenPressed(new gantrycommand(300));
-
 new JoystickButton(OPpanel, 5).whenPressed(new MoveLiftandGantryHome());
 
-new JoystickButton(RightJoystick, 10).whenPressed(new Song().withTimeout(10));
+//new JoystickButton(RightJoystick, 10).whenPressed(new Song().withTimeout(10));
 
   }
 

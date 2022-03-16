@@ -21,6 +21,7 @@ public class turret extends SubsystemBase {
   private DigitalInput LLimit = new DigitalInput(4);
   private DigitalInput RLimit = new DigitalInput(5);
   private DigitalInput MidLimit = new DigitalInput(9);
+  public boolean AUTOAIM;
   /** Creates a new turret. */
   public turret() {}
 

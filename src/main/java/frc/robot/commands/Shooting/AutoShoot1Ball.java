@@ -41,6 +41,7 @@ public class AutoShoot1Ball extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight_subsystem.setLEDmode(3);
     feedspeed = SmartDashboard.getNumber("feedspeed", Constants.FEEDSPEED);
     Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
     Minspeed = SmartDashboard.getNumber("Aim Min", Constants.MIN_AIM_SPEED);
@@ -89,9 +90,9 @@ public class AutoShoot1Ball extends CommandBase {
         RobotContainer.shooter_subsystem.setShooterVelocity(shooterspeed);
       
       if (targetX <= 1 && targetX >= -1 && RobotContainer.shooter_subsystem.atRPMS()){
-        if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
+        //if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
-        }
+        //}
         RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
         RobotContainer.turret_subsystem.setbrakemode();
         Startedshooting = true;
@@ -99,7 +100,7 @@ public class AutoShoot1Ball extends CommandBase {
       if (!RobotContainer.shooter_subsystem.isSensorBlocked()) {
         Timedelay.start();
       }
-      if (Timedelay.get() >= .5 ) {
+      if (Timedelay.get() >= .5) {
         Finished = true;
       }
   }

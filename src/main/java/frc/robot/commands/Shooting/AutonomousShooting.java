@@ -35,6 +35,7 @@ public class AutonomousShooting extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight_subsystem.setLEDmode(3);
     feedspeed = SmartDashboard.getNumber("feedspeed", Constants.FEEDSPEED);
     Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
     Minspeed = SmartDashboard.getNumber("Aim Min", Constants.MIN_AIM_SPEED);

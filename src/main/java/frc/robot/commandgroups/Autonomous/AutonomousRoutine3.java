@@ -5,12 +5,16 @@
 package frc.robot.commandgroups.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Shooting.AutoShoot2Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
+import frc.robot.commands.Shooting.autoaimoff;
+import frc.robot.commands.Shooting.autoturretaim;
 import frc.robot.commands.Shooting.defaultshooter;
+import frc.robot.commands.Shooting.turnonautoaim;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -27,7 +31,7 @@ public class AutonomousRoutine3 extends SequentialCommandGroup {
       //new DriveFirstPathAndIntake("AR3 Path1"),  
       new AutoShoot2Ball(2000),
       new DrivePathAndIntake("AR3 Path2"),
-      new DrivePathAndIntake("AR3 Path3"),
+      new ParallelRaceGroup( new DrivePathAndIntake("AR3 Path3"), new autoturretaim()),
       new AutonomousShooting(2100).withTimeout(3)
     );
   }
