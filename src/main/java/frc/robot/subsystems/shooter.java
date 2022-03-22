@@ -62,12 +62,13 @@ public boolean isSensorBlocked() {
 }
 
 public boolean isSensorBlockedWithdelay() {
-  if(sensor_on_delay.get() > SmartDashboard.getNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME)){
-    return true;
-  }
-  else{
-    return false;
-  }
+  // if(sensor_on_delay.get() > SmartDashboard.getNumber("Shooter Sensor Delay Time", Constants.SHOOTERSENSORDELAYTIME)){
+  //   return true;
+  // }
+  // else{
+  //   return false;
+  // }
+  return isSensorBlocked();
 }
 public boolean isSensorBlockedWithoffdelay() {
   if(sensor_off_delay.get() < SmartDashboard.getNumber("Shooter Sensor Off Delay Time", Constants.SHOOTERSENSOROFFDELAYTIME)){
@@ -92,7 +93,7 @@ public boolean isSensorBlockedWithoffdelay() {
   }
 
   public boolean atRPMS() {
-    if (targetRPM * .9 < getshooterspeed() && targetRPM * 1.1 > getshooterspeed()) {
+    if (targetRPM * .95 < getshooterspeed() && targetRPM * 1.05 > getshooterspeed()) {
       return true;
     } else {
       return false;

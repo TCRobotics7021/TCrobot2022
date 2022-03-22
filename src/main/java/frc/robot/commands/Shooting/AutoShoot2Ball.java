@@ -87,9 +87,9 @@ public class AutoShoot2Ball extends CommandBase {
         RobotContainer.shooter_subsystem.setShooterVelocity(shooterspeed);
       
       if (targetX <= 1 && targetX >= -1 && RobotContainer.shooter_subsystem.atRPMS()){
-        //if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
+        if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);
-        //}
+        }
         RobotContainer.shooter_subsystem.setfeedspeed(feedspeed);
         RobotContainer.turret_subsystem.setbrakemode();
         Startedshooting = true;
