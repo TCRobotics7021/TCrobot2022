@@ -77,14 +77,16 @@ public static final double rightScaleConstant = 1.00;
   public static double ACCUMULATOR_DELAY = 2;
 
   // Distance calculation 
-  public static double DIST_CALC_A = 3.88;
-  public static double DIST_CALC_B = -222;
-  public static double DIST_CALC_C = 4373;
+  public static double DIST_CALC_A = -0.167;
+  public static double DIST_CALC_B = 10.6;
+  public static double DIST_CALC_C = -305;
+  public static double DIST_CALC_D = 4784;
 
   //RPM calc
-  public static double RPMDIST_CALC_A = 0.000318;
-  public static double RPMDIST_CALC_B = -1.47;
-  public static double RPMDIST_CALC_C = 3741;
+  public static double RPMDIST_CALC_A = 0.000000157;
+  public static double RPMDIST_CALC_B = -0.00145;
+  public static double RPMDIST_CALC_C = 4.55;
+  public static double RPMDIST_CALC_D = -2678;
 
 
   //ditsance shooting 

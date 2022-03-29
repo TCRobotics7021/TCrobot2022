@@ -24,6 +24,7 @@ public class AutonomousShooting extends CommandBase {
 
   public AutonomousShooting(double shooterspeed) {
     this.shooterspeed = shooterspeed;
+    //this.shooterspeed = SmartDashboard.getNumber("shotspeed", 0);
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter_subsystem);
     addRequirements(RobotContainer.limelight_subsystem);
@@ -79,7 +80,7 @@ public class AutonomousShooting extends CommandBase {
   
         actualrpms = RobotContainer.shooter_subsystem.getshooterspeed();
         RobotContainer.shooter_subsystem.setShooterVelocity(shooterspeed);
-      
+       // RobotContainer.shooter_subsystem.setShooterVelocity(SmartDashboard.getNumber("shotspeed", 0));
       if (targetX <= 1 && targetX >= -1 && RobotContainer.shooter_subsystem.atRPMS()){
         if (!RobotContainer.shooter_subsystem.isSensorBlockedWithoffdelay()){
           RobotContainer.accumulator_subsystem.setSpeed(Constants.ACCUSPEED);

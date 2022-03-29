@@ -93,7 +93,7 @@ public boolean isSensorBlockedWithoffdelay() {
   }
 
   public boolean atRPMS() {
-    if (targetRPM * .95 < getshooterspeed() && targetRPM * 1.05 > getshooterspeed()) {
+    if (targetRPM * .98 < getshooterspeed() && targetRPM * 1.02 > getshooterspeed()) {
       return true;
     } else {
       return false;

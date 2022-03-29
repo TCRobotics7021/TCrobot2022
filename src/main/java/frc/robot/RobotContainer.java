@@ -84,11 +84,11 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     
-    AutonomousChooser.setDefaultOption("AR1: One Ball and Shoot", new AutonomousRoutine1());
-    AutonomousChooser.addOption("AR2: 4 Balls", new AutonomousRoutine2());
-    AutonomousChooser.addOption("AR3: ", new AutonomousRoutine3());
-    AutonomousChooser.addOption("AR4: ", new AutonomousRoutine4());
-    AutonomousChooser.addOption("AR5: Do Nothing", new AutonomousRoutine5());
+    AutonomousChooser.addOption("AR1: 2 ball", new AutonomousRoutine1());
+    AutonomousChooser.setDefaultOption("AR2: 4 Balls", new AutonomousRoutine2());
+    //AutonomousChooser.addOption("AR3: ", new AutonomousRoutine3());
+    //AutonomousChooser.setDefaultOption("AR4: 4 ball", new AutonomousRoutine4());
+    //AutonomousChooser.addOption("AR5: Do Nothing", new AutonomousRoutine5());
 
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
@@ -144,10 +144,10 @@ new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
 
 new JoystickButton(RightJoystick, 3).whileHeld(new AutonomousShooting(2000));
 
-new JoystickButton(RightJoystick, 11).whenPressed(new AutoShoot1Ball(2000));
-new JoystickButton(RightJoystick, 12).whenPressed(new AutoShoot2Ball(2000));
+//new JoystickButton(RightJoystick, 11).whenPressed(new AutoShoot1Ball(2000));
+//new JoystickButton(RightJoystick, 12).whenPressed(new AutoShoot2Ball(2000));
 
-new JoystickButton(RightJoystick, 13).whileHeld(new ConstantDrive());
+//new JoystickButton(RightJoystick, 13).whileHeld(new ConstantDrive());
 
 // new JoystickButton(OPpanel, 5).whenPressed(new liftcommand(580));
 // new JoystickButton(OPpanel, 9).whenPressed(new liftcommand(100));
