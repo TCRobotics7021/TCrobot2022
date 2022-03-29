@@ -33,7 +33,11 @@ public class autoturretaim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight_subsystem.setLEDmode(3);
     finished = false;
+    Maxspeed = SmartDashboard.getNumber("Aim Max", Constants.MAX_AIM_SPEED);
+    Minspeed = SmartDashboard.getNumber("Aim Min", Constants.MIN_AIM_SPEED);
+    Pvalue = SmartDashboard.getNumber("Aim P", Constants.AIM_P);
     
   }
 
@@ -41,7 +45,7 @@ public class autoturretaim extends CommandBase {
   @Override
   public void execute() {
     double targetX = RobotContainer.limelight_subsystem.getTx();
-    
+    RobotContainer.turret_subsystem.setcoastmode();
     
      
       
@@ -61,7 +65,7 @@ public class autoturretaim extends CommandBase {
     if (targetX <= 1 && targetX >= -1){
       //finished = true; 
       turret_speed = 0;
-       RobotContainer.turret_subsystem.setbrakemode();
+       
     }
     RobotContainer.turret_subsystem.setSpeed(turret_speed);
        

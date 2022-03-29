@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.music.Orchestra;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
@@ -16,10 +17,12 @@ import pabeles.concurrency.ConcurrencyOps.Reset;
 
 public class intake extends SubsystemBase {
   /** Creates a new intake. */
+  
+
   Timer delaytimer = new Timer();
   double motoron = 0 ;
   public intake() {}
-TalonFX InMotor = new TalonFX(5);
+public TalonFX InMotor = new TalonFX(5);
 
  public void setSpeed(double inspeed) {
    motoron = inspeed; 

@@ -11,7 +11,9 @@ import frc.robot.commands.Climbing.MoveLiftandGantryHome;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Driving.DriveCoast;
 import frc.robot.commands.Other.intakecommand;
+import frc.robot.commands.Shooting.AutoShoot2Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
+import frc.robot.commands.Shooting.autoturretaim;
 import frc.robot.commands.Shooting.defaultshooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -30,11 +32,13 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
       new ParallelCommandGroup( new DriveFirstPathAndIntake("AR2 Path1"),new MoveLiftandGantryHome()),
       //new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR2 Path1"),
-      new AutonomousShooting(2000).withTimeout(2.5),
+      new AutoShoot2Ball(2150),
       new DrivePathAndIntake("AR2 Path2"),
      // new intakecommand().withTimeout(1),
       new DrivePathAndIntake("AR2 Path3"),
-      new AutonomousShooting(2100).withTimeout(1.5),
+      new intakecommand().withTimeout(1),
+      new ParallelRaceGroup(new DrivePathAndIntake("AR2 Path4"), new autoturretaim()),
+      new AutonomousShooting(2150).withTimeout(5.3),
       new DriveCoast()
     );
   }

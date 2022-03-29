@@ -21,15 +21,15 @@ public static final boolean SHOW_DATA = true;
   
 
 // results from characterization tool
-public static final double ks = 0.60069;
-public static final double kv = 2.3549; // was at 1.6
-public static final double ka = 0.3997; // was at .005
-public static final double kp = .077925; // was at .05
-public static final double track_width = 0.6431; // Has to be in meters
+public static final double ks = 0.66441;
+public static final double kv = 1.9672; // was at 1.6
+public static final double ka = .52358; // was at .005
+public static final double kp = .1623; // was at .05
+public static final double track_width = 0.6312; // Has to be in meters
 
 
 // Sets up gear ratio and other info
-public static final double gearRatio = 84/8;
+public static final double gearRatio = 8.2;
 public static final double wheelDiameterInches = 6;
 public static final double wheelCircumference = 0.4592;
 public static final double encoderTicksPerRev = 2048;
@@ -43,16 +43,16 @@ public static final double rightScaleConstant = 1.00;
   public static double LIFT_ENC_RESET_HEIGHT = 0;
   public static double LIFT_ENC_CONV_FACTOR = -0.0014568574;
   public static double LIFT_TARGET_ACCURACY = 10;
-  public static double LIFT_MOTOR_P = .02;
+  public static double LIFT_MOTOR_P = .03;
   public static double LIFT_MOTOR_MIN = -.2;
-  public static double LIFT_MOTOR_MANUAL_POWER = .6; 
+  public static double LIFT_MOTOR_MANUAL_POWER = .8; 
   
   //gantry (moving lift)
   public static double GANTRY_ENC_RESET_HEIGHT = 0;
   public static double GANTRY_ENC_CONV_FACTOR = -0.0015506126;
   public static double GANTRY_TARGET_ACCURACY = 3;
   public static double GANTRY_MOTOR_MIN = .3;
-  public static double GANTRY_MOTOR_P = .002;
+  public static double GANTRY_MOTOR_P = .02;
   public static double GANTRY_MOTOR_MANUAL_POWER = .2;
 
   //turret limits
@@ -65,26 +65,28 @@ public static final double rightScaleConstant = 1.00;
   public static double LRMULTI = .3;
 
   //turret
-  public static double AIM_P = .03; 
-  public static double MAX_AIM_SPEED = .3;
+  public static double AIM_P = .04; 
+  public static double MAX_AIM_SPEED = .4;
   public static double MIN_AIM_SPEED = .1;
   public static double TURRET_TURN_SPEED = .2;
 
   //accumulater 
   public static double ACCUSPEED = .5;
-  public static double SHOOTERSENSORDELAYTIME = .07;
-  public static double SHOOTERSENSOROFFDELAYTIME = .45;
+  public static double SHOOTERSENSORDELAYTIME = 0.1;
+  public static double SHOOTERSENSOROFFDELAYTIME = .2;
   public static double ACCUMULATOR_DELAY = 2;
 
   // Distance calculation 
-  public static double DIST_CALC_A = 3.88;
-  public static double DIST_CALC_B = -222;
-  public static double DIST_CALC_C = 4373;
+  public static double DIST_CALC_A = -0.167;
+  public static double DIST_CALC_B = 10.6;
+  public static double DIST_CALC_C = -305;
+  public static double DIST_CALC_D = 4784;
 
   //RPM calc
-  public static double RPMDIST_CALC_A = 0.000318;
-  public static double RPMDIST_CALC_B = -1.47;
-  public static double RPMDIST_CALC_C = 3741;
+  public static double RPMDIST_CALC_A = 0.000000157;
+  public static double RPMDIST_CALC_B = -0.00145;
+  public static double RPMDIST_CALC_C = 4.55;
+  public static double RPMDIST_CALC_D = -2678;
 
 
   //ditsance shooting 

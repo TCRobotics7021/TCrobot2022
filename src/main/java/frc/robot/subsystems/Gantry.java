@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import javax.net.ssl.TrustManagerFactory;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -32,6 +34,7 @@ public class Gantry extends SubsystemBase {
   public Gantry() {
     holdposition = false;
     targetposition = 0;
+    GantryMotor.setInverted(true);
   }
 
   public void setcoastmode(){

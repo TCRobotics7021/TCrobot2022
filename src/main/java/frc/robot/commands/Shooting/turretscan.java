@@ -22,6 +22,7 @@ public class turretscan extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight_subsystem.setLEDmode(3);
     finished = false; 
     RobotContainer.turret_subsystem.setSpeed(.5);
   }

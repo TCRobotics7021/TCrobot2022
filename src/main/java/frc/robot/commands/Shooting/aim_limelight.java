@@ -26,6 +26,7 @@ public class aim_limelight extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.limelight_subsystem.setLEDmode(3);
     finished = false;
   }
 

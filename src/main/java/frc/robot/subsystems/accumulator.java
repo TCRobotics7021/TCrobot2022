@@ -16,7 +16,7 @@ import frc.robot.RobotContainer;
 
 public class accumulator extends SubsystemBase {
   /** Creates a new accumulator. */
-  TalonFX accuMotor = new TalonFX(6);
+  public TalonFX accuMotor = new TalonFX(6);
   DigitalInput accumulator_sensor = new DigitalInput(2);
 
   Timer delaytimer = new Timer();

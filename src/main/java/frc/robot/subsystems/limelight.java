@@ -44,11 +44,11 @@ public double getTs() {
 public double getDistance() {
   setPipeline(0);
   yposition = getTy();
-  return Math.pow(yposition,2)*Constants.DIST_CALC_A+Constants.DIST_CALC_B*yposition+Constants.DIST_CALC_C;
+  return Math.pow(yposition,3)*Constants.DIST_CALC_A+Constants.DIST_CALC_B*Math.pow(yposition,2)+Constants.DIST_CALC_C*yposition+Constants.DIST_CALC_D;
 }
 public double getDistancetoRPMs(double distance){
   setPipeline(0);
-  return Math.pow(distance, 2)*Constants.RPMDIST_CALC_A+Constants.RPMDIST_CALC_B*distance+Constants.RPMDIST_CALC_C;
+  return Math.pow(distance, 3)*Constants.RPMDIST_CALC_A+Constants.RPMDIST_CALC_B*Math.pow(distance, 2)+Constants.RPMDIST_CALC_C*distance+Constants.RPMDIST_CALC_D;
 }
 
 
