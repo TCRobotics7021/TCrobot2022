@@ -24,6 +24,7 @@ public class defaultintake extends CommandBase {
   @Override
   public void execute() {
       RobotContainer.intake_subsystem.setSpeed(0);
+      
   }
 
   // Called once the command ends or is interrupted.

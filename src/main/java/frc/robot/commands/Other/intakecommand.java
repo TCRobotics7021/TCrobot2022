@@ -4,10 +4,12 @@
 
 package frc.robot.commands.Other;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.Climbing.gantrycommand;
 
 public class intakecommand extends CommandBase {
 double accuspeed;
@@ -17,6 +19,7 @@ double accuspeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake_subsystem);
     addRequirements(RobotContainer.accumulator_subsystem);
+    addRequirements(RobotContainer.gantry_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -29,6 +32,13 @@ double accuspeed;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.gantry_subsystem.setSpeed(Constants.GANTRY_EXTEND_SPEED);
+    
+    
+    
+    
+    
+    
     if(RobotContainer.shooter_subsystem.isSensorBlocked() && RobotContainer.accumulator_subsystem.isSensorBlocked()){
       RobotContainer.accumulator_subsystem.setSpeed(0);
     }
@@ -43,6 +53,8 @@ double accuspeed;
   public void end(boolean interrupted) {
     RobotContainer.accumulator_subsystem.setSpeed(0);
     RobotContainer.intake_subsystem.setSpeed(0);
+    //RobotContainer.gantry_subsystem.Intimer.delay(.35);
+    new gantrycommand(Constants.GANTRY_REST_POSITION);
   }
 
   // Returns true when the command should end.

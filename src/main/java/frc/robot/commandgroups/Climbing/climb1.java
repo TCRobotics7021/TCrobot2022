@@ -21,25 +21,7 @@ public class climb1 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-new gantrycommand(15),
-//new waitforgantryathome(),
-new liftcommand(-5),
-//new WaitCommand(.5),
-new gantrycommand(115),
-new WaitCommand(.5),
-new liftcommand(200),
-new gantrycommand(518),
-new liftcommand(655),
-new gantrycommand(430),
-new WaitCommand(2),
-new liftcommand(400),
-new gantrycommand(15),
-//new waitforgantryathome(),
-new liftcommand(0),
-new WaitCommand(0),
-new gantrycommand(104),
-new liftcommand(5),
-new WaitCommand(10)
+    new liftcommand(500)
 
     );
   }

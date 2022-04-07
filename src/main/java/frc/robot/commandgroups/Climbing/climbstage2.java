@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Climbing.liftcommand;
+import frc.robot.subsystems.Gantry;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,16 +19,12 @@ public class climbstage2 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new gantrycommand(15),
-      //new waitforgantryathome(),
-      new liftcommand(-5),
-      //new WaitCommand(.5),
-      new gantrycommand(115),
-      new WaitCommand(.5),
-      new liftcommand(200),
-      new gantrycommand(518),
-      new liftcommand(550)
-     
+    new gantrycommand(0),
+     new liftcommand(0),
+     new gantrycommand(250),
+     new liftcommand(500),
+     new gantrycommand(400),
+     new liftcommand(0)
 );
   }
 }

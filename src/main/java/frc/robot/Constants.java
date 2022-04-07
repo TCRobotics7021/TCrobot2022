@@ -54,6 +54,8 @@ public static final double rightScaleConstant = 1.00;
   public static double GANTRY_MOTOR_MIN = .3;
   public static double GANTRY_MOTOR_P = .02;
   public static double GANTRY_MOTOR_MANUAL_POWER = .2;
+  public static double GANTRY_EXTEND_SPEED = 1;
+  public static double GANTRY_REST_POSITION = 250;
 
   //turret limits
   public static double TURRET_ENC_CONV_FACTOR = 1; 

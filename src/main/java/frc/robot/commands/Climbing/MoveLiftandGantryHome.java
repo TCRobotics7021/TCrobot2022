@@ -5,6 +5,7 @@
 package frc.robot.commands.Climbing;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class MoveLiftandGantryHome extends CommandBase {
@@ -18,7 +19,7 @@ public class MoveLiftandGantryHome extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.Lift_subsystem.setSpeed(-.2);
-    RobotContainer.gantry_subsystem.setSpeed(.4);
+    RobotContainer.gantry_subsystem.setSpeed(Constants.GANTRY_EXTEND_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
