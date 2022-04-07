@@ -12,22 +12,22 @@ import frc.robot.commands.Climbing.liftcommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class climbstage2 extends SequentialCommandGroup {
-  /** Creates a new climbstage2. */
-  public climbstage2() {
+public class ClimbFinish extends SequentialCommandGroup {
+  /** Creates a new ClimbFinish. */
+  public ClimbFinish() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      new gantrycommand(458),
+      new WaitCommand(1.5),
+      new liftcommand(400),
       new gantrycommand(15),
       //new waitforgantryathome(),
-      new liftcommand(-5),
-      //new WaitCommand(.5),
-      new gantrycommand(115),
-      new WaitCommand(.5),
-      new liftcommand(200),
-      new gantrycommand(518),
-      new liftcommand(550)
-     
-);
+      new liftcommand(0),
+      new WaitCommand(0),
+      new gantrycommand(104),
+      new liftcommand(5),
+      new WaitCommand(10)
+    );
   }
 }

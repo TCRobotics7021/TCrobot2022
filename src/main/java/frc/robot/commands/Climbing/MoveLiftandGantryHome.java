@@ -18,7 +18,7 @@ public class MoveLiftandGantryHome extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.Lift_subsystem.setSpeed(-.2);
-    RobotContainer.gantry_subsystem.setSpeed(.2);
+    RobotContainer.gantry_subsystem.setSpeed(.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

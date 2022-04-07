@@ -36,7 +36,7 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
       new DrivePathAndIntake("AR2 Path2"),
      // new intakecommand().withTimeout(1),
       new DrivePathAndIntake("AR2 Path3"),
-      new intakecommand().withTimeout(1),
+      new intakecommand().withTimeout(.25),
       new ParallelRaceGroup(new DrivePathAndIntake("AR2 Path4"), new autoturretaim()),
       new AutonomousShooting(2150).withTimeout(5.3),
       new DriveCoast()

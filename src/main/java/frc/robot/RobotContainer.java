@@ -14,6 +14,7 @@ import frc.robot.commandgroups.Autonomous.AutonomousRoutine2;
 import frc.robot.commandgroups.Autonomous.AutonomousRoutine3;
 import frc.robot.commandgroups.Autonomous.AutonomousRoutine4;
 import frc.robot.commandgroups.Autonomous.AutonomousRoutine5;
+import frc.robot.commandgroups.Climbing.ClimbFinish;
 import frc.robot.commandgroups.Climbing.climb1;
 import frc.robot.commandgroups.Climbing.climbstage2;
 import frc.robot.commands.TurretTurn;
@@ -139,8 +140,10 @@ new JoystickButton(OPpanel, 16).whileHeld(new ManualGantry(-Constants.GANTRY_MOT
 
 new JoystickButton(OPpanel, 1).whenPressed(new climb1(), false);
 new JoystickButton(OPpanel, 2).whenPressed(new climbstage2(), false);
+new JoystickButton(OPpanel, 13).whenPressed(new ClimbFinish(), false);
 
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);
+
 
 new JoystickButton(RightJoystick, 3).whileHeld(new AutonomousShooting(2000));
 

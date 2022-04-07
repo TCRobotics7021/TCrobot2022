@@ -43,8 +43,8 @@ public static final double rightScaleConstant = 1.00;
   public static double LIFT_ENC_RESET_HEIGHT = 0;
   public static double LIFT_ENC_CONV_FACTOR = -0.0014568574;
   public static double LIFT_TARGET_ACCURACY = 10;
-  public static double LIFT_MOTOR_P = .03;
-  public static double LIFT_MOTOR_MIN = -.2;
+  public static double LIFT_MOTOR_P = .05;
+  public static double LIFT_MOTOR_MIN = -.3;
   public static double LIFT_MOTOR_MANUAL_POWER = .8; 
   
   //gantry (moving lift)

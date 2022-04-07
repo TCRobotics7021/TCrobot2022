@@ -31,7 +31,7 @@ public class fwdeject extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.shooter_subsystem.setShooterVelocity(500);
+    RobotContainer.shooter_subsystem.setShooterVelocity(1000);
     if(RobotContainer.shooter_subsystem.atRPMS()){
     RobotContainer.shooter_subsystem.setfeedspeed(1);
     
