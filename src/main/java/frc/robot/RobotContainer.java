@@ -138,8 +138,8 @@ new JoystickButton(OPpanel, 6).whileHeld(new ManualLift(Constants.LIFT_MOTOR_MAN
 new JoystickButton(OPpanel, 15).whileHeld(new ManualGantry(Constants.GANTRY_MOTOR_MANUAL_POWER) );
 new JoystickButton(OPpanel, 16).whileHeld(new ManualGantry(-Constants.GANTRY_MOTOR_MANUAL_POWER) );
 
-new JoystickButton(OPpanel, 1).whenPressed(new climb1(), false);
-new JoystickButton(OPpanel, 2).whenPressed(new climbstage2(), false);
+new JoystickButton(OPpanel, 2).whenPressed(new climb1(), false);
+new JoystickButton(OPpanel, 1).whenPressed(new climbstage2(), false);
 new JoystickButton(OPpanel, 13).whenPressed(new ClimbFinish(), false);
 
 new JoystickButton(OPpanel, 3).whileHeld(new cancel(), false);

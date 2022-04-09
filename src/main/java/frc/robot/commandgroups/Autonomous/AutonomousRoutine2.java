@@ -29,7 +29,8 @@ public class AutonomousRoutine2 extends SequentialCommandGroup {
     addCommands(   
       //new gantrycommand(0),
       new defaultshooter().withTimeout(.05),
-      new ParallelCommandGroup( new DriveFirstPathAndIntake("AR2 Path1"),new MoveLiftandGantryHome()),
+      new MoveLiftandGantryHome(),
+      new DriveFirstPathAndIntake("AR2 Path1"),
       //new MoveLiftandGantryHome()),
       //new DriveFirstPathAndIntake("AR2 Path1"),
       new AutoShoot2Ball(2150),

@@ -25,6 +25,7 @@ double speed;
     RobotContainer.Lift_subsystem.setSpeed(speed);
     RobotContainer.shooter_subsystem.TurnOffIdle();
     RobotContainer.shooter_subsystem.setShooterVelocity(0);
+    RobotContainer.Lift_subsystem.setmaxspeed(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

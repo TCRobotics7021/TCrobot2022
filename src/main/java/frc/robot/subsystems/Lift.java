@@ -36,6 +36,7 @@ public class Lift extends SubsystemBase {
   double target = 0;
   double velocity = 0;
   boolean holdposition = false;
+  double MaxSpeed = 1;
 
 
   public Lift() {
@@ -59,6 +60,10 @@ public class Lift extends SubsystemBase {
     LiftMotor.set(ControlMode.PercentOutput, -speed);
     setbrakemode();
     holdposition = false;
+  }
+
+  public void setmaxspeed(double Max){
+    MaxSpeed = Max;
   }
 
   public void setposition(double target){
@@ -102,6 +107,12 @@ public class Lift extends SubsystemBase {
         }else{
           velocity = -Constants.LIFT_MOTOR_MIN;
         }
+        if(Math.abs(velocity) > MaxSpeed && !atPosition()){
+          if(velocity>0){
+            velocity = MaxSpeed;
+          }else{
+            velocity = -MaxSpeed;
+          }
     }
       if(velocity > 0 && !top_limit.get()){
         velocity = 0;

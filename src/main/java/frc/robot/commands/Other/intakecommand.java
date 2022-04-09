@@ -27,12 +27,12 @@ double accuspeed;
   public void initialize() {
       inspeed = Constants.INTAKESPEED;
       accuspeed = Constants.ACCUSPEED;
+      RobotContainer.gantry_subsystem.setposition(Constants.GANTRY_EXTEND_POSITION);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.gantry_subsystem.setSpeed(Constants.GANTRY_EXTEND_SPEED);
     
     
     
@@ -54,7 +54,7 @@ double accuspeed;
     RobotContainer.accumulator_subsystem.setSpeed(0);
     RobotContainer.intake_subsystem.setSpeed(0);
     //RobotContainer.gantry_subsystem.Intimer.delay(.35);
-    new gantrycommand(Constants.GANTRY_REST_POSITION);
+    RobotContainer.gantry_subsystem.setposition(Constants.GANTRY_REST_POSITION);
   }
 
   // Returns true when the command should end.

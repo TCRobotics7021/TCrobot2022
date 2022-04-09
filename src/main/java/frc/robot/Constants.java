@@ -52,10 +52,10 @@ public static final double rightScaleConstant = 1.00;
   public static double GANTRY_ENC_CONV_FACTOR = -0.0015506126;
   public static double GANTRY_TARGET_ACCURACY = 3;
   public static double GANTRY_MOTOR_MIN = .3;
-  public static double GANTRY_MOTOR_P = .02;
+  public static double GANTRY_MOTOR_P = .04;
   public static double GANTRY_MOTOR_MANUAL_POWER = .2;
-  public static double GANTRY_EXTEND_SPEED = 1;
-  public static double GANTRY_REST_POSITION = 250;
+  public static double GANTRY_EXTEND_POSITION = 30;
+  public static double GANTRY_REST_POSITION = 275;
 
   //turret limits
   public static double TURRET_ENC_CONV_FACTOR = 1; 
@@ -98,7 +98,7 @@ public static final double rightScaleConstant = 1.00;
 
   public static double INTAKESPEED = 1;
   public static double FEEDSPEED = 1;
-  public static double SHOTSPEED = 2000;
+  public static double SHOTSPEED = 2100;
 
   //Shooter PID
   public static double SHOOTER_kP = .25;

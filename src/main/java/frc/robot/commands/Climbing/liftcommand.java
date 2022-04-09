@@ -13,10 +13,12 @@ public class liftcommand extends CommandBase {
 
 double target;
 boolean finish;
+double MaxSpeed;
   /** Creates a new liftcommand. */
-  public liftcommand(double target) {
+  public liftcommand(double target, double MaxSpeed) {
 
     this.target = target;
+    this.MaxSpeed = MaxSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
   addRequirements(RobotContainer.Lift_subsystem);
   }
@@ -27,6 +29,7 @@ boolean finish;
   public void initialize() {
     finish = false;
       RobotContainer.Lift_subsystem.setposition(target);
+      RobotContainer.Lift_subsystem.setmaxspeed(MaxSpeed);
 
   }
 

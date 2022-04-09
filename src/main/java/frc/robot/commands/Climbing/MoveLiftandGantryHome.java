@@ -19,7 +19,7 @@ public class MoveLiftandGantryHome extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.Lift_subsystem.setSpeed(-.2);
-    RobotContainer.gantry_subsystem.setSpeed(Constants.GANTRY_EXTEND_SPEED);
+    RobotContainer.gantry_subsystem.setSpeed(.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -28,7 +28,8 @@ public class MoveLiftandGantryHome extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
