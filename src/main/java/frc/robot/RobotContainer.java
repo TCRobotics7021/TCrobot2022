@@ -132,7 +132,7 @@ new JoystickButton(LeftJoystick, 2).whileHeld(new fwdeject(), true);
 new JoystickButton(OPpanel, 8).whileHeld(new TurretTurn(Constants.TURRET_TURN_SPEED));
 new JoystickButton(OPpanel, 12).whileHeld(new TurretTurn(-Constants.TURRET_TURN_SPEED));
 
-new JoystickButton(OPpanel, 7).whileHeld(new ManualLift(-Constants.LIFT_MOTOR_MANUAL_POWER) );
+new JoystickButton(OPpanel, 7).whileHeld(new ManualLift(-.5) );
 new JoystickButton(OPpanel, 6).whileHeld(new ManualLift(Constants.LIFT_MOTOR_MANUAL_POWER) );
 
 new JoystickButton(OPpanel, 15).whileHeld(new ManualGantry(Constants.GANTRY_MOTOR_MANUAL_POWER) );

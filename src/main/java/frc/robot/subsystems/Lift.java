@@ -36,7 +36,7 @@ public class Lift extends SubsystemBase {
   double target = 0;
   double velocity = 0;
   boolean holdposition = false;
-  double MaxSpeed = 1;
+  public double MaxSpeed = 1;
 
 
   public Lift() {
@@ -107,13 +107,15 @@ public class Lift extends SubsystemBase {
         }else{
           velocity = -Constants.LIFT_MOTOR_MIN;
         }
-        if(Math.abs(velocity) > MaxSpeed && !atPosition()){
-          if(velocity>0){
-            velocity = MaxSpeed;
-          }else{
-            velocity = -MaxSpeed;
-          }
-    }
+      }
+      if(Math.abs(velocity) > MaxSpeed && !atPosition()){
+        if(velocity>0){
+          velocity = MaxSpeed;
+        }else{
+          velocity = -MaxSpeed;
+        }
+      }
+    
       if(velocity > 0 && !top_limit.get()){
         velocity = 0;
       }
@@ -150,5 +152,4 @@ public class Lift extends SubsystemBase {
 
 
 
-}
 }
