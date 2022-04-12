@@ -20,6 +20,7 @@ public class ManualGantry extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.gantry_subsystem.setSpeed(speed);
+    RobotContainer.gantry_subsystem.setbrakemode();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

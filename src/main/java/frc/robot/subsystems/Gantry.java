@@ -88,6 +88,10 @@ public boolean atPosition(){
     return !FWDLimit.get();
   }
 
+  public boolean atBwdProx() {
+    return !BWDLimit.get();
+  }
+
   @Override
   public void periodic() {
 
@@ -123,8 +127,8 @@ public boolean atPosition(){
       GantryMotor.set(ControlMode.PercentOutput, 0);
      }
 
-     if(!FWDLimit.get()){
-       Set_enc(Constants.GANTRY_ENC_RESET_HEIGHT);
+     if(!BWDLimit.get()){
+       Set_enc(Constants.GANTRY_ENC_RESET_HEIGHT/Constants.GANTRY_ENC_CONV_FACTOR);
      }
 
      

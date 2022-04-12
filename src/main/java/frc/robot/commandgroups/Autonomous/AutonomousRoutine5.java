@@ -22,7 +22,7 @@ public class AutonomousRoutine5 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new defaultshooter().withTimeout(.05),
-    new MoveLiftandGantryHome(),
+    //new MoveLiftandGantryHome(),
     new DriveFirstPathAndIntake("AR5 Path1"),
     new AutoShoot2Ball(2050),
     new DrivePathAndIntake("AR5 Path2"),

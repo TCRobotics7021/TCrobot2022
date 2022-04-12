@@ -33,14 +33,14 @@ double LRmulti;
   @Override
   public void execute() {
     FBmulti = Constants.TURBO_FBMULTI;
-    LRmulti = Constants.TURBO_LRMULTI;
-    LeftJoystick_Y = RobotContainer.LeftJoystick.getY();
-    RightJoystick_X = RobotContainer.RightJoystick.getX();
+    LRmulti = Constants.LRMULTI;
+    LeftJoystick_Y = RobotContainer.RightJoystick.getY();
+    RightJoystick_X = RobotContainer.LeftJoystick.getX();
 
     RSpeed = (LeftJoystick_Y * FBmulti) + (RightJoystick_X * LRmulti);
     LSpeed = (LeftJoystick_Y * FBmulti) - (RightJoystick_X * LRmulti);
 
-    RobotContainer.drive_subsystem.setSpeed(RSpeed, LSpeed);
+    RobotContainer.drive_subsystem.setSpeed(-RSpeed, -LSpeed);
   }
 
   // Called once the command ends or is interrupted.

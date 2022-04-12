@@ -48,21 +48,21 @@ public static final double rightScaleConstant = 1.00;
   public static double LIFT_MOTOR_MANUAL_POWER = .8; 
   
   //gantry (moving lift)
-  public static double GANTRY_ENC_RESET_HEIGHT = 0;
-  public static double GANTRY_ENC_CONV_FACTOR = -0.0015506126;
+  public static double GANTRY_ENC_RESET_HEIGHT = 424;
+  public static double GANTRY_ENC_CONV_FACTOR = -.0027760229;
   public static double GANTRY_TARGET_ACCURACY = 3;
   public static double GANTRY_MOTOR_MIN = .3;
   public static double GANTRY_MOTOR_P = .04;
   public static double GANTRY_MOTOR_MANUAL_POWER = .2;
   public static double GANTRY_EXTEND_POSITION = 30;
-  public static double GANTRY_REST_POSITION = 275;
+  public static double GANTRY_REST_POSITION = 300;
 
   //turret limits
   public static double TURRET_ENC_CONV_FACTOR = 1; 
 
   //arcade drive
-  public static double TURBO_FBMULTI = 1;
-  public static double TURBO_LRMULTI = 1; 
+  public static double TURBO_FBMULTI = .7;
+  public static double TURBO_LRMULTI = .7; 
   public static double FBMULTI = .5;
   public static double LRMULTI = .3;
 

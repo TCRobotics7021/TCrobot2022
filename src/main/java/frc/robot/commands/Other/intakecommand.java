@@ -27,6 +27,7 @@ double accuspeed;
   public void initialize() {
       inspeed = Constants.INTAKESPEED;
       accuspeed = Constants.ACCUSPEED;
+      RobotContainer.gantry_subsystem.setbrakemode();
       RobotContainer.gantry_subsystem.setposition(Constants.GANTRY_EXTEND_POSITION);
   }
 

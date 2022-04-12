@@ -7,6 +7,8 @@ package frc.robot.commandgroups.Climbing;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.GantryCoast;
+import frc.robot.commands.MoveGantryToLimit;
 import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Climbing.liftcommand;
 import frc.robot.subsystems.Gantry;
@@ -30,9 +32,10 @@ public class climbstage2 extends SequentialCommandGroup {
      //new WaitCommand(1),
      new ParallelCommandGroup(new liftcommand(635, 1), new gantrycommand(325)),
      //new WaitCommand(1),
-     new gantrycommand(455),
-     new WaitCommand(1),
-     new liftcommand(0, .5)
+     new MoveGantryToLimit(),
+     new GantryCoast().withTimeout(.5)
+     //new WaitCommand(1)
+     //new liftcommand(0, .5)
 );
   }
 }

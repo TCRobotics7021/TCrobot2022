@@ -27,6 +27,7 @@ public class gantrycommand extends CommandBase {
   public void initialize() {
     finish = false;
     RobotContainer.gantry_subsystem.setposition(gantrytarget);
+    RobotContainer.gantry_subsystem.setbrakemode();
   }
 
 

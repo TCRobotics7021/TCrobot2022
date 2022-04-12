@@ -24,7 +24,7 @@ public class AutonomousRoutine1 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new defaultshooter().withTimeout(.05),
-      new MoveLiftandGantryHome(),
+     // new MoveLiftandGantryHome(),
       new DriveFirstPathAndIntake("AR1 Path1"),
       //new MoveLiftandGantryHome(),
       //new DriveFirstPathAndIntake("AR1 Path1"),

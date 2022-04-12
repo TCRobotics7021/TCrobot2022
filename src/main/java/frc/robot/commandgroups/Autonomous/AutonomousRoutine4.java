@@ -27,7 +27,7 @@ public class AutonomousRoutine4 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new defaultshooter().withTimeout(.05),
-      new MoveLiftandGantryHome(),
+      //new MoveLiftandGantryHome(),
       new DriveFirstPathAndIntake("AR4 Path1"),
       new AutoShoot2Ball(2000),
       new ParallelCommandGroup( new DrivePathAndIntake("AR4 Path2"), new TurretTurn(-.3).withTimeout(.2)),
