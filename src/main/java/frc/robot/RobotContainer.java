@@ -89,7 +89,7 @@ public class RobotContainer {
     AutonomousChooser.setDefaultOption("AR2: 4 Balls", new AutonomousRoutine2());
     //AutonomousChooser.addOption("AR3: ", new AutonomousRoutine3());
     //AutonomousChooser.setDefaultOption("AR4: 4 ball", new AutonomousRoutine4());
-    //AutonomousChooser.addOption("AR5: Do Nothing", new AutonomousRoutine5());
+    AutonomousChooser.addOption("AR5: offensive defense", new AutonomousRoutine5());
 
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);

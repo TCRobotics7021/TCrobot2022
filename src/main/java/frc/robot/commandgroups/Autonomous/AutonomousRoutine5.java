@@ -11,6 +11,7 @@ import frc.robot.commands.Climbing.gantrycommand;
 import frc.robot.commands.Shooting.AutoShoot2Ball;
 import frc.robot.commands.Shooting.AutonomousShooting;
 import frc.robot.commands.Shooting.defaultshooter;
+import frc.robot.commands.Shooting.fwdeject;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -22,12 +23,11 @@ public class AutonomousRoutine5 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new defaultshooter().withTimeout(.05),
-    //new MoveLiftandGantryHome(),
     new DriveFirstPathAndIntake("AR5 Path1"),
-    new AutoShoot2Ball(2050),
+    new AutoShoot2Ball(2100),
     new DrivePathAndIntake("AR5 Path2"),
     new drivepath("AR5 Path3"),
-    new AutonomousShooting(2200).withTimeout(2)
+    new fwdeject().withTimeout(5)
     );
   }
 }
